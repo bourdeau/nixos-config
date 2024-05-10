@@ -9,6 +9,7 @@ in {
     ./alacritty
     ./zellij
     ./bash
+    ./neovim
   ];
 
   # add environment variables

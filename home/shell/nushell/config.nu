@@ -758,5 +758,31 @@ $env.config = {
     ]
 }
 
+alias ll = ls -l
+alias vim = nvim
+
+
+def "clear-docker" [] {
+    let images = (docker images -q | lines)
+    for image in $images {
+        docker rmi $image
+    }
+    
+    let containers = (docker ps -a -q | lines)
+    for container in $containers {
+        docker rm $container
+    }
+
+    let volumes = (docker volume ls -q | lines)
+    for volume in $volumes {
+        docker volume rm $volume
+    }
+
+    docker system prune -a -f --volumes
+    docker image prune
+    docker volume prune
+}
+
+
 # Running neofetch for each new shell
 neofetch

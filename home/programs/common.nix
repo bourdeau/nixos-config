@@ -60,7 +60,6 @@
     usbutils # lsusb
 
     vscode
-    neovim
     nushell
     slack
 
