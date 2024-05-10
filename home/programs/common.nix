@@ -59,8 +59,11 @@
     pciutils # lspci
     usbutils # lsusb
 
-    vscode
+    # shell
     nushell
+    carapace
+
+    vscode
     slack
 
   ];

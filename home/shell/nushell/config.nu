@@ -783,6 +783,8 @@ def "clear-docker" [] {
     docker volume prune
 }
 
+# Carapace auto comple
+source ~/.cache/carapace/init.nu
 
 # Running neofetch for each new shell
 neofetch
