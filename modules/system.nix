@@ -8,7 +8,7 @@ in {
   users.users.ph = {
     isNormalUser = true;
     description = "ph";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
   # given the users in this list the right to specify additional substituters via:
   #    1. `nixConfig.substituers` in `flake.nix`
@@ -54,6 +54,9 @@ in {
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+  # Enable docker
+  virtualisation.docker.enable = true;
 
   # FIXME
   # Fill wallpaper
@@ -121,6 +124,8 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    gcc
+    gnumake
     wget
     curl
     git
