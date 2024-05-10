@@ -62,6 +62,7 @@
     vscode
     neovim
     nushell
+    slack
 
   ];
 

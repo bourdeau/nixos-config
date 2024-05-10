@@ -757,3 +757,6 @@ $env.config = {
         }
     ]
 }
+
+# Running neofetch for each new shell
+neofetch

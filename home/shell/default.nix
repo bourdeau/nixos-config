@@ -8,6 +8,7 @@ in {
     ./starship
     ./alacritty
     ./zellij
+    ./bash
   ];
 
   # add environment variables

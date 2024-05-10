@@ -5,9 +5,6 @@
 }: let
   username = "ph";
 in {
-  # ============================= User related =============================
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ph = {
     isNormalUser = true;
     description = "ph";
@@ -20,7 +17,6 @@ in {
 
   # customise /etc/nix/nix.conf declaratively via `nix.settings`
   nix.settings = {
-    # enable flakes globally
     experimental-features = ["nix-command" "flakes"];
 
     trusted-public-keys = [
@@ -29,7 +25,7 @@ in {
     builders-use-substitutes = true;
   };
 
-  # do garbage collection weekly to keep disk usage low
+  # Remove nixos build older than 7 days
   nix.gc = {
     automatic = lib.mkDefault true;
     dates = lib.mkDefault "weekly";
@@ -59,7 +55,10 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Disable system sleep
+  # FIXME
+  # Fill wallpaper
+  # services.xserver.desktopManager.mode = "fit";
+
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
     AllowHibernation=no
@@ -118,21 +117,10 @@ in {
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh = {
-  #   enable = true;
-  #   settings = {
-  #     X11Forwarding = true;
-  #     PermitRootLogin = "no"; # disable root login
-  #     PasswordAuthentication = false; # disable password login
-  #   };
-  #   openFirewall = true;
-  # };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     curl
     git

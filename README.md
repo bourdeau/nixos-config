@@ -16,11 +16,10 @@ I recently switched from Ubuntu/Arch to Nixos thanks to [Ryan4yin](https://githu
 
 ## Components
 
-|                             | NixOS(Wayland)                                                                                                      |
+|                             |                                                                                                                     |
 | --------------------------- | :------------------------------------------------------------------------------------------------------------------ |
 | **Window Manager**          | [GNOME][GNOME]                                                                                                      |
 | **Terminal Emulator**       | [Zellij][Zellij] + [Alacritty][Alacritty]                                                                           |
-| **Bar**                     | [Waybar][Waybar]                                                                                                    |
 | **Application Launcher**    | [anyrun][anyrun]                                                                                                    |
 | **Notification Daemon**     | [Mako][Mako]                                                                                                        |
 | **Display Manager**         | [GDM][GDM]                                                                                                          |
