@@ -20,21 +20,8 @@ I recently switched from Ubuntu/Arch to Nixos thanks to [Ryan4yin](https://githu
 | --------------------------- | :------------------------------------------------------------------------------------------------------------------ |
 | **Window Manager**          | [GNOME][GNOME]                                                                                                      |
 | **Terminal Emulator**       | [Zellij][Zellij] + [Alacritty][Alacritty]                                                                           |
-| **Application Launcher**    | [anyrun][anyrun]                                                                                                    |
-| **Notification Daemon**     | [Mako][Mako]                                                                                                        |
-| **Display Manager**         | [GDM][GDM]                                                                                                          |
-| **Color Scheme**            | [Catppuccin][Catppuccin]                                                                                            |
-| **network management tool** | [NetworkManager][NetworkManager]                                                                                    |
-| **Input method framework**  | [Fcitx5][Fcitx5]                                                                                                    |
 | **System resource monitor** | [Btop][Btop]                                                                                                        |
-| **File Manager**            | [Yazi][Yazi] + [thunar][thunar]                                                                                     |
 | **Shell**                   | [Nushell][Nushell] + [Starship][Starship]                                                                           |
-| **Music Player**            | [mpd][mpd], [ncmpcpp][ncmpcpp], [mpc][mpc], [Netease-cloud-music-gtk][netease-cloud-music-gtk]                      |
-| **Media Player**            | [mpv][mpv]                                                                                                          |
 | **Text Editor**             | [Neovim][Neovim] + [NvChad][NvChad]                                                                                 |
 | **Fonts**                   | [Nerd fonts][Nerd fonts]                                                                                            |
-| **Image Viewer**            | [imv][imv]                                                                                                          |
-| **Screenshot Software**     | [flameshot][flameshot] + [grim][grim]                                                                               |
 | **Screen Recording**        | [OBS][OBS]                                                                                                          |
-| **Filesystem & Encryption** | [Btrfs][Btrfs]                                                                                                      |
-| **Secure Boot**             | [lanzaboote][lanzaboote]                                                                                            |
