@@ -18,13 +18,13 @@ I recently switched from Ubuntu/Arch to Nixos thanks to [Ryan4yin](https://githu
 
 |                             |                                                                                                                     |
 | --------------------------- | :------------------------------------------------------------------------------------------------------------------ |
-| **Window Manager**          | [GNOME][GNOME]                                                                                                      |
-| **Terminal Emulator**       | [Zellij][Zellij] + [Alacritty][Alacritty]                                                                           |
-| **System resource monitor** | [Btop][Btop]                                                                                                        |
-| **Shell**                   | [Nushell][Nushell] + [Starship][Starship]                                                                           |
-| **Text Editor**             | [Neovim][Neovim] + [NvChad][NvChad]                                                                                 |
-| **Fonts**                   | [Nerd fonts][Nerd fonts]                                                                                            |
-| **Screen Recording**        | [OBS][OBS]                                                                                                          |
+| **Window Manager**          | [GNOME](https://www.gnome.org/)                                                                                     |
+| **Terminal Emulator**       | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                                 |
+| **System resource monitor** | [Btop](https://github.com/aristocratos/btop)                                                                        |
+| **Shell**                   | [Nushell](https://www.nushell.sh/) + [Starship](https://starship.rs/)                                               |
+| **Text Editor**             | [Neovim](https://neovim.io/) + [NvChad](https://nvchad.com/)                                                        |
+| **Fonts**                   | [Nerd fonts](https://www.nerdfonts.com/)                                                                            |
+| **Screen Recording**        | [OBS](https://obsproject.com/)                                                                                      |
 
 ## Install
 
