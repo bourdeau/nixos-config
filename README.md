@@ -25,3 +25,13 @@ I recently switched from Ubuntu/Arch to Nixos thanks to [Ryan4yin](https://githu
 | **Text Editor**             | [Neovim][Neovim] + [NvChad][NvChad]                                                                                 |
 | **Fonts**                   | [Nerd fonts][Nerd fonts]                                                                                            |
 | **Screen Recording**        | [OBS][OBS]                                                                                                          |
+
+## Install
+
+```
+# Desktop
+sudo nixos-rebuild switch --flake .#phcorsair
+
+# Laptop
+sudo nixos-rebuild switch --flake .#phzenbook
+```
