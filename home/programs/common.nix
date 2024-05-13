@@ -18,7 +18,6 @@
     libnotify
 
     xdg-utils
-    graphviz
 
     # IDE
     insomnia
@@ -38,7 +37,6 @@
     gnupg
 
     # productivity
-    hugo # static site generator
     glow # markdown previewer in terminal
 
     btop  # replacement of htop/nmon
@@ -69,7 +67,13 @@
     cargo
     rustfmt
 
-  ];
+    # python
+    python312
+    poetry
+
+    nodejs
+
+];
 
   programs = {
 

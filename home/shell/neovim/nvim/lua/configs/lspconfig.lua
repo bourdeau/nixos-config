@@ -8,6 +8,7 @@ local servers = {
   "html",
   "cssls", 
   "rust_analyzer",
+  "pyright",
 }
 
 -- lsps with default config
