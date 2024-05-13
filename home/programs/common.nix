@@ -11,7 +11,6 @@
 
     # utils
     ripgrep
-    htop
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
 
@@ -29,7 +28,6 @@
     kubectl
 
     # misc
-    cowsay
     file
     which
     tree
@@ -65,6 +63,11 @@
 
     vscode
     slack
+
+    # rust
+    rust-analyzer
+    cargo
+    rustfmt
 
   ];
 
