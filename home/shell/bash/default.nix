@@ -7,6 +7,7 @@
       neofetch
     '';
     shellAliases = {
+      vi="vim";
       vim="nvim";
       ll="ls -al";
       neofetch="neofetch --ascii ~/.config/ascii-neofetch";

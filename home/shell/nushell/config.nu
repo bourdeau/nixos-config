@@ -758,6 +758,7 @@ $env.config = {
     ]
 }
 
+alias vi = vim
 alias ll = ls -l
 alias vim = nvim
 

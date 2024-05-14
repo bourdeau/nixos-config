@@ -73,6 +73,7 @@
 
     nodejs
 
+    lynx
 ];
 
   programs = {
