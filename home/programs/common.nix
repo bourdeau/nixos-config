@@ -25,6 +25,7 @@
     # cloud native
     docker
     kubectl
+    terraform
 
     # misc
     file
@@ -63,9 +64,7 @@
     slack
 
     # rust
-    rust-analyzer
-    cargo
-    rustfmt
+    rustup
 
     # python
     python312

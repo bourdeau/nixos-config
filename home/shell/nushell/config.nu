@@ -761,7 +761,7 @@ $env.config = {
 alias vi = vim
 alias ll = ls -l
 alias vim = nvim
-
+alias tf = terraform
 
 def "clear-docker" [] {
     let images = (docker images -q | lines)
