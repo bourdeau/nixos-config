@@ -13,6 +13,7 @@
     ripgrep
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+    xclip
 
     # misc
     libnotify
