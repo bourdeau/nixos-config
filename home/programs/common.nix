@@ -4,31 +4,65 @@
   ...
 }: {
   home.packages = with pkgs; [
-    # archives
+    cmake
+    gcc
+    gnumake
+    gnupg
+
+    wget
+    curl
+
+    # Git
+    git
+    lazygit
+
+    # System
+    sysstat
+    lm_sensors # for `sensors` command
+    neofetch
+    xfce.thunar # xfce4's file manager
+    nnn # terminal file manager
+    ethtool
+    pciutils # lspci
+    usbutils # lsusb
+    btop  # replacement of htop/nmon
+    iotop # io monitoring
+    iftop # network monitoring
+    strace # system call monitoring
+    ltrace # library call monitoring
+    lsof # list open files
+    gping # ping but with graph
+    duf # disk usage
+
+
+    # Needed by some Rust lib
+    pkg-config
+
+    # Browser 
+    firefox
+    lynx
+
+    # Archives
     zip
     unzip
     p7zip
 
-    # utils
+    # Utils
     ripgrep
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
     xclip
 
-    # misc
-    libnotify
-
-    xdg-utils
-
     # IDE
     insomnia
+    vscode
 
-    # cloud native
+    # Cloud native
     docker
     kubectl
     terraform
 
-    # misc
+    # Misc
     file
     which
     tree
@@ -36,44 +70,44 @@
     gnutar
     gawk
     zstd
-    gnupg
+    libnotify
+    xdg-utils
 
     # productivity
     glow # markdown previewer in terminal
-
-    btop  # replacement of htop/nmon
-    iotop # io monitoring
-    iftop # network monitoring
-
-    # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
-
-    # system tools
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
 
     # shell
     nushell
     carapace
 
-    vscode
+    # Communication
     slack
 
     # rust
-    rustup
+    # rustup
+    rust-analyzer
+    cargo
+    rustfmt
 
-    # python
-    python312
+    # Python
     poetry
+    nodePackages.pyright # python language server
+    (python312.withPackages (
+      ps:
+        with ps; [
+          ruff-lsp
+          requests
+        ]
+    ))
 
     nodejs
 
-    lynx
+    # Lua
+    stylua
+    lua-language-server
+
+    tree-sitter 
+
 ];
 
   programs = {

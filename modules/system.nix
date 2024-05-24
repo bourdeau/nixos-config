@@ -124,17 +124,6 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    gcc
-    gnumake
-    wget
-    curl
-    git
-    sysstat
-    lm_sensors # for `sensors` command
-    neofetch
-    xfce.thunar # xfce4's file manager
-    nnn # terminal file manager
-    firefox
   ];
 
   environment.variables.EDITOR = "vim";
