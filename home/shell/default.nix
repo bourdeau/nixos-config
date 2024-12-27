@@ -21,7 +21,7 @@ in {
 
     # set default applications
     EDITOR = "vim";
-    BROWSER = "firefox";
+    # BROWSER = "firefox";
     TERMINAL = "alacritty";
 
     # enable scrolling in git diff

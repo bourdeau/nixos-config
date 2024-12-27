@@ -4,8 +4,8 @@
   ...
 }: {
   programs = {
-    firefox = {
-      enable = true;
-    };
+    # firefox = {
+    #   enable = true;
+    # };
   };
 }

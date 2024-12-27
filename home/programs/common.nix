@@ -101,7 +101,7 @@ home.packages = with pkgs; [
   rustfmt       # Rust code formatter
 
   # Python Development Tools
-  nodePackages.pyright # Python language server
+  # nodePackages.pyright # Python language server
   poetry          # Python dependency management and packaging
   (python312.withPackages (ps: with ps; [
     requests      # HTTP library for Python
