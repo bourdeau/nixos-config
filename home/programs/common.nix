@@ -42,6 +42,7 @@ home.packages = with pkgs; [
 
   # Rust Development
   pkg-config   # Needed by some Rust libraries
+  openssl      # Cryptography library
 
   # Browsers
   firefox      # Web browser

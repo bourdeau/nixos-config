@@ -75,10 +75,11 @@ in {
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "fr";
-    xkbVariant = "azerty";
+    xkb = {
+      variant = "azerty";
+      layout = "fr";
+    };
   };
-
   # Configure console keymap
   console.keyMap = "fr";
 
@@ -123,6 +124,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gnome-settings-daemon
     vim
   ];
 
@@ -154,6 +156,6 @@ in {
       #media-session.enable = true;
     };
 
-    udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+    # udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   };
 }
