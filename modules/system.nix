@@ -75,8 +75,10 @@ in {
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "fr";
-    xkbVariant = "azerty";
+    xkb = {
+      variant = "azerty";
+      layout = "fr";
+    };
   };
 
   # Configure console keymap
@@ -123,6 +125,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gnome-settings-daemon
     vim
   ];
 
@@ -146,14 +149,7 @@ in {
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      # jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
     };
 
-    udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   };
 }

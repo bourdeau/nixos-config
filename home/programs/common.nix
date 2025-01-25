@@ -41,7 +41,8 @@ home.packages = with pkgs; [
   xfce.thunar  # XFCE's file manager
 
   # Rust Development
-  pkg-config   # Needed by some Rust libraries
+  pkg-config
+  openssl
 
   # Browsers
   firefox      # Web browser
