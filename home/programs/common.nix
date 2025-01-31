@@ -100,6 +100,7 @@ home.packages = with pkgs; [
   cargo         # Rust package manager
   rust-analyzer # Rust language server
   rustfmt       # Rust code formatter
+  rustc         # Rust compiler
 
   # Python Development Tools
   # nodePackages.pyright # Python language server
