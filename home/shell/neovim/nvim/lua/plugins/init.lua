@@ -39,15 +39,16 @@ return {
   	},
   },
 
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "rust-analyzer",
-        "pyright",
-      },
-    },
-  },
+  -- MASON doesn't work on NixOS. See: https://github.com/williamboman/mason.nvim/issues/428
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = {
+  --     ensure_installed = {
+  --       "rust-analyzer",
+  --       "pyright",
+  --     },
+  --   },
+  -- },
   {
     "neovim/nvim-lspconfig",
     config = function()

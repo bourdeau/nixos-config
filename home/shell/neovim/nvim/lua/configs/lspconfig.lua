@@ -1,4 +1,3 @@
--- EXAMPLE 
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
@@ -6,12 +5,11 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 local servers = { 
   "html",
-  "cssls", 
-  "rust_analyzer",
+  "cssls",
   "pyright",
 }
 
--- lsps with default config
+-- Load LSPs with default config
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -20,9 +18,16 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- typescript
-lspconfig.tsserver.setup {
+-- Configure rust-analyzer to use the system version from Nix
+lspconfig.rust_analyzer.setup {
+  cmd = { "rust-analyzer" }, -- Use system rust-analyzer
   on_attach = on_attach,
   on_init = on_init,
   capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = { allFeatures = true },
+      procMacro = { enable = true },
+    },
+  },
 }
