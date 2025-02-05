@@ -101,6 +101,7 @@ home.packages = with pkgs; [
   rust-analyzer # Rust language server
   rustfmt       # Rust code formatter
   rustc         # Rust compiler
+  clippy        # Linter for Rust code
 
   # Python Development Tools
   # nodePackages.pyright # Python language server
@@ -118,6 +119,7 @@ home.packages = with pkgs; [
   stylua         # Lua code formatter
 
   tree-sitter    # Parser generator tool and an incremental parsing library
+  just           # Command runner and task automation tool
 ];
 
   programs = {
