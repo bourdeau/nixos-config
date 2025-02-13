@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   username = "ph";
@@ -126,6 +127,7 @@ in {
   environment.systemPackages = with pkgs; [
     gnome-settings-daemon
     vim
+    config.boot.kernelPackages.perf
   ];
 
   environment.variables = {
