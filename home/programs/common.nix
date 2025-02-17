@@ -106,6 +106,7 @@ home.packages = with pkgs; [
   # Python Development Tools
   # nodePackages.pyright # Python language server
   poetry          # Python dependency management and packaging
+  pyright
   (python312.withPackages (ps: with ps; [
     requests      # HTTP library for Python
     ruff          # Python linter
