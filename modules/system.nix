@@ -160,4 +160,5 @@ in {
   services.ollama = {
     enable = true;
   };
+  programs.steam.enable = true;
 }
