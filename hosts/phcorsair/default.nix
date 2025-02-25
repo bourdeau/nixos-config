@@ -30,5 +30,14 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
+  
+  # Configure keymap in X11
+  services.xserver = {
+    xkb = {
+      variant = "azerty";
+      layout = "fr";
+    };
+  };
+  # Configure console keymap
+  console.keyMap = "fr";
 }

@@ -74,16 +74,6 @@ in {
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    xkb = {
-      variant = "azerty";
-      layout = "fr";
-    };
-  };
-  # Configure console keymap
-  console.keyMap = "fr";
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -128,6 +118,7 @@ in {
     gnome-settings-daemon
     vim
     config.boot.kernelPackages.perf
+    qwerty-fr
   ];
 
   environment.variables = {
