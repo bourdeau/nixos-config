@@ -130,7 +130,6 @@ home.packages = with pkgs; [
     eza.enable = true;
     ssh.enable = true;
     aria2.enable = true;
-    
   };
 
   services = {

@@ -36,6 +36,10 @@ sudo nixos-rebuild switch --flake .#phcorsair
 sudo nixos-rebuild switch --flake .#phzenbook
 ```
 
+# Gaming
+sudo nixos-rebuild switch --flake .#phantec
+```
+
 ## Notes
 
 If you try to install my config by running a command like
