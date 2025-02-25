@@ -7,6 +7,8 @@
     neovim = {
       enable = true;
 
+      # rm -rf ~/.config/nvim and rm -rf ~/.local/share/nvim and rm -rf ~/.local/state/nvim and  rm -rf ~/.cache/nvim
+
       # currently we use lazy.nvim as neovim's package manager, so comment this one.
       # Install packages that will compile locally or download FHS binaries via Nix!
       # and use lazy.nvim's `dir` option to specify the package directory in nix store.

@@ -1,10 +1,8 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre',
-    config = function()
-      require "configs.conform"
-    end,
+    -- event = 'BufWritePre', -- uncomment for format on save
+    opts = require "configs.conform",
   },
   
   {
