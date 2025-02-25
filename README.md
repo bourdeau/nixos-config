@@ -34,7 +34,6 @@ sudo nixos-rebuild switch --flake .#phcorsair
 
 # Laptop
 sudo nixos-rebuild switch --flake .#phzenbook
-```
 
 # Gaming
 sudo nixos-rebuild switch --flake .#phantec
