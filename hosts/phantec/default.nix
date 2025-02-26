@@ -75,8 +75,13 @@
   services.xserver = {
     xkb = {
       layout = "us";
+      variant = "intl";
+      options = "lv3:caps_switch";
     };
   };
+
+  services.xserver.displayManager.gdm.enable = true;
+
   # Configure console keymap
   console.keyMap = "us";
 }
