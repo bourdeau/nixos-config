@@ -8,10 +8,16 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "v4l2loopback" "snd-aloop"];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  boot.extraModprobeConfig = ''
+    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
+    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
+    # https://github.com/umlaeute/v4l2loopback
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/021ab318-133f-4ec4-95c5-8fb6d0fcbe34";

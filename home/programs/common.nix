@@ -39,6 +39,7 @@ home.packages = with pkgs; [
   sysstat      # Performance monitoring tools for Linux
   usbutils     # Manage USB devices
   xfce.thunar  # XFCE's file manager
+  lshw
 
   # Rust Development
   pkg-config   # Needed by some Rust libraries
@@ -106,6 +107,7 @@ home.packages = with pkgs; [
   # Python Development Tools
   # nodePackages.pyright # Python language server
   poetry          # Python dependency management and packaging
+  uv
   pyright
   (python312.withPackages (ps: with ps; [
     requests      # HTTP library for Python

@@ -118,7 +118,6 @@ in {
     gnome-settings-daemon
     vim
     config.boot.kernelPackages.perf
-    qwerty-fr
   ];
 
   environment.variables = {
