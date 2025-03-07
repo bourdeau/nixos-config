@@ -74,6 +74,7 @@ home.packages = with pkgs; [
   docker       # Platform for developing, shipping, and running applications
   kubectl      # Command-line tool for controlling Kubernetes clusters
   terraform    # Infrastructure as code tool
+  redis
 
   # Miscellaneous
   file         # Determine file type
@@ -105,7 +106,6 @@ home.packages = with pkgs; [
   clippy        # Linter for Rust code
 
   # Python Development Tools
-  # nodePackages.pyright # Python language server
   poetry          # Python dependency management and packaging
   pyright
   (python312.withPackages (ps: with ps; [
@@ -126,7 +126,6 @@ home.packages = with pkgs; [
 ];
 
   programs = {
-
     btop.enable = true;
     eza.enable = true;
     ssh.enable = true;
