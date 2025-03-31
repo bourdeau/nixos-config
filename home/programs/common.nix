@@ -18,6 +18,8 @@ home.packages = with pkgs; [
   pciutils     # List and manipulate PCI devices
   usbutils     # Manage USB devices
   wget         # Network utility to retrieve files from the web
+  lftp
+
 
   # Version Control
   git          # Distributed version control system
@@ -94,6 +96,13 @@ home.packages = with pkgs; [
 
   # Communication
   slack        # Collaboration software
+  discord
+
+  # Blog
+  hugo
+
+  # Game
+  steamcmd
 
   # Sound Management
   easyeffects  # Audio effects for PipeWire applications
