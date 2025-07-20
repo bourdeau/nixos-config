@@ -120,7 +120,6 @@ home.packages = with pkgs; [
   (python312.withPackages (ps: with ps; [
     requests      # HTTP library for Python
     ruff          # Python linter
-    ruff-lsp      # Language server for the Ruff Python linter
   ]))
 
   # JavaScript and Node.js

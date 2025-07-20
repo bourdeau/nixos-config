@@ -39,6 +39,15 @@ sudo nixos-rebuild switch --flake .#phzenbook
 sudo nixos-rebuild switch --flake .#phantec
 ```
 
+## Update
+
+```
+nix flake update
+sudo nixos-rebuild switch --flake .#phantec
+
+```
+
+
 ## Notes
 
 If you try to install my config by running a command like

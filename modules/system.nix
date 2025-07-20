@@ -87,16 +87,13 @@ in {
       noto-fonts-cjk-sans
       noto-fonts-emoji
 
-      # nerdfonts
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+      # nerd fonts
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
     ];
 
-    # use fonts specified by user rather than default ones
     enableDefaultPackages = false;
 
-    # user defined fonts
-    # the reason there's Noto Color Emoji everywhere is to override DejaVu's
-    # B&W emojis that would sometimes show instead of some Color emojis
     fontconfig.defaultFonts = {
       serif = ["Noto Serif" "Noto Color Emoji"];
       sansSerif = ["Noto Sans" "Noto Color Emoji"];
@@ -104,7 +101,7 @@ in {
       emoji = ["Noto Color Emoji"];
     };
   };
-
+  
   programs.dconf.enable = true;
 
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -127,7 +124,7 @@ in {
 
   # Enable sound with pipewire.
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   services.power-profiles-daemon = {
     enable = true;
   };
