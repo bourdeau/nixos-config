@@ -4,12 +4,12 @@ return {
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
-
   {
   	"nvim-treesitter/nvim-treesitter",
   	opts = {
       ensure_installed = {
         "bash",
+        "c",
         "cmake",
         "css",
         "dockerfile",
@@ -21,15 +21,19 @@ return {
         "http",
         "javascript",
         "json",
+        "just",
         "lua",
         "make",
         "markdown",
+        "nix",
         "nu",
         "python",
         "rust",
         "sql",
         "terraform",
         "toml",
+        "tsx",
+        "typescript",
         "vim",
         "vimdoc",
         "xml",

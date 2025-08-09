@@ -784,6 +784,11 @@ alias ll = ls -l
 alias vim = nvim
 alias tf = terraform
 
+source ~/.zoxide.nu
+def z [...args] {
+    cd (zoxide query ...$args)
+}
+
 def "clear-docker" [] {
     let images = (docker images -q | lines)
     for image in $images {

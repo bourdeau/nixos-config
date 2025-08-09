@@ -61,6 +61,7 @@ home.packages = with pkgs; [
   fzf          # Command-line fuzzy finder
   ripgrep      # Line-oriented search tool
   xclip        # Command line interface to the X11 clipboard
+  zoxide       # Fast cd command that learns your habits
 
   # IDEs
   insomnia     # API Client for GraphQL, REST, and gRPC
