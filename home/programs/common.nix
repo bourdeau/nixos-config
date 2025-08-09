@@ -48,7 +48,6 @@ home.packages = with pkgs; [
   openssl      # Cryptography library
 
   # Browsers
-  firefox      # Web browser
   lynx         # Text-based web browser
 
   # Archive Tools
@@ -129,6 +128,9 @@ home.packages = with pkgs; [
   # Lua Development Tools
   lua-language-server # Language server for Lua
   stylua         # Lua code formatter
+
+  # Nix
+  nixpkgs-fmt
 
   tree-sitter    # Parser generator tool and an incremental parsing library
   just           # Command runner and task automation tool
