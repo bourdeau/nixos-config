@@ -6,13 +6,13 @@
 
 <p align="center">
     <a href="https://nixos.org/">
-        <img src="https://img.shields.io/badge/NixOS-24.11-informational.svg?style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"></a>
-    <a href="https://github.com/ryan4yin/nixos-and-flakes-book">
-        <img src="https://img.shields.io/static/v1?label=Nix Flakes&message=learning&style=for-the-badge&logo=nixos&color=DDB6F2&logoColor=D9E0EE&labelColor=302D41"></a>
-  </a>
+        <img src="https://img.shields.io/badge/NixOS-25.05-informational.svg?style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"></a>
+    </a>
 </p>
 
-I recently switched from Ubuntu/Arch to Nixos thanks to [Ryan4yin](https://github.com/ryan4yin) with his great [Nixos and Flakes book](https://nixos-and-flakes.thiscute.world/) ❤️
+My NixOS config.
+
+P.S: special thanks to [Ryan4yin](https://github.com/ryan4yin) with his great [Nixos and Flakes book](https://nixos-and-flakes.thiscute.world/) ❤️
 
 ## Components
 
@@ -25,6 +25,8 @@ I recently switched from Ubuntu/Arch to Nixos thanks to [Ryan4yin](https://githu
 | **Text Editor**             | [Neovim](https://neovim.io/) + [NvChad](https://nvchad.com/)                                                        |
 | **Fonts**                   | [Nerd fonts](https://www.nerdfonts.com/)                                                                            |
 | **Screen Recording**        | [OBS](https://obsproject.com/)                                                                                      |
+
+and a lot more...
 
 ## Install
 
