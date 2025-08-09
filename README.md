@@ -10,9 +10,7 @@
     </a>
 </p>
 
-My NixOS config.
-
-P.S: special thanks to [Ryan4yin](https://github.com/ryan4yin) with his great [Nixos and Flakes book](https://nixos-and-flakes.thiscute.world/) ❤️
+Special thanks to [Ryan4yin](https://github.com/ryan4yin) with his great [Nixos and Flakes book](https://nixos-and-flakes.thiscute.world/) ❤️
 
 ## Components
 
