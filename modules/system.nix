@@ -1,24 +1,25 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: let
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
   username = "ph";
-in {
+in
+{
   users.users.ph = {
     isNormalUser = true;
     description = "ph";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
   # given the users in this list the right to specify additional substituters via:
   #    1. `nixConfig.substituers` in `flake.nix`
   #    2. command line args `--options substituers http://xxx`
-  nix.settings.trusted-users = [username];
+  nix.settings.trusted-users = [ username ];
 
   # customise /etc/nix/nix.conf declaratively via `nix.settings`
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [ "nix-command" "flakes" ];
 
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -73,6 +74,11 @@ in {
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  systemd.user.services."gnome-disable-idle" = {
+    description = "Disable GNOME idle delay and screen blanking";
+    serviceConfig.ExecStart = "${pkgs.glib.bin}/bin/gsettings set org.gnome.desktop.session idle-delay 0";
+    wantedBy = [ "default.target" ];
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -95,13 +101,13 @@ in {
     enableDefaultPackages = false;
 
     fontconfig.defaultFonts = {
-      serif = ["Noto Serif" "Noto Color Emoji"];
-      sansSerif = ["Noto Sans" "Noto Color Emoji"];
-      monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
-      emoji = ["Noto Color Emoji"];
+      serif = [ "Noto Serif" "Noto Color Emoji" ];
+      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
+      monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+      emoji = [ "Noto Color Emoji" ];
     };
   };
-  
+
   programs.dconf.enable = true;
 
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -128,10 +134,20 @@ in {
   services.power-profiles-daemon = {
     enable = true;
   };
+
+  powerManagement.cpuFreqGovernor = "performance";
+
+  systemd.services."set-performance-profile" = {
+    description = "Set power profile to performance";
+    after = [ "power-profiles-daemon.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
+  };
+
   security.polkit.enable = true;
 
   services = {
-    dbus.packages = [pkgs.gcr];
+    dbus.packages = [ pkgs.gcr ];
 
     geoclue2.enable = true;
 
