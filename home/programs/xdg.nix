@@ -1,5 +1,6 @@
-{config, ...}: let
-  browser = ["firefox.desktop"];
+{ config, ... }:
+let
+  browser = [ "firefox.desktop" ];
 
   associations = {
     "application/x-extension-htm" = browser;
@@ -14,12 +15,21 @@
     "x-scheme-handler/http" = browser;
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
-    "audio/*" = ["mpv.desktop"];
-    "video/*" = ["mpv.dekstop"];
-    "image/*" = ["imv.desktop"];
+    "audio/*" = [ "mpv.desktop" ];
+    "video/*" = [ "mpv.desktop" ]; # fixed typo
+    "image/*" = [ "imv.desktop" ];
     "application/json" = browser;
+    "application/pdf" = [ "org.gnome.Evince.desktop" ];
+    "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
+    "application/zip" = [ "org.gnome.Nautilus.desktop" ];
+    "text/x-csharp" = [
+      "vim.desktop"
+      "nvim.desktop"
+      "org.gnome.TextEditor.desktop"
+    ];
   };
-in {
+in
+{
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
@@ -28,6 +38,6 @@ in {
       enable = true;
       defaultApplications = associations;
     };
-
   };
 }
+

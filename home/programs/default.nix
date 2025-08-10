@@ -5,6 +5,6 @@
     ./git.nix
     ./media.nix
     ./deconf.nix
-    # ./xdg.nix
+    ./xdg.nix
   ];
 }
