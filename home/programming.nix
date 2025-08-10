@@ -2,56 +2,65 @@
 {
   home.packages = with pkgs; [
     # IDEs
-    insomnia # API Client for GraphQL, REST, and gRPC
-    vscode # Visual Studio Code
+    insomnia
+    vscode
 
     # Shells
-    carapace # Completion generator for Bash, Zsh, Fish, and PowerShell
-    nushell # Modern shell for the GitHub era
-    tree-sitter # Parser generator tool and an incremental parsing library
+    carapace
+    nushell
+    tree-sitter
 
-    just # Command runner and task automation tool
+    # Task runner
+    just
 
     # Cloud Native Tools
-    docker # Platform for developing, shipping, and running applications
-    kubectl # Command-line tool for controlling Kubernetes clusters
-    terraform # Infrastructure as code tool
+    docker
+    kubectl
+    terraform
     redis
 
     # Build Tools
-    cmake # Cross-platform build system
-    gcc # GNU Compiler Collection
-    gnupg # GNU Privacy Guard for encrypting and signing data
-    gnumake # Control the generation of executables
+    cmake
+    gcc
+    gnupg
+    gnumake
 
     # Rust Development
-    pkg-config # Needed by some Rust libraries
-    openssl # Cryptography library
+    pkg-config
+    openssl
+    cargo
+    rustc
+    clippy
+    rustfmt
 
-    # Rust Development Tools
-    cargo # Rust package manager
-    rust-analyzer # Rust language server
-    rustfmt # Rust code formatter
-    rustc # Rust compiler
-    clippy # Linter for Rust code
-
-    # Python Development Tools
-    poetry # Python dependency management and packaging
-    pyright
+    # Python Development
+    poetry
     (python312.withPackages (ps: with ps; [
-      requests # HTTP library for Python
-      ruff # Python linter
+      requests
+      ruff
     ]))
 
-    # JavaScript and Node.js
-    nodejs # JavaScript runtime
+    # JavaScript / Node.js
+    nodejs
 
-    # Lua Development Tools
-    lua-language-server # Language server for Lua
-    stylua # Lua code formatter
+    # Lua Development
+    stylua
 
-    # Nix
+    # Nix tooling
     nixpkgs-fmt
+
+    # LSP Servers
+    nodePackages.bash-language-server
+    clang-tools
+    vscode-langservers-extracted # html, cssls, jsonls
+    dockerfile-language-server-nodejs
+    gopls
+    lua-language-server
+    pyright
+    rust-analyzer
+    sqls
+    terraform-ls
+    typescript-language-server
+    yaml-language-server
   ];
 }
-
