@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   imports = [
-    # Programs imports
     ./browsers.nix
     ./common.nix
     ./git.nix
@@ -11,8 +10,7 @@
     ./programming.nix
     ./deconf.nix
     ./xdg.nix
-
-    # Shell imports
+    ./common
     ./shell
   ];
 

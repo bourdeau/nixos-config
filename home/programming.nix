@@ -7,7 +7,6 @@
 
     # Shells
     carapace
-    nushell
     tree-sitter
 
     # Task runner

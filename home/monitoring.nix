@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [
     # System Monitoring and Management
-    btop # Resource monitor replacing htop/nmon
     duf # Disk usage utility with fancy output
     iftop # Real-time console-based network bandwidth monitoring
     iotop # Top-like UI for monitoring disk I/O
@@ -18,9 +17,5 @@
     xfce.thunar # XFCE's file manager
     lshw
   ];
-
-  programs = {
-    btop.enable = true;
-  };
 }
 
