@@ -91,6 +91,11 @@
               ];
             };
           };
+          "sponsorBlocker@ajay.app" = {
+            install_url = moz "sponsorblock";
+            installation_mode = "force_installed";
+            updates_disabled = true;
+          };
         };
     };
 

@@ -71,12 +71,20 @@ in
     AllowSuspendThenHibernate=no
   '';
 
-  # Enable the GNOME Desktop Environment.
+  # GNOME + disable idle, suspend, hibernate
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # Disable GNOME idle delay & screen blanking
   systemd.user.services."gnome-disable-idle" = {
     description = "Disable GNOME idle delay and screen blanking";
-    serviceConfig.ExecStart = "${pkgs.glib.bin}/bin/gsettings set org.gnome.desktop.session idle-delay 0";
+    serviceConfig.ExecStart = ''
+      ${pkgs.glib}/bin/gsettings set org.gnome.desktop.session idle-delay 0
+      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
+      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power critical-battery-action 'nothing'
+      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power use-time-for-policy 'false'
+    '';
     wantedBy = [ "default.target" ];
   };
 
