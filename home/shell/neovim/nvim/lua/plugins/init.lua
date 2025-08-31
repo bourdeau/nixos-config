@@ -32,4 +32,15 @@ return {
 			vim.g.rustfmt_autosave = 1
 		end,
 	},
+	{
+		"nvim-tree/nvim-tree.lua",
+		opts = function(_, opts)
+			local custom = require("configs.nvimtree").opts
+			return vim.tbl_deep_extend("force", opts, custom)
+		end,
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		opts = require("configs.telescope").opts,
+	},
 }
