@@ -14,9 +14,14 @@
     # Utilities
     eza # Modern replacement for 'ls'
     fzf # Command-line fuzzy finder
-    ripgrep # Line-oriented search tool
+    ripgrep # Line-oriented search Tools
+    fd # find replacement
+    bat # cat replacement
     xclip # Command line interface to the X11 clipboard
     zoxide # Fast cd command that learns your habits
+    yazi # terminal file manager
+    tokei # count files in a project and group
+    presenterm # a TUI markdown terminal slideshow tool.
 
     # Image Editing
     gimp # GNU Image Manipulation Program

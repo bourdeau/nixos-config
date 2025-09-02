@@ -785,6 +785,8 @@ alias vim = nvim
 alias tf = terraform
 alias lz = lazygit
 alias top = btop
+alias cat = bat
+alias yz = yazi
 
 source ~/.zoxide.nu
 def z [...args] {
