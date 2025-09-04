@@ -20,15 +20,11 @@ in
     LESSHISTFILE = cache + "/less/history";
     LESSKEY = c + "/less/lesskey";
     WINEPREFIX = d + "/wine";
-
-    # set default applications
-    EDITOR = "vim";
+    EDITOR = "nvim";
     # BROWSER = "firefox";
     TERMINAL = "alacritty";
-
     # enable scrolling in git diff
     DELTA_PAGER = "less -R";
-
   };
 
   home.shellAliases = {
