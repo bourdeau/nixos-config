@@ -1,147 +1,174 @@
 # Nushell Config File
 #
 # version = "0.87.0"
-
-# For more information on defining custom themes, see
-# https://www.nushell.sh/book/coloring_and_theming.html
-# And here is the theme collection
-# https://github.com/nushell/nu_scripts/tree/main/themes
-let dark_theme = {
-    # color for nushell primitives
-    separator: white
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'light_cyan' } else { 'light_gray' } }
-    bool: light_cyan
-    int: white
-    filesize: cyan
-    duration: white
-    date: purple
-    range: white
-    float: white
-    string: white
-    nothing: white
-    binary: white
-    cell-path: white
-    row_index: green_bold
-    record: white
-    list: white
-    block: white
-    hints: dark_gray
-    search_result: {bg: red fg: white}
-    shape_and: purple_bold
-    shape_binary: purple_bold
-    shape_block: blue_bold
-    shape_bool: light_cyan
-    shape_closure: green_bold
-    shape_custom: green
-    shape_datetime: cyan_bold
-    shape_directory: cyan
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_filepath: cyan
-    shape_flag: blue_bold
-    shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: white bg: red attr: b}
-    shape_globpattern: cyan_bold
-    shape_int: purple_bold
-    shape_internalcall: cyan_bold
-    shape_keyword: cyan_bold
-    shape_list: cyan_bold
-    shape_literal: blue
-    shape_match_pattern: green
-    shape_matching_brackets: { attr: u }
-    shape_nothing: light_cyan
-    shape_operator: yellow
-    shape_or: purple_bold
-    shape_pipe: purple_bold
-    shape_range: yellow_bold
-    shape_record: cyan_bold
-    shape_redirection: purple_bold
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_table: blue_bold
-    shape_variable: purple
-    shape_vardecl: purple
+# Theme
+# CatpuccinMocha
+let theme = {
+  rosewater: "#f5e0dc"
+  flamingo: "#f2cdcd"
+  pink: "#f5c2e7"
+  mauve: "#cba6f7"
+  red: "#f38ba8"
+  maroon: "#eba0ac"
+  peach: "#fab387"
+  yellow: "#f9e2af"
+  green: "#a6e3a1"
+  teal: "#94e2d5"
+  sky: "#89dceb"
+  sapphire: "#74c7ec"
+  blue: "#89b4fa"
+  lavender: "#b4befe"
+  text: "#cdd6f4"
+  subtext1: "#bac2de"
+  subtext0: "#a6adc8"
+  overlay2: "#9399b2"
+  overlay1: "#7f849c"
+  overlay0: "#6c7086"
+  surface2: "#585b70"
+  surface1: "#45475a"
+  surface0: "#313244"
+  base: "#1e1e2e"
+  mantle: "#181825"
+  crust: "#11111b"
 }
 
-let light_theme = {
-    # color for nushell primitives
-    separator: dark_gray
-    leading_trailing_space_bg: { attr: n } # no fg, no bg, attr none effectively turns this off
-    header: green_bold
-    empty: blue
-    # Closures can be used to choose colors for specific values.
-    # The value (in this case, a bool) is piped into the closure.
-    # eg) {|| if $in { 'dark_cyan' } else { 'dark_gray' } }
-    bool: dark_cyan
-    int: dark_gray
-    filesize: cyan_bold
-    duration: dark_gray
-    date: purple
-    range: dark_gray
-    float: dark_gray
-    string: dark_gray
-    nothing: dark_gray
-    binary: dark_gray
-    cell-path: dark_gray
-    row_index: green_bold
-    record: dark_gray
-    list: dark_gray
-    block: dark_gray
-    hints: dark_gray
-    search_result: {fg: white bg: red}
-    shape_and: purple_bold
-    shape_binary: purple_bold
-    shape_block: blue_bold
-    shape_bool: light_cyan
-    shape_closure: green_bold
-    shape_custom: green
-    shape_datetime: cyan_bold
-    shape_directory: cyan
-    shape_external: cyan
-    shape_externalarg: green_bold
-    shape_filepath: cyan
-    shape_flag: blue_bold
-    shape_float: purple_bold
-    # shapes are used to change the cli syntax highlighting
-    shape_garbage: { fg: white bg: red attr: b}
-    shape_globpattern: cyan_bold
-    shape_int: purple_bold
-    shape_internalcall: cyan_bold
-    shape_keyword: cyan_bold
-    shape_list: cyan_bold
-    shape_literal: blue
-    shape_match_pattern: green
-    shape_matching_brackets: { attr: u }
-    shape_nothing: light_cyan
-    shape_operator: yellow
-    shape_or: purple_bold
-    shape_pipe: purple_bold
-    shape_range: yellow_bold
-    shape_record: cyan_bold
-    shape_redirection: purple_bold
-    shape_signature: green_bold
-    shape_string: green
-    shape_string_interpolation: cyan_bold
-    shape_table: blue_bold
-    shape_variable: purple
-    shape_vardecl: purple
+let scheme = {
+  recognized_command: $theme.blue
+  unrecognized_command: $theme.text
+  constant: $theme.peach
+  punctuation: $theme.overlay2
+  operator: $theme.sky
+  string: $theme.green
+  virtual_text: $theme.surface2
+  variable: { fg: $theme.flamingo attr: i }
+  filepath: $theme.yellow
+}
+
+let catpuccin_mocha_theme = {
+  separator: { fg: $theme.surface2 attr: b }
+  leading_trailing_space_bg: { fg: $theme.lavender attr: u }
+  header: { fg: $theme.text attr: b }
+  row_index: $scheme.virtual_text
+  record: $theme.text
+  list: $theme.text
+  hints: $scheme.virtual_text
+  search_result: { fg: $theme.base bg: $theme.yellow }
+  shape_closure: $theme.teal
+  closure: $theme.teal
+  shape_flag: { fg: $theme.maroon attr: i }
+  shape_matching_brackets: { attr: u }
+  shape_garbage: $theme.red
+  shape_keyword: $theme.mauve
+  shape_match_pattern: $theme.green
+  shape_signature: $theme.teal
+  shape_table: $scheme.punctuation
+  cell-path: $scheme.punctuation
+  shape_list: $scheme.punctuation
+  shape_record: $scheme.punctuation
+  shape_vardecl: $scheme.variable
+  shape_variable: $scheme.variable
+  empty: { attr: n }
+  filesize: {||
+    if $in < 1kb {
+      $theme.teal
+    } else if $in < 10kb {
+      $theme.green
+    } else if $in < 100kb {
+      $theme.yellow
+    } else if $in < 10mb {
+      $theme.peach
+    } else if $in < 100mb {
+      $theme.maroon
+    } else if $in < 1gb {
+      $theme.red
+    } else {
+      $theme.mauve
+    }
+  }
+  duration: {||
+    if $in < 1day {
+      $theme.teal
+    } else if $in < 1wk {
+      $theme.green
+    } else if $in < 4wk {
+      $theme.yellow
+    } else if $in < 12wk {
+      $theme.peach
+    } else if $in < 24wk {
+      $theme.maroon
+    } else if $in < 52wk {
+      $theme.red
+    } else {
+      $theme.mauve
+    }
+  }
+  date: {|| (date now) - $in |
+    if $in < 1day {
+      $theme.teal
+    } else if $in < 1wk {
+      $theme.green
+    } else if $in < 4wk {
+      $theme.yellow
+    } else if $in < 12wk {
+      $theme.peach
+    } else if $in < 24wk {
+      $theme.maroon
+    } else if $in < 52wk {
+      $theme.red
+    } else {
+      $theme.mauve
+    }
+  }
+  shape_external: $scheme.unrecognized_command
+  shape_internalcall: $scheme.recognized_command
+  shape_external_resolved: $scheme.recognized_command
+  shape_block: $scheme.recognized_command
+  block: $scheme.recognized_command
+  shape_custom: $theme.pink
+  custom: $theme.pink
+  background: $theme.base
+  foreground: $theme.text
+  cursor: { bg: $theme.rosewater fg: $theme.base }
+  shape_range: $scheme.operator
+  range: $scheme.operator
+  shape_pipe: $scheme.operator
+  shape_operator: $scheme.operator
+  shape_redirection: $scheme.operator
+  glob: $scheme.filepath
+  shape_directory: $scheme.filepath
+  shape_filepath: $scheme.filepath
+  shape_glob_interpolation: $scheme.filepath
+  shape_globpattern: $scheme.filepath
+  shape_int: $scheme.constant
+  int: $scheme.constant
+  bool: $scheme.constant
+  float: $scheme.constant
+  nothing: $scheme.constant
+  binary: $scheme.constant
+  shape_nothing: $scheme.constant
+  shape_bool: $scheme.constant
+  shape_float: $scheme.constant
+  shape_binary: $scheme.constant
+  shape_datetime: $scheme.constant
+  shape_literal: $scheme.constant
+  string: $scheme.string
+  shape_string: $scheme.string
+  shape_string_interpolation: $theme.flamingo
+  shape_raw_string: $scheme.string
+  shape_externalarg: $scheme.string
 }
 
 # External completer example
 # let carapace_completer = {|spans|
 #     carapace $spans.0 nushell $spans | from json
 # }
+source ~/.cache/carapace/init.nu
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
     show_banner: false
+
+    highlight_resolved_externals: true
 
     ls: {
         use_ls_colors: true # use the LS_COLORS environment variable to colorize output
@@ -177,20 +204,15 @@ $env.config = {
     }
 
     explore: {
-        status_bar_background: {fg: "#1D1F21", bg: "#C4C9C6"},
-        command_bar_text: {fg: "#C4C9C6"},
-        highlight: {fg: "black", bg: "yellow"},
-        status: {
-            error: {fg: "white", bg: "red"},
-            warn: {}
-            info: {}
-        },
-        table: {
-            split_line: {fg: "#404040"},
-            selected_cell: {bg: light_blue},
-            selected_row: {},
-            selected_column: {},
-        },
+      status_bar_background: { fg: $theme.text, bg: $theme.mantle },
+      command_bar_text: { fg: $theme.text },
+      highlight: { fg: $theme.base, bg: $theme.yellow },
+      status: {
+          error: $theme.red,
+          warn: $theme.yellow,
+          info: $theme.blue,
+      },
+      selected_cell: { bg: $theme.blue fg: $theme.base },
     }
 
     history: {
@@ -208,7 +230,7 @@ $env.config = {
         external: {
             enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-            completer: null # check 'carapace_completer' above as an example
+            completer: $carapace_completer # check 'carapace_completer' above as an example
         }
     }
 
@@ -218,7 +240,7 @@ $env.config = {
         vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
     }
 
-    color_config: $dark_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
+    color_config: $catpuccin_mocha_theme # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
     footer_mode: "auto" # always, never, number_of_rows, auto
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
@@ -786,11 +808,6 @@ alias tf = terraform
 alias lz = lazygit
 alias top = btop
 
-source ~/.zoxide.nu
-def z [...args] {
-    cd (zoxide query ...$args)
-}
-
 def "clear-docker" [] {
     let images = (docker images -q | lines)
     for image in $images {
@@ -810,175 +827,4 @@ def "clear-docker" [] {
     docker system prune -a -f --volumes
     docker image prune
     docker volume prune
-}
-
-# Carapace auto comple
-source ~/.cache/carapace/init.nu
-
-# CatpuccinMocha
-let theme = {
-  rosewater: "#f5e0dc"
-  flamingo: "#f2cdcd"
-  pink: "#f5c2e7"
-  mauve: "#cba6f7"
-  red: "#f38ba8"
-  maroon: "#eba0ac"
-  peach: "#fab387"
-  yellow: "#f9e2af"
-  green: "#a6e3a1"
-  teal: "#94e2d5"
-  sky: "#89dceb"
-  sapphire: "#74c7ec"
-  blue: "#89b4fa"
-  lavender: "#b4befe"
-  text: "#cdd6f4"
-  subtext1: "#bac2de"
-  subtext0: "#a6adc8"
-  overlay2: "#9399b2"
-  overlay1: "#7f849c"
-  overlay0: "#6c7086"
-  surface2: "#585b70"
-  surface1: "#45475a"
-  surface0: "#313244"
-  base: "#1e1e2e"
-  mantle: "#181825"
-  crust: "#11111b"
-}
-
-let scheme = {
-  recognized_command: $theme.blue
-  unrecognized_command: $theme.text
-  constant: $theme.peach
-  punctuation: $theme.overlay2
-  operator: $theme.sky
-  string: $theme.green
-  virtual_text: $theme.surface2
-  variable: { fg: $theme.flamingo attr: i }
-  filepath: $theme.yellow
-}
-
-$env.config.color_config = {
-  separator: { fg: $theme.surface2 attr: b }
-  leading_trailing_space_bg: { fg: $theme.lavender attr: u }
-  header: { fg: $theme.text attr: b }
-  row_index: $scheme.virtual_text
-  record: $theme.text
-  list: $theme.text
-  hints: $scheme.virtual_text
-  search_result: { fg: $theme.base bg: $theme.yellow }
-  shape_closure: $theme.teal
-  closure: $theme.teal
-  shape_flag: { fg: $theme.maroon attr: i }
-  shape_matching_brackets: { attr: u }
-  shape_garbage: $theme.red
-  shape_keyword: $theme.mauve
-  shape_match_pattern: $theme.green
-  shape_signature: $theme.teal
-  shape_table: $scheme.punctuation
-  cell-path: $scheme.punctuation
-  shape_list: $scheme.punctuation
-  shape_record: $scheme.punctuation
-  shape_vardecl: $scheme.variable
-  shape_variable: $scheme.variable
-  empty: { attr: n }
-  filesize: {||
-    if $in < 1kb {
-      $theme.teal
-    } else if $in < 10kb {
-      $theme.green
-    } else if $in < 100kb {
-      $theme.yellow
-    } else if $in < 10mb {
-      $theme.peach
-    } else if $in < 100mb {
-      $theme.maroon
-    } else if $in < 1gb {
-      $theme.red
-    } else {
-      $theme.mauve
-    }
-  }
-  duration: {||
-    if $in < 1day {
-      $theme.teal
-    } else if $in < 1wk {
-      $theme.green
-    } else if $in < 4wk {
-      $theme.yellow
-    } else if $in < 12wk {
-      $theme.peach
-    } else if $in < 24wk {
-      $theme.maroon
-    } else if $in < 52wk {
-      $theme.red
-    } else {
-      $theme.mauve
-    }
-  }
-  date: {|| (date now) - $in |
-    if $in < 1day {
-      $theme.teal
-    } else if $in < 1wk {
-      $theme.green
-    } else if $in < 4wk {
-      $theme.yellow
-    } else if $in < 12wk {
-      $theme.peach
-    } else if $in < 24wk {
-      $theme.maroon
-    } else if $in < 52wk {
-      $theme.red
-    } else {
-      $theme.mauve
-    }
-  }
-  shape_external: $scheme.unrecognized_command
-  shape_internalcall: $scheme.recognized_command
-  shape_external_resolved: $scheme.recognized_command
-  shape_block: $scheme.recognized_command
-  block: $scheme.recognized_command
-  shape_custom: $theme.pink
-  custom: $theme.pink
-  background: $theme.base
-  foreground: $theme.text
-  cursor: { bg: $theme.rosewater fg: $theme.base }
-  shape_range: $scheme.operator
-  range: $scheme.operator
-  shape_pipe: $scheme.operator
-  shape_operator: $scheme.operator
-  shape_redirection: $scheme.operator
-  glob: $scheme.filepath
-  shape_directory: $scheme.filepath
-  shape_filepath: $scheme.filepath
-  shape_glob_interpolation: $scheme.filepath
-  shape_globpattern: $scheme.filepath
-  shape_int: $scheme.constant
-  int: $scheme.constant
-  bool: $scheme.constant
-  float: $scheme.constant
-  nothing: $scheme.constant
-  binary: $scheme.constant
-  shape_nothing: $scheme.constant
-  shape_bool: $scheme.constant
-  shape_float: $scheme.constant
-  shape_binary: $scheme.constant
-  shape_datetime: $scheme.constant
-  shape_literal: $scheme.constant
-  string: $scheme.string
-  shape_string: $scheme.string
-  shape_string_interpolation: $theme.flamingo
-  shape_raw_string: $scheme.string
-  shape_externalarg: $scheme.string
-}
-$env.config.highlight_resolved_externals = true
-$env.config.explore = {
-    status_bar_background: { fg: $theme.text, bg: $theme.mantle },
-    command_bar_text: { fg: $theme.text },
-    highlight: { fg: $theme.base, bg: $theme.yellow },
-    status: {
-        error: $theme.red,
-        warn: $theme.yellow,
-        info: $theme.blue,
-    },
-    selected_cell: { bg: $theme.blue fg: $theme.base },
 }

@@ -103,5 +103,3 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/ph/.cargo/bin')
 # Carapace auto complete
 mkdir ~/.cache/carapace
 carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
-
-zoxide init nushell | save -f ~/.zoxide.nu
