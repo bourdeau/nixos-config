@@ -1,3 +1,9 @@
+local nvlsp = require("nvchad.configs.lspconfig")
+local on_attach = nvlsp.on_attach
+local on_init = nvlsp.on_init
+local capabilities = nvlsp.capabilities
+local lspconfig = require("lspconfig")
+
 local lsp_servers = {
 	"bashls",
 	"clangd",
@@ -14,7 +20,6 @@ local lsp_servers = {
 }
 
 -- Setup all mapped LSP servers
-local lspconfig = require("lspconfig")
 for _, server in ipairs(lsp_servers) do
 	local opts = {
 		on_attach = on_attach,
