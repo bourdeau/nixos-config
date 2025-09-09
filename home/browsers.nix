@@ -34,12 +34,19 @@
       BlockAboutSupport = true;
 
       # UI and Behavior
-      DisplayMenuBar = "always";
+      DisplayMenuBar = "default-off";
       DisplayBookmarksToolbar = "always";
       DontCheckDefaultBrowser = true;
       HardwareAcceleration = true;
       OfferToSaveLogins = true;
       DefaultDownloadDirectory = "${config.home.homeDirectory}/Downloads";
+
+      Preferences = {
+        "extensions.activeThemeID".Status = "locked";
+        "extensions.activeThemeID".Value = "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}";
+        "browser.compactmode.show".Value = true;
+        "browser.uidensity".Value = 1; # 0=Normal, 1=Compact, 2=Touch
+      };
 
       # Extensions
       ExtensionSettings =
@@ -47,7 +54,20 @@
           moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
         in
         {
-          "*".installation_mode = "blocked";
+          "*".allowed_types = [ "dictionary" "locale" "theme" ];
+          "*".install_sources = [ "https://addons.mozilla.org/*" ];
+
+          "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}" = {
+            install_url = moz "catppuccin-mocha-blue-git";
+            installation_mode = "force_installed";
+            updates_disabled = false;
+          };
+
+          "fr-dicollecte@dictionaries.addons.mozilla.org" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/dictionnaire-fran%C3%A7ais1/latest.xpi";
+            installation_mode = "force_installed";
+            updates_disabled = true;
+          };
 
           "uBlock0@raymondhill.net" = {
             install_url = moz "ublock-origin";
