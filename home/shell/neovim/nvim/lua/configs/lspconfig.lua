@@ -9,6 +9,8 @@ local lsp_servers = {
 	"pyright",
 	"ts_ls",
 	"yamlls",
+	"rust_analyzer",
+	"lua_ls",
 }
 
 -- Setup all mapped LSP servers
@@ -42,3 +44,19 @@ for _, server in ipairs(lsp_servers) do
 
 	lspconfig[server].setup(opts)
 end
+
+vim.o.signcolumn = "yes" -- ensure the gutter shows
+
+vim.diagnostic.config({
+	virtual_text = true,
+	underline = true,
+	update_in_insert = false,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
+	},
+})
