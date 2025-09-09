@@ -49,6 +49,9 @@
     # Nix tooling
     nixpkgs-fmt
 
+    # Golang
+    go
+
     # LSP Servers
     nodePackages.bash-language-server
     clang-tools

@@ -14,9 +14,7 @@ in
     ./neovim
   ];
 
-  # add environment variables
   home.sessionVariables = {
-    # clean up ~
     LESSHISTFILE = cache + "/less/history";
     LESSKEY = c + "/less/lesskey";
     WINEPREFIX = d + "/wine";
