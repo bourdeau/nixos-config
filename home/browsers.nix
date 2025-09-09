@@ -41,11 +41,20 @@
       OfferToSaveLogins = true;
       DefaultDownloadDirectory = "${config.home.homeDirectory}/Downloads";
 
+      Homepage = {
+        StartPage = "homepage"; # options: "none", "homepage", "previous-session"
+        URL = "about:home";
+        Locked = true;
+      };
+
       Preferences = {
-        "extensions.activeThemeID".Status = "locked";
-        "extensions.activeThemeID".Value = "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}";
         "browser.compactmode.show".Value = true;
         "browser.uidensity".Value = 1; # 0=Normal, 1=Compact, 2=Touch
+        "browser.newtabpage.enabled".Value = true; # show the default Firefox new tab
+        "browser.newtabpage.override".Value = "about:newtab";
+        "browser.newtabpage.override.on".Value = true;
+        "extensions.activeThemeID".Status = "locked";
+        "extensions.activeThemeID".Value = "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}";
       };
 
       # Extensions
@@ -121,9 +130,33 @@
 
     profiles.default.search = {
       force = true;
-      default = "ddg";
-      privateDefault = "ddg";
+      default = "SearX (bndkt.io)";
+      privateDefault = "SearX (bndkt.io)";
+
       engines = {
+        # Disable built-in engines
+        "google".metaData.hidden = true;
+        "bing".metaData.hidden = true;
+        "qwant".metaData.hidden = true;
+        "wikipedia".metaData.hidden = true;
+        "ddg".metaData.hidden = true;
+
+        "SearX (bndkt.io)" = {
+          urls = [
+            {
+              template = "https://searx.bndkt.io/search";
+              params = [
+                { name = "q"; value = "{searchTerms}"; }
+                # Optional quality-of-life params:
+                # { name = "language"; value = "all"; }
+                # { name = "safesearch"; value = "0"; }
+              ];
+            }
+          ];
+          definedAliases = [ "@sx" ];
+          icon = "https://searx.bndkt.io/favicon.ico";
+        };
+
         "Nix Packages" = {
           urls = [
             {
