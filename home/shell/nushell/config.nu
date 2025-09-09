@@ -807,6 +807,7 @@ alias vim = nvim
 alias tf = terraform
 alias lz = lazygit
 alias top = btop
+alias bb = bat -p --paging=never
 
 def "clear-docker" [] {
     let images = (docker images -q | lines)
