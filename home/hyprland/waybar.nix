@@ -13,6 +13,8 @@
 
         "clock" = {
           format = "{:%d/%m/%Y ~ %H:%M}";
+          on-click = "eww open --toggle control_center";
+          # on-click = "wofi --show drun";
         };
 
         "pulseaudio" = {

@@ -49,7 +49,13 @@
 
     # Sound Management
     easyeffects # Audio effects for PipeWire applications
+
+    # Hyprland
     hyprpaper
+    gnome.gvfs
+    grim
+    slurp
+    wl-clipboard
   ];
 
   programs = {

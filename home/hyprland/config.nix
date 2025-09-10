@@ -14,7 +14,8 @@ in
       exec-once = splitToLines ''
         [workspace 1 silent] ${browser}
         [workspace 2 silent] ${terminal}
-        waybar
+        eww daemon
+        eww open bar
       '';
       input = {
         kb_layout = "us";
@@ -33,12 +34,17 @@ in
         "CTRL ALT, right, workspace, +1"
         "CTRL ALT, left, workspace, -1"
         "CTRL ALT, f, exec, [workspace 1 silent] ${browser}"
+        "CTRL ALT, n, exec, thunar"
         "CTRL, Q, killactive,"
         "SUPER, F, fullscreen, 0"
         "SUPER SHIFT, F, fullscreen, 1"
         "SUPER, Space, exec, togglefloating"
         "ALT, Escape, exec, loginctl lock-session"
         "SUPER, R, exec, ${wofiLauncher}"
+        # Screenshot whole screen
+        "CTRL ALT, s, exec, grim - | wl-copy"
+        # Screenshot selection
+        "CTRL ALT, Shift+S, exec, slurp | grim -g - - | wl-copy"
 
         # switch focus
         "SUPER, h, movefocus, l"

@@ -87,6 +87,9 @@ in
   services.fprintd.enable = true;
   security.pam.services.hyprlock = { };
 
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+
   # --- Power / sleep policies ---
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
@@ -135,6 +138,9 @@ in
   services.dbus.packages = [ pkgs.gcr ];
   services.geoclue2.enable = true;
 
+  # Hyprland mess
+  services.dbus.enable = true;
+
   # --- Networking / firewall ---
   networking.firewall.enable = false;
 
@@ -155,9 +161,10 @@ in
     blueman
     hyprlock
     hypridle
-    waybar
+    # waybar
   ];
 
+  programs.thunar.enable = true;
   # --- Env vars ---
   environment.variables = {
     EDITOR = "nvim";
