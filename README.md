@@ -10,19 +10,25 @@
     </a>
 </p>
 
-Special thanks to [Ryan4yin](https://github.com/ryan4yin) with his great [Nixos and Flakes book](https://nixos-and-flakes.thiscute.world/) ❤️
-
 ## Components
 
 |                             |                                                                                                                     |
 | --------------------------- | :------------------------------------------------------------------------------------------------------------------ |
-| **Window Manager**          | [GNOME](https://www.gnome.org/)                                                                                     |
+| **Display Manager**         | [SDDM](https://github.com/sddm/sddm) + [Astronaut Theme](https://github.com/Keyitdev/sddm-astronaut-theme)           |
+| **Window Manager**          | [Hyprland](https://hypr.land/)                                                                                     |
+| **Status Bar**              | [Waybar](https://github.com/Alexays/Waybar)                                                                         |
+| **Wallpaper Manager**       | [Hyprpaper](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprpaper/) + random rotation script                            |
+| **Screen Locker**           | [Hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprlock/)                                                       |
 | **Terminal Emulator**       | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                                 |
-| **System resource monitor** | [Btop](https://github.com/aristocratos/btop)                                                                        |
+| **System Resource Monitor** | [Btop](https://github.com/aristocratos/btop)                                                                        |
+| **File Viewer**             | [Bat](https://github.com/sharkdp/bat)                                                                               |
 | **Shell**                   | [Nushell](https://www.nushell.sh/) + [Starship](https://starship.rs/)                                               |
 | **Text Editor**             | [Neovim](https://neovim.io/) + [NvChad](https://nvchad.com/)                                                        |
-| **Fonts**                   | [Nerd fonts](https://www.nerdfonts.com/)                                                                            |
+| **Fonts**                   | [Nerd Fonts](https://www.nerdfonts.com/)                                                                            |
 | **Screen Recording**        | [OBS](https://obsproject.com/)                                                                                      |
+| **Gaming**                  | [Steam](https://store.steampowered.com/)                                                                            |
+| **Chat**                    | [Discord](https://discord.com/)                                                                                     |
+| **Web Browser**             | [Firefox](https://www.mozilla.org/firefox/)                                                                         |
 
 and a lot more...
 

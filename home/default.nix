@@ -8,7 +8,6 @@
     ./monitoring.nix
     ./networking.nix
     ./programming.nix
-    ./deconf.nix
     ./xdg.nix
     ./common
     ./shell
