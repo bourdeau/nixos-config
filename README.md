@@ -1,5 +1,5 @@
 <p align="center">
-<span style="font-size: 1.75em; font-weight: bold;">My Nix Config</span><br/>
+<span style="font-size: 4em; font-weight: bold;">My Nix Config</span><br/>
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" />
 </p>
 
