@@ -5,8 +5,12 @@
 }:
 let
   username = "ph";
+  customAstronaut = pkgs.sddm-astronaut.override {
+    embeddedTheme = "astronaut"; # list of options: astronaut, cyberpunk, hyprland_kath, etc.
+  };
 in
 {
+
   environment = {
     systemPackages = with pkgs; [
       gnome-settings-daemon
@@ -22,6 +26,9 @@ in
       blueman
       hyprlock
       hypridle
+      sddm-astronaut
+
+      customAstronaut
     ];
 
     variables = {
@@ -113,6 +120,14 @@ in
       packages = [ pkgs.gcr ];
     };
 
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true; # ensures Wayland session
+      package = pkgs.kdePackages.sddm; # force Qt6 build of SDDM
+      theme = "sddm-astronaut-theme";
+      extraPackages = [ customAstronaut pkgs.kdePackages.qtmultimedia ];
+    };
+
     fprintd.enable = true;
     geoclue2.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -137,9 +152,12 @@ in
 
     xserver = {
       enable = true;
-      desktopManager.gnome.enable = false; # Keep GNOME available
-      displayManager.gdm.enable = true; # Choose "Hyprland" at login
+      desktopManager.gnome.enable = false;
+      displayManager = {
+        gdm.enable = false;
+      };
     };
+
   };
 
   systemd = {

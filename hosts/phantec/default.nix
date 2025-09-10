@@ -80,8 +80,6 @@
     };
   };
 
-  services.xserver.displayManager.gdm.enable = true;
-
   # Configure console keymap
   console.keyMap = "us";
 }
