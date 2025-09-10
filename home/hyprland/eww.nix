@@ -19,14 +19,19 @@
         (box :orientation "h" :spacing 15 :halign "end"
           (sysinfo)
           (clock-widget))))
+      
+      (defvar workspaces "[1,2,3,4,5,6,7,8,9]")
+      
+      (defpoll active_workspace :interval "2s"
+        "hyprctl activeworkspace | grep -oP '(?<=ID )\\d+'")
 
-    (defwidget workspaces []
-      (box :class "workspaces" :orientation "h" :spacing 8
-        (button :onclick "hyprctl dispatch workspace 1" "1")
-        (button :onclick "hyprctl dispatch workspace 2" "2")
-        (button :onclick "hyprctl dispatch workspace 3" "3")
-        (button :onclick "hyprctl dispatch workspace 4" "4")
-        (button :onclick "hyprctl dispatch workspace 5" "5")))
+      (defwidget workspaces []
+        (box :class "workspaces" :orientation "h" :spacing 5
+          (for i in workspaces
+            (button
+              :class {i == active_workspace ? "active" : ""}
+              :onclick "hyprctl dispatch workspace" + i
+              i))))
 
     (defwidget sysinfo []
       (box :class "sysinfo" :orientation "h" :spacing 15
@@ -80,20 +85,23 @@
       font-size: 13px;
     }
     
-    // Working         
     .bar {
       background: #1e1e2e;
       color: #cdd6f4;
     }
 
+    .workspaces {
+      margin-left: 6px; /* keep bar margin */
+    }
+
     .workspaces button {
-      background: #1e1e2e;   /* same as bar background */
+      all: unset;
+      background: #1e1e2e;
       color: #cdd6f4;
-      padding: 2px 6px;
-      margin: 2px;
-      border-radius: 5px;
-      border: none;
-      min-width: 24px;       /* smaller buttons */
+      padding: 0px 0px;
+      margin: 0 0px;
+      border: 1px solid #cdd6f4;
+      border-radius: 4px;
     }
 
     .workspaces button:hover,
@@ -102,12 +110,17 @@
       color: #1e1e2e;
     }
 
+    .workspaces button.active {
+      background: #89b4fa;
+      color: #1e1e2e;
+      border: 1px solid #89b4fa;
+    }
     .sysinfo {
-      padding: 0 10px;
+      padding: 0;
     }
 
     .clock {
-      padding: 0 8px;
+      padding: 0;
       background: transparent;
       border: none;
     }
