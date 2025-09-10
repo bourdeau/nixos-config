@@ -62,7 +62,7 @@ semantic_escape_chars = "|:\"' {}()[]<>"
 decorations_theme_variant = "Dark"
 opacity = 0.95
 decorations = "Full"
-startup_mode = "Fullscreen"
+startup_mode = "Maximized"
 
 [window.dimensions]
 columns = 70

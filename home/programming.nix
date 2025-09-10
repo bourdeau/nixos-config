@@ -1,10 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # IDEs
-    insomnia
-    vscode
-
     # Shells
     carapace
     tree-sitter

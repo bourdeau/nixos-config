@@ -5,109 +5,48 @@
 }:
 let
   username = "ph";
+  customAstronaut = pkgs.sddm-astronaut.override {
+    embeddedTheme = "astronaut"; # list of options: astronaut, cyberpunk, hyprland_kath, etc.
+  };
 in
 {
-  users.users.ph = {
-    isNormalUser = true;
-    description = "ph";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-  };
-  # given the users in this list the right to specify additional substituters via:
-  #    1. `nixConfig.substituers` in `flake.nix`
-  #    2. command line args `--options substituers http://xxx`
-  nix.settings.trusted-users = [ username ];
 
-  # customise /etc/nix/nix.conf declaratively via `nix.settings`
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+  environment = {
+    systemPackages = with pkgs; [
+      gnome-settings-daemon
+      vim
+      config.boot.kernelPackages.perf
+      # Hyprland
+      wofi
+      pamixer
+      brightnessctl
+      wl-clipboard
+      udiskie
+      networkmanagerapplet
+      blueman
+      hyprlock
+      hypridle
+      sddm-astronaut
 
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      customAstronaut
     ];
-    builders-use-substitutes = true;
+
+    variables = {
+      EDITOR = "nvim";
+      PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    };
   };
-
-  # Remove nixos build older than 7 days
-  nix.gc = {
-    automatic = lib.mkDefault true;
-    dates = lib.mkDefault "weekly";
-    options = lib.mkDefault "--delete-older-than 7d";
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "fr_FR.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable docker
-  virtualisation.docker.enable = true;
-
-  # FIXME
-  # Fill wallpaper
-  # services.xserver.desktopManager.mode = "fit";
-
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=no
-    AllowHibernation=no
-    AllowHybridSleep=no
-    AllowSuspendThenHibernate=no
-  '';
-
-  # GNOME + disable idle, suspend, hibernate
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Disable GNOME idle delay & screen blanking
-  systemd.user.services."gnome-disable-idle" = {
-    description = "Disable GNOME idle delay and screen blanking";
-    serviceConfig.ExecStart = ''
-      ${pkgs.glib}/bin/gsettings set org.gnome.desktop.session idle-delay 0
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power critical-battery-action 'nothing'
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power use-time-for-policy 'false'
-    '';
-    wantedBy = [ "default.target" ];
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   fonts = {
     packages = with pkgs; [
-      # icon fonts
       material-design-icons
-
-      # normal fonts
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-
-      # nerd fonts
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
     ];
-
     enableDefaultPackages = false;
-
     fontconfig.defaultFonts = {
       serif = [ "Noto Serif" "Noto Color Emoji" ];
       sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
@@ -116,60 +55,140 @@ in
     };
   };
 
-  programs.dconf.enable = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
+  i18n = {
+    defaultLocale = "fr_FR.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "fr_FR.UTF-8";
+      LC_IDENTIFICATION = "fr_FR.UTF-8";
+      LC_MEASUREMENT = "fr_FR.UTF-8";
+      LC_MONETARY = "fr_FR.UTF-8";
+      LC_NAME = "fr_FR.UTF-8";
+      LC_NUMERIC = "fr_FR.UTF-8";
+      LC_PAPER = "fr_FR.UTF-8";
+      LC_TELEPHONE = "fr_FR.UTF-8";
+      LC_TIME = "fr_FR.UTF-8";
+    };
+  };
+
   networking.firewall.enable = false;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    gnome-settings-daemon
-    vim
-    config.boot.kernelPackages.perf
-  ];
+  nix = {
+    gc = {
+      automatic = lib.mkDefault true;
+      dates = lib.mkDefault "weekly";
+      options = lib.mkDefault "--delete-older-than 7d";
+    };
 
-  environment.variables = {
-    EDITOR = "nvim";
-    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    settings = {
+      builders-use-substitutes = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      ];
+      trusted-users = [ username ];
+    };
   };
 
-  # Enable sound with pipewire.
-  # sound.enable = true;
-  services.pulseaudio.enable = false;
-  services.power-profiles-daemon = {
-    enable = true;
-  };
+  nixpkgs.config.allowUnfree = true;
 
   powerManagement.cpuFreqGovernor = "performance";
 
-  systemd.services."set-performance-profile" = {
-    description = "Set power profile to performance";
-    after = [ "power-profiles-daemon.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
+  programs = {
+    dconf.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+    steam.enable = true;
+    thunar.enable = true;
   };
 
-  security.polkit.enable = true;
+  security = {
+    pam.services.hyprlock = { };
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
 
   services = {
-    dbus.packages = [ pkgs.gcr ];
+    dbus = {
+      enable = true;
+      packages = [ pkgs.gcr ];
+    };
 
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true; # ensures Wayland session
+      package = pkgs.kdePackages.sddm; # force Qt6 build of SDDM
+      theme = "sddm-astronaut-theme";
+      extraPackages = [ customAstronaut pkgs.kdePackages.qtmultimedia ];
+    };
+
+    fprintd.enable = true;
     geoclue2.enable = true;
+    gnome.gnome-keyring.enable = true;
+    gvfs.enable = true;
+    ollama.enable = true;
 
     pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      jack.enable = true;
+    };
+
+    power-profiles-daemon.enable = true;
+    printing.enable = true;
+
+    pulseaudio.enable = false;
+
+    tumbler.enable = true;
+    udisks2.enable = true;
+
+    xserver = {
+      enable = true;
+      desktopManager.gnome.enable = false;
+      displayManager = {
+        gdm.enable = false;
+      };
     };
 
   };
 
-  services.ollama = {
-    enable = true;
+  systemd = {
+    services."set-performance-profile" = {
+      description = "Set power profile to performance";
+      after = [ "power-profiles-daemon.service" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig.ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
+    };
+
+    sleep.extraConfig = ''
+      AllowSuspend=no
+      AllowHibernation=no
+      AllowHybridSleep=no
+      AllowSuspendThenHibernate=no
+    '';
   };
-  programs.steam.enable = true;
+
+  time.timeZone = "Europe/Paris";
+
+  users.users.ph = {
+    isNormalUser = true;
+    description = "ph";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+  };
+
+  virtualisation.docker.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    config.common.default = "hyprland"; # Prefer Hyprland portal over GNOME
+  };
 }
