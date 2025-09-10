@@ -12,6 +12,7 @@
     ./xdg.nix
     ./common
     ./shell
+    ./hyprland
   ];
 
   home = {

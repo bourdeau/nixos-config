@@ -49,6 +49,7 @@
 
     # Sound Management
     easyeffects # Audio effects for PipeWire applications
+    hyprpaper
   ];
 
   programs = {

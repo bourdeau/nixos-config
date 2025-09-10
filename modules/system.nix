@@ -7,41 +7,36 @@ let
   username = "ph";
 in
 {
+  # --- Users ---
   users.users.ph = {
     isNormalUser = true;
     description = "ph";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
-  # given the users in this list the right to specify additional substituters via:
-  #    1. `nixConfig.substituers` in `flake.nix`
-  #    2. command line args `--options substituers http://xxx`
-  nix.settings.trusted-users = [ username ];
 
-  # customise /etc/nix/nix.conf declaratively via `nix.settings`
+  # Nix settings
+  nix.settings.trusted-users = [ username ];
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     ];
     builders-use-substitutes = true;
   };
 
-  # Remove nixos build older than 7 days
+  # GC old generations
   nix.gc = {
     automatic = lib.mkDefault true;
     dates = lib.mkDefault "weekly";
     options = lib.mkDefault "--delete-older-than 7d";
   };
 
-  # Allow unfree packages
+  # Allow unfree (Steam, etc.)
   nixpkgs.config.allowUnfree = true;
 
+  # Locale / TZ
   time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
   i18n.defaultLocale = "fr_FR.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "fr_FR.UTF-8";
     LC_IDENTIFICATION = "fr_FR.UTF-8";
@@ -54,16 +49,45 @@ in
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # Enable the X11 windowing system.
+  # --- Display manager / desktops ---
   services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true; # Choose "Hyprland" at login
+  services.xserver.desktopManager.gnome.enable = true; # Keep GNOME available
 
-  # Enable docker
-  virtualisation.docker.enable = true;
+  # Hyprland session (system-provided wrapper)
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
-  # FIXME
-  # Fill wallpaper
-  # services.xserver.desktopManager.mode = "fit";
+  # --- Graphics & audio stack ---
+  hardware.graphics = { enable = true; enable32Bit = true; };
 
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+  services.pulseaudio.enable = false;
+
+  # --- Portals (Wayland screenshare / file pickers) ---
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  # With GNOME installed, prefer the Hyprland portal to avoid conflicts:
+  xdg.portal.config.common.default = "hyprland";
+
+  # --- Polkit, keyring, storage (udiskie) ---
+  security.polkit.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  services.udisks2.enable = true;
+
+  # --- Hyprlock + fingerprint ---
+  services.fprintd.enable = true;
+  security.pam.services.hyprlock = { };
+
+  # --- Power / sleep policies ---
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
     AllowHibernation=no
@@ -71,11 +95,7 @@ in
     AllowSuspendThenHibernate=no
   '';
 
-  # GNOME + disable idle, suspend, hibernate
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Disable GNOME idle delay & screen blanking
+  # GNOME-only idle tweaks (doesn't affect Hyprland)
   systemd.user.services."gnome-disable-idle" = {
     description = "Disable GNOME idle delay and screen blanking";
     serviceConfig.ExecStart = ''
@@ -88,26 +108,20 @@ in
     wantedBy = [ "default.target" ];
   };
 
-  # Enable CUPS to print documents.
+  # --- Printing ---
   services.printing.enable = true;
 
+  # --- Fonts ---
   fonts = {
     packages = with pkgs; [
-      # icon fonts
       material-design-icons
-
-      # normal fonts
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-emoji
-
-      # nerd fonts
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
     ];
-
     enableDefaultPackages = false;
-
     fontconfig.defaultFonts = {
       serif = [ "Noto Serif" "Noto Color Emoji" ];
       sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
@@ -116,60 +130,52 @@ in
     };
   };
 
+  # --- Misc desktop plumbing ---
   programs.dconf.enable = true;
+  services.dbus.packages = [ pkgs.gcr ];
+  services.geoclue2.enable = true;
 
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
+  # --- Networking / firewall ---
   networking.firewall.enable = false;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # --- Packages expected by your HM Hyprland config ---
   environment.systemPackages = with pkgs; [
+    # your originals
     gnome-settings-daemon
     vim
     config.boot.kernelPackages.perf
+
+    # for your Hyprland/HM bindings/services
+    wofi
+    pamixer
+    brightnessctl
+    wl-clipboard
+    udiskie
+    networkmanagerapplet
+    blueman
+    hyprlock
+    hypridle
+    waybar
   ];
 
+  # --- Env vars ---
   environment.variables = {
     EDITOR = "nvim";
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
 
-  # Enable sound with pipewire.
-  # sound.enable = true;
-  services.pulseaudio.enable = false;
-  services.power-profiles-daemon = {
-    enable = true;
-  };
+  # --- Containers / gaming / extras ---
+  virtualisation.docker.enable = true;
+  programs.steam.enable = true;
+  services.ollama.enable = true;
 
+  # --- Power profile ---
+  services.power-profiles-daemon.enable = true;
   powerManagement.cpuFreqGovernor = "performance";
-
   systemd.services."set-performance-profile" = {
     description = "Set power profile to performance";
     after = [ "power-profiles-daemon.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig.ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
   };
-
-  security.polkit.enable = true;
-
-  services = {
-    dbus.packages = [ pkgs.gcr ];
-
-    geoclue2.enable = true;
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-
-  };
-
-  services.ollama = {
-    enable = true;
-  };
-  programs.steam.enable = true;
 }
