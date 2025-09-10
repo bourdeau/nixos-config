@@ -1,4 +1,8 @@
-<h2 align="center">:snowflake: My Nix Config :snowflake:</h2>
+<h2 align="center">My Nix Config</h2>
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" />
+</p>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="400" />
@@ -14,11 +18,12 @@
 
 |                             |                                                                                                                     |
 | --------------------------- | :------------------------------------------------------------------------------------------------------------------ |
-| **Display Manager**         | [SDDM](https://github.com/sddm/sddm) + [Astronaut Theme](https://github.com/Keyitdev/sddm-astronaut-theme)           |
-| **Window Manager**          | [Hyprland](https://hypr.land/)                                                                                     |
+| **Theme**                   | [Catppuccin Mocha](https://catppuccin.com/)                                                                         |
+| **Display Manager**         | [SDDM](https://github.com/sddm/sddm) + [Astronaut Theme](https://github.com/Keyitdev/sddm-astronaut-theme)          |
+| **Window Manager**          | [Hyprland](https://hypr.land/)                                                                                      |
 | **Status Bar**              | [Waybar](https://github.com/Alexays/Waybar)                                                                         |
-| **Wallpaper Manager**       | [Hyprpaper](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprpaper/) + random rotation script                            |
-| **Screen Locker**           | [Hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprlock/)                                                       |
+| **Wallpaper Manager**       | [Hyprpaper](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprpaper/) + random rotation script                           |
+| **Screen Locker**           | [Hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprlock/)                                                      |
 | **Terminal Emulator**       | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                                 |
 | **System Resource Monitor** | [Btop](https://github.com/aristocratos/btop)                                                                        |
 | **File Viewer**             | [Bat](https://github.com/sharkdp/bat)                                                                               |
