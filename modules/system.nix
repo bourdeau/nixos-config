@@ -52,7 +52,8 @@ in
   # --- Display manager / desktops ---
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true; # Choose "Hyprland" at login
-  services.xserver.desktopManager.gnome.enable = true; # Keep GNOME available
+  services.xserver.desktopManager.gnome.enable = false; # Keep GNOME available
+  services.hypridle.enable = true;
 
   # Hyprland session (system-provided wrapper)
   programs.hyprland = {
@@ -97,19 +98,6 @@ in
     AllowHybridSleep=no
     AllowSuspendThenHibernate=no
   '';
-
-  # GNOME-only idle tweaks (doesn't affect Hyprland)
-  systemd.user.services."gnome-disable-idle" = {
-    description = "Disable GNOME idle delay and screen blanking";
-    serviceConfig.ExecStart = ''
-      ${pkgs.glib}/bin/gsettings set org.gnome.desktop.session idle-delay 0
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'nothing'
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power critical-battery-action 'nothing'
-      ${pkgs.glib}/bin/gsettings set org.gnome.settings-daemon.plugins.power use-time-for-policy 'false'
-    '';
-    wantedBy = [ "default.target" ];
-  };
 
   # --- Printing ---
   services.printing.enable = true;
