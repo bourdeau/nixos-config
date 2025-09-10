@@ -1,12 +1,13 @@
 { ... }:
 {
   imports = [
-    ./eww.nix
+    ./eww
     ./hyprland.nix
     ./hyprlock.nix
     ./hyprpaper.nix
     ./config.nix
     ./variables.nix
+    ./systemd.nix
     # ./waybar.nix
   ];
 }

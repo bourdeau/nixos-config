@@ -1,0 +1,70 @@
+  * {
+    all: unset;
+    font-family: JetBrainsMono Nerd Font, sans-serif;
+    font-size: 13px;
+  }
+
+  .bar {
+    background: #1e1e2e;
+    color: #cdd6f4;
+  }
+
+  .workspaces {
+    margin-left: 6px;
+    /* keep bar margin */
+  }
+
+  .workspaces button {
+    all: unset;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 0px 0px;
+    margin: 0 0px;
+    border: 1px solid #cdd6f4;
+    border-radius: 4px;
+  }
+
+  .workspaces button:hover,
+  .workspaces button:focus {
+    background: #89b4fa;
+    color: #1e1e2e;
+  }
+
+  .workspaces button.active {
+    background: #89b4fa;
+    color: #1e1e2e;
+    border: 1px solid #89b4fa;
+  }
+
+  .sysinfo {
+    padding: 0;
+  }
+
+  .clock {
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .control-center {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  button {
+    all: unset;
+    /* wipe GTK defaults */
+    background: #1e1e2e;
+    /* same as bar */
+    color: #cdd6f4;
+    padding: 2px 8px;
+    margin: 0 2px;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    background: #89b4fa;
+    color: #1e1e2e;
+  }
