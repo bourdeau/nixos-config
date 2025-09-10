@@ -9,7 +9,8 @@
 
 (defpoll time :interval "10s" "date '+%d/%m/%Y %H:%M'")
 (defpoll volume :interval "2s" "pamixer --get-volume")
-(defpoll network :interval "10s" "nmcli -t -f ACTIVE,SSID dev wifi | awk -F: '$1==\"yes\"{print $2}' || echo 'offline'")
+(defpoll network :interval "10s"
+  "nmcli -t -f TYPE,STATE,CONNECTION dev | awk -F: '/wifi:connected/{print $3; exit} /ethernet:connected/{print $3; exit} END{print \"offline\"}'")
 (defpoll battery :interval "30s" "cat /sys/class/power_supply/BAT0/capacity || echo 100")
 
 ;; ------------------------------
@@ -25,12 +26,12 @@
     (box :hexpand true)
 
     ;; right side
-    (box :orientation "h" :spacing 15 :halign "end"
+    (box :orientation "h" :halign "end"
       (sysinfo)
       (clock-widget))))
 
 (defwidget workspaces []
-  (box :class "workspaces" :orientation "h" :spacing 5
+  (box :class "workspaces" :orientation "h"
     (for i in workspaces
       (button
         :class {i == active_workspace ? "active" : ""}
@@ -38,10 +39,10 @@
         i))))
 
 (defwidget sysinfo []
-  (box :class "sysinfo" :orientation "h" :spacing 15
-    (label :text { " " + network } :class "net")
+  (box :class "sysinfo" :orientation "h"
+    (label :text "" :tooltip network :class "net")
     (label :text { " " + volume + "%" } :class "vol")
-    (label :text { "🔋 " + battery + "%" } :class "bat")))
+    (label :text { "🔋" + battery + "%" } :class "bat")))
 
 (defwidget clock-widget []
   (button :class "clock"
@@ -49,9 +50,9 @@
           time))
 
 (defwidget control []
-  (box :orientation "v" :spacing 10 :class "control-center"
-    (label :text { "🔊 Volume: " + volume + "%" })
-    (label :text { " Wi-Fi: " + network })
+  (box :orientation "v" :class "control-center"
+    (label :text { "🔊 Volume:" + volume + "%" })
+    (label :text { " Wi-Fi:" + network })
     (label :text " Mic: on")
     (label :text time)))
 

@@ -10,8 +10,7 @@
   }
 
   .workspaces {
-    margin-left: 6px;
-    /* keep bar margin */
+    margin-left: 0px;
   }
 
   .workspaces button {
@@ -49,17 +48,15 @@
   .control-center {
     background: #1e1e2e;
     color: #cdd6f4;
-    padding: 10px;
+    padding: 0px;
     border-radius: 8px;
   }
 
   button {
     all: unset;
-    /* wipe GTK defaults */
     background: #1e1e2e;
-    /* same as bar */
     color: #cdd6f4;
-    padding: 2px 8px;
+    padding: 0px 0px;
     margin: 0 2px;
     border-radius: 5px;
   }
