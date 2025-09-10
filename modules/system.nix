@@ -139,7 +139,7 @@ in
     vim
     config.boot.kernelPackages.perf
 
-    # for your Hyprland/HM bindings/services
+    # Hyprland
     wofi
     pamixer
     brightnessctl
@@ -149,7 +149,6 @@ in
     blueman
     hyprlock
     hypridle
-    # waybar
   ];
 
   programs.thunar.enable = true;
