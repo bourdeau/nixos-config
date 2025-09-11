@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
   imports = [
+    ./common
+    ./hyprland
+    ./shell
     ./browsers.nix
     ./common.nix
     ./git.nix
@@ -9,9 +12,6 @@
     ./networking.nix
     ./programming.nix
     ./xdg.nix
-    ./common
-    ./shell
-    ./hyprland
   ];
 
   home = {
