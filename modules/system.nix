@@ -132,6 +132,13 @@ in
     geoclue2.enable = true;
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
+
+    logind.extraConfig = ''
+      HandleLidSwitch=ignore
+      HandleLidSwitchDocked=ignore
+      IdleAction=ignore
+    '';
+
     ollama.enable = true;
 
     pipewire = {

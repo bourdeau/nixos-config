@@ -3,7 +3,6 @@ let
   terminal = "alacritty";
   splitToLines = s: lib.splitString "\n" s;
   browser = "firefox";
-  uwsmPrefix = "uwsm app --";
   wofiLauncher = ''$(wofi --show drun --define=drun-print_desktop_file=true | sed -E "s/(\.desktop) /\1:/")'';
 in
 {

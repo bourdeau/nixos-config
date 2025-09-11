@@ -6,7 +6,6 @@
     ./hyprpaper.nix
     ./config.nix
     ./variables.nix
-    ./systemd.nix
     ./waybar.nix
   ];
 }
