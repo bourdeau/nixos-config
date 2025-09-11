@@ -24,7 +24,6 @@ in
       networkmanagerapplet
       blueman
       hyprlock
-      hypridle
       sddm-astronaut
 
       customAstronaut
