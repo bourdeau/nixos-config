@@ -49,7 +49,7 @@ in
     udiskie = {
       enable = true;
       automount = true;
-      tray = "always";
+      tray = "never";
     };
   };
 }
