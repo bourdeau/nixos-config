@@ -1,11 +1,13 @@
 { config, pkgs, ... }:
+let
+  uwsmPrefix = "uwsm app --";
+in
 {
   # Power menu script
   xdg.configFile."waybar/scripts/power-menu.nu" = {
     executable = true;
     text =
       let
-        uwsmPrefix = "uwsm app -- ";
         entry = l: a: ''{ label: "${l}", action: "${a}" }'';
       in
       ''
@@ -75,9 +77,9 @@
         exec = "${config.xdg.configHome}/waybar/scripts/udiskie-status.nu";
         interval = 5;
         tooltip = true;
-        on-click = "${pkgs.udiskie}/bin/udiskie --mount";
-        on-click-middle = "${pkgs.xdg-utils}/bin/xdg-open /run/media/$USER";
-        on-click-right = "${pkgs.udiskie}/bin/udiskie-umount -a";
+        on-click = "${uwsmPrefix} udiskie --mount";
+        on-click-middle = "${uwsmPrefix} xdg-open /run/media/$USER";
+        on-click-right = "${uwsmPrefix} udiskie-umount -a";
       };
 
       clock = {
