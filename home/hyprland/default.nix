@@ -7,5 +7,6 @@
     ./hyprpaper.nix
     ./variables.nix
     ./waybar.nix
+    ./wofi
   ];
 }

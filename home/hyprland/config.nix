@@ -28,7 +28,6 @@ in
       };
 
       bind = [
-        "SUPER, F1, exec, show-keybinds"
         "CTRL ALT, t, exec, alacritty"
         "CTRL ALT, right, workspace, +1"
         "CTRL ALT, left, workspace, -1"
@@ -56,14 +55,25 @@ in
         "SUPER, k, alterzorder, top"
         "SUPER, l, alterzorder, top"
 
-        # Volume / brightness
-        ",XF86AudioRaiseVolume, exec, pamixer -i 5"
-        ",XF86AudioLowerVolume, exec, pamixer -d 5"
-        ",XF86AudioMute, exec, pamixer -t"
-        ",XF86AudioMicMute, exec, pamixer -m"
+        # move focused window to workspaces 1–9
+        "SUPER SHIFT, 1, movetoworkspace, 1"
+        "SUPER SHIFT, 2, movetoworkspace, 2"
+        "SUPER SHIFT, 3, movetoworkspace, 3"
+        "SUPER SHIFT, 4, movetoworkspace, 4"
+        "SUPER SHIFT, 5, movetoworkspace, 5"
+        "SUPER SHIFT, 6, movetoworkspace, 6"
+        "SUPER SHIFT, 7, movetoworkspace, 7"
+        "SUPER SHIFT, 8, movetoworkspace, 8"
+        "SUPER SHIFT, 9, movetoworkspace, 9"
 
-        ",XF86MonBrightnessUp, exec, brightnessctl s 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        # Volume
+        "SUPER, F11, exec, pamixer -d 5"
+        "SUPER, F12, exec, pamixer -i 5"
+        "SUPER, F10, exec, pamixer -t"
+
+        # Brightness
+        "SUPER, F5, exec, brightnessctl set 10%-"
+        "SUPER, F6, exec, brightnessctl set +10%"
       ];
 
       bindm = [

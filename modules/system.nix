@@ -17,7 +17,6 @@ in
       vim
       config.boot.kernelPackages.perf
       # Hyprland
-      wofi
       pamixer
       brightnessctl
       wl-clipboard
