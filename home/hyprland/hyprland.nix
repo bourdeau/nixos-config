@@ -10,14 +10,6 @@ in
     package = null;
     portalPackage = null;
   };
-  home.pointerCursor = {
-    enable = true;
-    name = "Bibata-Modern-Ice";
-    size = 24;
-    package = pkgs.bibata-cursors; # ensure it’s installed
-    hyprcursor.enable = true;
-  };
-
   services = {
     hypridle = {
       enable = true;
