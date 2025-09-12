@@ -39,10 +39,14 @@ in
         "SUPER, Space, exec, togglefloating"
         "ALT, Escape, exec, loginctl lock-session"
         "SUPER, R, exec, ${wofiLauncher}"
-        # Screenshot whole screen
-        "CTRL ALT, s, exec, grim - | wl-copy"
-        # Screenshot selection
-        "CTRL ALT, Shift+S, exec, slurp | grim -g - - | wl-copy"
+        # Whole screen → save to ~/Images/Screenshots AND copy to clipboard
+        "CTRL ALT, S, exec, hyprshot -m output -o ~/Images/Screenshots"
+
+        # Active window → save + clipboard
+        "CTRL ALT, W, exec, hyprshot -m window -m active -o ~/Images/Screenshots"
+
+        # Region selection → save + clipboard
+        "CTRL ALT SHIFT, S, exec, hyprshot -m region -o ~/Images/Screenshots"
 
         # switch focus
         "SUPER, h, movefocus, l"

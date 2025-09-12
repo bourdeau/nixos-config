@@ -53,10 +53,8 @@
     # Hyprland
     hyprpaper
     gnome.gvfs
-    grim
-    slurp
-    wl-clipboard
     uwsm
+    hyprshot
   ];
 
   programs = {
