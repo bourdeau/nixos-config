@@ -2,11 +2,13 @@
 {
   imports = [
     ./common
+    ./gtk
     ./hyprland
     ./shell
     ./browsers.nix
     ./common.nix
     ./git.nix
+    ./gtk.nix
     ./media.nix
     ./monitoring.nix
     ./networking.nix
