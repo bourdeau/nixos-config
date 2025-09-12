@@ -35,96 +35,26 @@ and a lot more...
 
 ## Install
 
-```
-# Desktop
-sudo nixos-rebuild switch --flake .#phcorsair
+See `Justfile`
 
-# Laptop
-sudo nixos-rebuild switch --flake .#phzenbook
+```console
+nixos-config on  master [$!]
+➜ just
+Available commands:
+  build <host>       - Build system for a given host
+  boot <host>        - Build system for a given host, applied at next boot
+  check <host>       - Dry-run build for a given host (simulate changes)
+  clean              - Remove old generations, keep only the last 5
+  gc                 - Garbage collect and optimise the nix store
+  generations        - List all available system generations
+  rollback           - Roll back to the previous generation
+  test <host>        - Test configuration for a given host (temporary)
+  update             - Update flake inputs
 
-# Gaming
-sudo nixos-rebuild switch --flake .#phantec
-```
-
-## Update
-
-```
-nix flake update
-sudo nixos-rebuild switch --flake .#phantec
-
-```
-
-
-## Notes
-
-If you try to install my config by running a command like
-
-```
-sudo nixos-rebuild --flake github:bourdeau/nios-config#phcorsair
-```
-**it will not work** as we quite likely don't have the same hardware.
-
-But if you want to use my config here are the steps to follow:
-
-```
-git clone https://github.com/bourdeau/nixos-config.git ~
-sudo cp /etc/nixos/hardware-configuration.nix ~/nixos-config/hosts/phcorsair/
-sudo mv /etc/nixos /etc/nixos.bak
-sudo ln -s ~/nixos-config/ /etc/nixos
-sudo nixos-rebuild switch --flake .#phcorsair
+Available hosts:
+  phantec phcorsair phzenbook
 ```
 
-## Recovering a Broken NixOS Boot Configuration
+## Docs
 
-1. Check Available Generations
-
-```
-sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-ls -l /nix/var/nix/profiles/system-*
-```
-
-2. Manually Switch to a Previous Generation
-
-Find the correct generation in /nix/var/nix/profiles/system-XX-link and run:
-```
-sudo /nix/store/<corresponding-nixos-system>/bin/switch-to-configuration boot
-```
-
-Then reboot:
-```
-sudo reboot
-```
-
-3. Fix the System Profile Symlink
-
-If the system boots into the correct generation but nix-env --list-generations still shows an incorrect "current" version:
-```
-sudo rm /nix/var/nix/profiles/system
-sudo ln -s /nix/var/nix/profiles/system-XX-link /nix/var/nix/profiles/system
-```
-
-(Replace XX with the correct generation number.)
-
-4. Rebuild and Update the Bootloader
-
-```
-sudo nixos-rebuild boot
-sudo nixos-rebuild switch
-```
-
-5. Verify the Current Generation
-
-```
-sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-cat /run/current-system/system-version
-```
-
-6. Clean Up Old Generations
-
-```
-sudo nix-collect-garbage -d
-```
-
-<p align="center">
-	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" />
-</p>
+[Read the docs](docs/index.md)
