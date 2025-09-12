@@ -56,6 +56,7 @@
     grim
     slurp
     wl-clipboard
+    uwsm
   ];
 
   programs = {
