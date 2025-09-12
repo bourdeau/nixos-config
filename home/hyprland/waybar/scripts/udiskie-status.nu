@@ -7,5 +7,6 @@ try {
   let tooltip = $"udiskie — mounted devices: ($count)\nLeft click: mount all\nMiddle click: open ($mnt)\nRight click: unmount all"
   { text: $icon, tooltip: $tooltip, class: "udiskie" } | to json -r | print
 } catch {|e|
-  { text: " ", tooltip: "udiskie status: error", class: "udiskie error" } | to json | print
+  notify-send "⚠️ Udiskie Error" $"($e.msg)"
+  { text: " ", tooltip: "udiskie status: error", class: "udiskie error" } | to json -r | print
 }
