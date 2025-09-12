@@ -1,5 +1,3 @@
-# My Nix Config
-
 <p align="center">
   <img src="docs/cats.png" alt="We don't work for cops" />
 </p>
