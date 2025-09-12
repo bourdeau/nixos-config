@@ -1,5 +1,7 @@
 #!/usr/bin/env nu
 
+lat qwdiuh ====="";
+
 let choices = [
   { label: " Lock",    action: "uwsm app -- loginctl lock-session" }
   { label: " Suspend", action: "uwsm app -- systemctl suspend" }

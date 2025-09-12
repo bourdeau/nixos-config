@@ -12,11 +12,11 @@ local lsp_servers = {
 	"html",
 	"jsonls",
 	"lua_ls",
+	"nushell",
 	"pyright",
+	"rust_analyzer",
 	"ts_ls",
 	"yamlls",
-	"rust_analyzer",
-	"lua_ls",
 }
 
 -- Setup all mapped LSP servers
@@ -45,6 +45,16 @@ for _, server in ipairs(lsp_servers) do
 				diagnostics = { globals = { "vim" } },
 			},
 		}
+	end
+
+	-- Nushell LSP (`nu --lsp`) is still experimental:
+	--  ✓ completions
+	--  ✓ hover docs
+	--  ✓ semantic tokens (highlighting)
+	--  ✗ diagnostics (no error reporting yet)
+	-- So invalid syntax won't be underlined until they implement diagnostics.
+	if server == "nushell" then
+		opts.cmd = { "nu", "--lsp" }
 	end
 
 	lspconfig[server].setup(opts)
