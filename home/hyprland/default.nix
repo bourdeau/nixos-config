@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./hyprpaper
     ./swaync
     ./waybar
     ./wofi
@@ -8,7 +9,6 @@
     ./cursor.nix
     ./hyprland.nix
     ./hyprlock.nix
-    ./hyprpaper.nix
     ./variables.nix
   ];
 }
