@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./swaync
     ./waybar
     ./wofi
     ./config.nix
@@ -8,7 +9,6 @@
     ./hyprland.nix
     ./hyprlock.nix
     ./hyprpaper.nix
-    ./notification.nix
     ./variables.nix
   ];
 }

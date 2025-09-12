@@ -3,6 +3,8 @@
 {
   home.packages = [ pkgs.swaynotificationcenter ];
 
+  home.file.".config/swaync/style.css".source = ./style.css;
+
   systemd.user.services.swaync = {
     Unit = {
       Description = "Sway Notification Center";
