@@ -1,7 +1,7 @@
-<h1 align="center">My Nix Config</h1>
+# My Nix Config
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" />
+  <img src="docs/cat.png" alt="We don't work for cops" />
 </p>
 
 <p align="center">
