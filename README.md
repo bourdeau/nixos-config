@@ -18,8 +18,8 @@
 | **Display Manager**         | [SDDM](https://github.com/sddm/sddm) + [Astronaut Theme](https://github.com/Keyitdev/sddm-astronaut-theme)          |
 | **Window Manager**          | [Hyprland](https://hypr.land/)                                                                                      |
 | **Status Bar**              | [Waybar](https://github.com/Alexays/Waybar)                                                                         |
-| **Wallpaper Manager**       | [Hyprpaper](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprpaper/) + random rotation script                           |
-| **Screen Locker**           | [Hyprlock](https://wiki.hyprland.org/Hypr-Ecosystem/Hyprlock/)                                                      |
+| **Wallpaper Manager**       | [Hyprpaper](https://github.com/hyprwm/hyprpaper)                                                                    |
+| **Screen Locker**           | [Hyprlock](https://github.com/hyprwm/hyprlock)                                                                      |
 | **Terminal Emulator**       | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                                 |
 | **System Resource Monitor** | [Btop](https://github.com/aristocratos/btop)                                                                        |
 | **File Viewer**             | [Bat](https://github.com/sharkdp/bat)                                                                               |
