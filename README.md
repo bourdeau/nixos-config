@@ -31,7 +31,7 @@
 
 and a lot more...
 
-## Install
+## Help?
 
 See `Justfile`
 
