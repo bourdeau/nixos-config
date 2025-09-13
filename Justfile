@@ -66,3 +66,4 @@ check-style:
     alejandra --check .
     statix check .
     deadnix . --fail
+    nix flake check
