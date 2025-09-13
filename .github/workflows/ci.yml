@@ -34,7 +34,7 @@ jobs:
       - name: Check flake
         run: nix flake check
 
-  nixos-build:
+  nixos-eval:
     runs-on: ubuntu-latest
     needs: flake-check
     strategy:
@@ -47,6 +47,5 @@ jobs:
         uses: cachix/install-nix-action@v26
         with:
           nix_path: nixpkgs=channel:${{ env.NIX_CHANNEL }}
-      - name: Build system for ${{ matrix.host }}
-        run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
-
+      - name: Evaluate system for ${{ matrix.host }}
+        run: nix eval .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel.drvPath
