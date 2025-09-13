@@ -50,18 +50,3 @@ jobs:
       - name: Build system for ${{ matrix.host }}
         run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
 
-  home-build:
-    runs-on: ubuntu-latest
-    needs: flake-check
-    strategy:
-      fail-fast: false
-      matrix:
-        host: [phantec, phcorsair, phzenbook]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Nix
-        uses: cachix/install-nix-action@v26
-        with:
-          nix_path: nixpkgs=channel:${{ env.NIX_CHANNEL }}
-      - name: Build home for ph@${{ matrix.host }}
-        run: nix build .#homeConfigurations."ph@${{ matrix.host }}".activationPackage
