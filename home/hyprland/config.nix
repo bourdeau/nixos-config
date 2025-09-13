@@ -29,7 +29,7 @@ in {
         "CTRL ALT, t, exec, uwsm app -- alacritty"
         "CTRL ALT, right, workspace, +1"
         "CTRL ALT, left, workspace, -1"
-        "CTRL ALT, f, exec, uwsm app -- [workspace 1 silent] ${browser}"
+        "CTRL ALT, f, exec, uwsm app -- ${browser}"
         "CTRL ALT, n, exec, uwsm app -- thunar"
         "CTRL, Q, killactive,"
         "SUPER, F, fullscreen, 0"
