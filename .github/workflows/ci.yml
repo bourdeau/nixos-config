@@ -1,0 +1,53 @@
+name: NixOS Config CI
+
+on:
+  push:
+  pull_request:
+
+env:
+  NIX_CHANNEL: nixos-25.05
+  HOSTS_JSON: '["phantec","phcorsair","phzenbook"]'
+
+jobs:
+  flake-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+        with:
+          nix_path: nixpkgs=channel:${{ env.NIX_CHANNEL }}
+      - name: Check flake
+        run: nix flake check
+
+  nixos-build:
+    runs-on: ubuntu-latest
+    needs: flake-check
+    strategy:
+      fail-fast: false
+      matrix:
+        host: ${{ fromJSON(env.HOSTS_JSON) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+        with:
+          nix_path: nixpkgs=channel:${{ env.NIX_CHANNEL }}
+      - name: Build system for ${{ matrix.host }}
+        run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
+
+  home-build:
+    runs-on: ubuntu-latest
+    needs: flake-check
+    strategy:
+      fail-fast: false
+      matrix:
+        host: ${{ fromJSON(env.HOSTS_JSON) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+        with:
+          nix_path: nixpkgs=channel:${{ env.NIX_CHANNEL }}
+      - name: Build home for ph@${{ matrix.host }}
+        run: nix build .#homeConfigurations."ph@${{ matrix.host }}".activationPackage
