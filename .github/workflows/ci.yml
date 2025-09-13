@@ -1,6 +1,5 @@
 name: NixOS Config CI
 
-# Why don't you trigger?
 on:
   pull_request:
     branches:
@@ -9,7 +8,6 @@ on:
 
 env:
   NIX_CHANNEL: nixos-25.05
-  HOSTS_JSON: '["phantec","phcorsair","phzenbook"]'
 
 jobs:
   lint:
@@ -42,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        host: ${{ fromJSON(env.HOSTS_JSON) }}
+        host: [phantec, phcorsair, phzenbook]
     steps:
       - uses: actions/checkout@v4
       - name: Install Nix
@@ -58,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        host: ${{ fromJSON(env.HOSTS_JSON) }}
+        host: [phantec, phcorsair, phzenbook]
     steps:
       - uses: actions/checkout@v4
       - name: Install Nix
