@@ -9,6 +9,19 @@ env:
   HOSTS_JSON: '["phantec","phcorsair","phzenbook"]'
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+      - name: Run Formatter
+        run: nix run nixpkgs#alejandra -- --check .
+      - name: Run Linter
+        run: nix run nixpkgs#statix check .
+      - name: Run Deadcode
+        run: nix run nixpkgs#deadnix -- . --fail
+  
   flake-check:
     runs-on: ubuntu-latest
     steps:
