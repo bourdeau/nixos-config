@@ -5,7 +5,8 @@ GTK3 and GTK4 applications such as **Thunar**.
 
 ## Current Setup
 
-We use the **Adwaita-dark** theme, which is part of the upstream GTK
+It uses the **Adwaita-dark** theme, which is part of the upstream GTK
 distribution. It is stable, maintained, and guaranteed to work correctly with
 GTK updates.
 
+Unfortunately [catppuccin/gtk](https://github.com/catppuccin/gtk) is not maintained anymore 😿

@@ -1,6 +1,9 @@
-{ config, pkgs, ... }:
 {
-  home.packages = [ pkgs.wofi pkgs.pamixer pkgs.pavucontrol ];
+  config,
+  pkgs,
+  ...
+}: {
+  home.packages = [pkgs.wofi pkgs.pamixer pkgs.pavucontrol];
 
   home.file = {
     ".config/waybar/scripts/power-menu.nu" = {
@@ -23,7 +26,7 @@
       height = 28;
       spacing = 8;
 
-      modules-left = [ "hyprland/workspaces" ];
+      modules-left = ["hyprland/workspaces"];
       modules-right = [
         "tray"
         "custom/udiskie"
@@ -67,7 +70,7 @@
         tooltip-format = "{ifname} via {gwaddr}";
       };
 
-      tray = { spacing = 8; };
+      tray = {spacing = 8;};
 
       cpu = {
         format = " {usage}%";
@@ -85,7 +88,7 @@
       };
       battery = {
         format = "{icon} {capacity}%";
-        format-icons = [ " " " " " " " " " " ];
+        format-icons = [" " " " " " " " " "];
         format-charging = " {capacity}%";
         format-full = " {capacity}%";
         format-warning = "{capacity}%";
@@ -108,11 +111,11 @@
         format = "{name}";
         on-click = "activate";
         persistent-workspaces = {
-          "1" = [ ];
-          "2" = [ ];
-          "3" = [ ];
-          "4" = [ ];
-          "5" = [ ];
+          "1" = [];
+          "2" = [];
+          "3" = [];
+          "4" = [];
+          "5" = [];
         };
       };
     };

@@ -1,7 +1,4 @@
-{ lib
-, pkgs
-, ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     curl # Command-line tool for transferring data with URLs
     ethtool # Display and modify network interface controller parameters

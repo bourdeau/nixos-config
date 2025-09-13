@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # System Monitoring and Management
     duf # Disk usage utility with fancy output
@@ -16,4 +15,3 @@
     lshw
   ];
 }
-

@@ -1,4 +1,3 @@
-{ config, pkgs, ... }:
 {
   imports = [
     ./common
@@ -23,4 +22,3 @@
 
   programs.home-manager.enable = true;
 }
-

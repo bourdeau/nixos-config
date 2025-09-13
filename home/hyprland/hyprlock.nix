@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
   programs.hyprlock = {
     enable = true;

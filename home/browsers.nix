@@ -1,12 +1,13 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }: {
   programs.firefox = {
     enable = true;
 
-    languagePacks = [ "en-US" ];
+    languagePacks = ["en-US"];
 
     policies = {
       # Updates & Background Services
@@ -58,74 +59,72 @@
       };
 
       # Extensions
-      ExtensionSettings =
-        let
-          moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
-        in
-        {
-          "*".allowed_types = [ "dictionary" "locale" "theme" ];
-          "*".install_sources = [ "https://addons.mozilla.org/*" ];
+      ExtensionSettings = let
+        moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
+      in {
+        "*".allowed_types = ["dictionary" "locale" "theme"];
+        "*".install_sources = ["https://addons.mozilla.org/*"];
 
-          "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}" = {
-            install_url = moz "catppuccin-mocha-blue-git";
-            installation_mode = "force_installed";
-            updates_disabled = false;
-          };
+        "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}" = {
+          install_url = moz "catppuccin-mocha-blue-git";
+          installation_mode = "force_installed";
+          updates_disabled = false;
+        };
 
-          "fr-dicollecte@dictionaries.addons.mozilla.org" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/dictionnaire-fran%C3%A7ais1/latest.xpi";
-            installation_mode = "force_installed";
-            updates_disabled = true;
-          };
+        "fr-dicollecte@dictionaries.addons.mozilla.org" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/dictionnaire-fran%C3%A7ais1/latest.xpi";
+          installation_mode = "force_installed";
+          updates_disabled = true;
+        };
 
-          "uBlock0@raymondhill.net" = {
-            install_url = moz "ublock-origin";
-            installation_mode = "force_installed";
-            updates_disabled = true;
-          };
+        "uBlock0@raymondhill.net" = {
+          install_url = moz "ublock-origin";
+          installation_mode = "force_installed";
+          updates_disabled = true;
+        };
 
-          "3rdparty".Extensions = {
-            "uBlock0@raymondhill.net".adminSettings = {
-              userSettings = rec {
-                uiTheme = "dark";
-                uiAccentCustom = true;
-                uiAccentCustom0 = "#8300ff";
-                cloudStorageEnabled = lib.mkForce false;
+        "3rdparty".Extensions = {
+          "uBlock0@raymondhill.net".adminSettings = {
+            userSettings = rec {
+              uiTheme = "dark";
+              uiAccentCustom = true;
+              uiAccentCustom0 = "#8300ff";
+              cloudStorageEnabled = lib.mkForce false;
 
-                importedLists = [
-                  "https://filters.adtidy.org/extension/ublock/filters/3.txt"
-                  "https://github.com/DandelionSprout/adfilt/raw/master/LegitimateURLShortener.txt"
-                ];
-
-                externalLists = lib.concatStringsSep "\n" importedLists;
-              };
-
-              selectedFilterLists = [
-                "CZE-0"
-                "adguard-generic"
-                "adguard-annoyance"
-                "adguard-social"
-                "adguard-spyware-url"
-                "easylist"
-                "easyprivacy"
+              importedLists = [
+                "https://filters.adtidy.org/extension/ublock/filters/3.txt"
                 "https://github.com/DandelionSprout/adfilt/raw/master/LegitimateURLShortener.txt"
-                "plowe-0"
-                "ublock-abuse"
-                "ublock-badware"
-                "ublock-filters"
-                "ublock-privacy"
-                "ublock-quick-fixes"
-                "ublock-unbreak"
-                "urlhaus-1"
               ];
+
+              externalLists = lib.concatStringsSep "\n" importedLists;
             };
-          };
-          "sponsorBlocker@ajay.app" = {
-            install_url = moz "sponsorblock";
-            installation_mode = "force_installed";
-            updates_disabled = true;
+
+            selectedFilterLists = [
+              "CZE-0"
+              "adguard-generic"
+              "adguard-annoyance"
+              "adguard-social"
+              "adguard-spyware-url"
+              "easylist"
+              "easyprivacy"
+              "https://github.com/DandelionSprout/adfilt/raw/master/LegitimateURLShortener.txt"
+              "plowe-0"
+              "ublock-abuse"
+              "ublock-badware"
+              "ublock-filters"
+              "ublock-privacy"
+              "ublock-quick-fixes"
+              "ublock-unbreak"
+              "urlhaus-1"
+            ];
           };
         };
+        "sponsorBlocker@ajay.app" = {
+          install_url = moz "sponsorblock";
+          installation_mode = "force_installed";
+          updates_disabled = true;
+        };
+      };
     };
 
     profiles.default.search = {
@@ -146,14 +145,17 @@
             {
               template = "https://searx.bndkt.io/search";
               params = [
-                { name = "q"; value = "{searchTerms}"; }
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
                 # Optional quality-of-life params:
                 # { name = "language"; value = "all"; }
                 # { name = "safesearch"; value = "0"; }
               ];
             }
           ];
-          definedAliases = [ "@sx" ];
+          definedAliases = ["@sx"];
           icon = "https://searx.bndkt.io/favicon.ico";
         };
 
@@ -162,13 +164,19 @@
             {
               template = "https://search.nixos.org/packages";
               params = [
-                { name = "channel"; value = "unstable"; }
-                { name = "query"; value = "{searchTerms}"; }
+                {
+                  name = "channel";
+                  value = "unstable";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
               ];
             }
           ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@np" ];
+          definedAliases = ["@np"];
         };
 
         "Nix Options" = {
@@ -176,13 +184,19 @@
             {
               template = "https://search.nixos.org/options";
               params = [
-                { name = "channel"; value = "unstable"; }
-                { name = "query"; value = "{searchTerms}"; }
+                {
+                  name = "channel";
+                  value = "unstable";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
               ];
             }
           ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@no" ];
+          definedAliases = ["@no"];
         };
 
         "NixOS Wiki" = {
@@ -190,15 +204,17 @@
             {
               template = "https://wiki.nixos.org/w/index.php";
               params = [
-                { name = "search"; value = "{searchTerms}"; }
+                {
+                  name = "search";
+                  value = "{searchTerms}";
+                }
               ];
             }
           ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@nw" ];
+          definedAliases = ["@nw"];
         };
       };
     };
-
   };
 }

@@ -1,16 +1,14 @@
-{ pkgs
-, lib
-, config
-, ...
-}:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   username = "ph";
   customAstronaut = pkgs.sddm-astronaut.override {
     embeddedTheme = "astronaut"; # list of options: astronaut, cyberpunk, hyprland_kath, etc.
   };
-in
-{
-
+in {
   environment = {
     systemPackages = with pkgs; [
       gnome-settings-daemon
@@ -46,10 +44,10 @@ in
     ];
     enableDefaultPackages = false;
     fontconfig.defaultFonts = {
-      serif = [ "Noto Serif" "Noto Color Emoji" ];
-      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-      monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
-      emoji = [ "Noto Color Emoji" ];
+      serif = ["Noto Serif" "Noto Color Emoji"];
+      sansSerif = ["Noto Sans" "Noto Color Emoji"];
+      monospace = ["JetBrainsMono Nerd Font" "Noto Color Emoji"];
+      emoji = ["Noto Color Emoji"];
     };
   };
 
@@ -84,11 +82,11 @@ in
 
     settings = {
       builders-use-substitutes = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
-      trusted-users = [ username ];
+      trusted-users = [username];
     };
   };
 
@@ -107,7 +105,7 @@ in
   };
 
   security = {
-    pam.services.hyprlock = { };
+    pam.services.hyprlock = {};
     polkit.enable = true;
     rtkit.enable = true;
   };
@@ -115,7 +113,7 @@ in
   services = {
     dbus = {
       enable = true;
-      packages = [ pkgs.gcr ];
+      packages = [pkgs.gcr];
     };
 
     displayManager.sddm = {
@@ -123,7 +121,7 @@ in
       wayland.enable = true; # ensures Wayland session
       package = pkgs.kdePackages.sddm; # force Qt6 build of SDDM
       theme = "sddm-astronaut-theme";
-      extraPackages = [ customAstronaut pkgs.kdePackages.qtmultimedia ];
+      extraPackages = [customAstronaut pkgs.kdePackages.qtmultimedia];
     };
 
     fprintd.enable = true;
@@ -162,14 +160,13 @@ in
         gdm.enable = false;
       };
     };
-
   };
 
   systemd = {
     services."set-performance-profile" = {
       description = "Set power profile to performance";
-      after = [ "power-profiles-daemon.service" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["power-profiles-daemon.service"];
+      wantedBy = ["multi-user.target"];
       serviceConfig.ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
     };
 
@@ -186,14 +183,14 @@ in
   users.users.ph = {
     isNormalUser = true;
     description = "ph";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
   virtualisation.docker.enable = true;
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
     config.common.default = "hyprland"; # Prefer Hyprland portal over GNOME
   };
 }

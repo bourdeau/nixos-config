@@ -1,11 +1,9 @@
-{ lib, ... }:
-let
+{lib, ...}: let
   terminal = "alacritty";
   splitToLines = s: lib.splitString "\n" s;
   browser = "firefox";
   wofiLauncher = ''$(wofi --show drun --insensitive --define=drun-print_desktop_file=true | sed -E "s/(\.desktop) /\1:/")'';
-in
-{
+in {
   gtk.enable = true;
   qt.enable = true;
   wayland.windowManager.hyprland = {
