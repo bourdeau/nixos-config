@@ -28,17 +28,17 @@ in
       };
 
       bind = [
-        "CTRL ALT, t, exec, alacritty"
+        "CTRL ALT, t, exec, uwsm app -- alacritty"
         "CTRL ALT, right, workspace, +1"
         "CTRL ALT, left, workspace, -1"
-        "CTRL ALT, f, exec, [workspace 1 silent] ${browser}"
-        "CTRL ALT, n, exec, thunar"
+        "CTRL ALT, f, exec, uwsm app -- [workspace 1 silent] ${browser}"
+        "CTRL ALT, n, exec, uwsm app -- thunar"
         "CTRL, Q, killactive,"
         "SUPER, F, fullscreen, 0"
         "SUPER SHIFT, F, fullscreen, 1"
         "SUPER, Space, exec, togglefloating"
-        "ALT, Escape, exec, loginctl lock-session"
-        "SUPER, R, exec, ${wofiLauncher}"
+        "ALT, Escape, exec, uwsm app -- loginctl lock-session"
+        "SUPER, R, exec, uwsm app -- ${wofiLauncher}"
         # Whole screen → save to ~/Images/Screenshots AND copy to clipboard
         "CTRL ALT, S, exec, hyprshot -m output -o ~/Images/Screenshots"
 
