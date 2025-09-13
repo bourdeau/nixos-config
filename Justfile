@@ -19,7 +19,6 @@ default:
 
 # Build system for a given host
 build +host:
-  git add -A
   sudo nixos-rebuild switch --flake .#{{host}}
 
 # Rebuild system for a given host, applied at next boot
