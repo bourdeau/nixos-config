@@ -1,8 +1,10 @@
 name: NixOS Config CI
 
 on:
-  push:
   pull_request:
+    branches:
+      - "**"
+    types: [opened, synchronize, reopened]
 
 env:
   NIX_CHANNEL: nixos-25.05
