@@ -1,5 +1,6 @@
 name: NixOS Config CI
 
+# Why don't you trigger?
 on:
   pull_request:
     branches:
