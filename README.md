@@ -8,6 +8,8 @@
     </a>
 </p>
 
+[![Watch the video](https://i.vimeocdn.com/video/2058559295-1b6361da215234a0031aab54dec37d9647cbd94033a740aaebf2de1e8e0fe713-d_295x166?region=us)](https://vimeo.com/1118381414)
+
 ## Components
 
 |                             |                                                                                                                     |
