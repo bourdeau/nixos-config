@@ -18,7 +18,7 @@
 | **Status Bar**              | [Waybar](https://github.com/Alexays/Waybar)                                                                         |
 | **Wallpaper Manager**       | [Hyprpaper](https://github.com/hyprwm/hyprpaper)                                                                    |
 | **Screen Locker**           | [Hyprlock](https://github.com/hyprwm/hyprlock)                                                                      |
-| **Terminal Emulator**       | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                                 |
+| **Terminal**                | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                                 |
 | **System Resource Monitor** | [Btop](https://github.com/aristocratos/btop)                                                                        |
 | **File Viewer**             | [Bat](https://github.com/sharkdp/bat)                                                                               |
 | **Shell**                   | [Nushell](https://www.nushell.sh/) + [Starship](https://starship.rs/)                                               |

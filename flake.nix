@@ -24,9 +24,13 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
+              home-manager.backupFileExtension = null;
               home-manager.extraSpecialArgs = inputs;
-              home-manager.users.ph = import ./home;
+              home-manager.users.ph = {
+                imports = [
+                  ./home
+                ];
+              };
             }
           ];
         };
@@ -41,9 +45,13 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
+              home-manager.backupFileExtension = null;
               home-manager.extraSpecialArgs = inputs;
-              home-manager.users.ph = import ./home;
+              home-manager.users.ph = {
+                imports = [
+                  ./home
+                ];
+              };
             }
           ];
         };
@@ -58,9 +66,14 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
+              home-manager.backupFileExtension = null;
               home-manager.extraSpecialArgs = inputs;
-              home-manager.users.ph = import ./home;
+              home-manager.users.ph = {
+                imports = [
+                  ./hosts/phantec/home
+                  ./home
+                ];
+              };
             }
           ];
         };
