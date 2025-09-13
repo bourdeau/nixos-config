@@ -808,6 +808,7 @@ alias tf = terraform
 alias lz = lazygit
 alias top = btop
 alias bb = bat -p --paging=never
+alias tt = tree -a
 
 def "clear-docker" [] {
     let images = (docker images -q | lines)

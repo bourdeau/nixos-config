@@ -1,14 +1,29 @@
 name: NixOS Config CI
 
 on:
-  push:
   pull_request:
+    branches:
+      - "**"
+    types: [opened, synchronize, reopened]
 
 env:
   NIX_CHANNEL: nixos-25.05
   HOSTS_JSON: '["phantec","phcorsair","phzenbook"]'
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+      - name: Run Formatter
+        run: nix run nixpkgs#alejandra -- --check .
+      - name: Run Linter
+        run: nix run nixpkgs#statix check .
+      - name: Run Deadcode
+        run: nix run nixpkgs#deadnix -- . --fail
+  
   flake-check:
     runs-on: ubuntu-latest
     steps:
