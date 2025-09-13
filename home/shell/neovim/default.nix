@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{pkgs, ...}: {
   home.file.".config/nvim".source = ./nvim;
 
   programs.neovim = {
@@ -9,4 +8,3 @@
     ];
   };
 }
-

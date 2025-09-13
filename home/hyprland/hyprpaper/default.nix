@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     hyprpaper
     nushell
@@ -46,7 +45,7 @@
       OnUnitActiveSec = "1m";
     };
     Install = {
-      WantedBy = [ "timers.target" ];
+      WantedBy = ["timers.target"];
     };
   };
 }

@@ -55,3 +55,14 @@ test +host:
 # Update flake inputs
 update:
   nix flake update
+
+# Auto-fix formatting and linter issues
+fmt:
+    alejandra .
+    statix fix .
+
+# Check formatting, lint, and dead code without changing files
+check-style:
+    alejandra --check .
+    statix check .
+    deadnix . --fail

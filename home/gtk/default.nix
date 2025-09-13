@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{pkgs, ...}: {
   gtk = {
     enable = true;
 

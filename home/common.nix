@@ -1,7 +1,4 @@
-{ lib
-, pkgs
-, ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # Browsers
     lynx # Text-based web browser

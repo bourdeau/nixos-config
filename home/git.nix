@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     git # Distributed version control system
     gitflow # Extensions to Git for managing workflows
@@ -11,4 +10,3 @@
     userEmail = "phbasic@gmail.com";
   };
 }
-

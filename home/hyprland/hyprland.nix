@@ -1,12 +1,7 @@
-{ lib, pkgs, ... }:
-let
-  lockCmd = "pidof hyprlock || hyprlock";
-  unlockCmd = "pkill --signal SIGUSR1 hyprlock";
-in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables = [ "--all" ];
+    systemd.variables = ["--all"];
     package = null;
     portalPackage = null;
   };

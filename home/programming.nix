@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # Shells
     carapace
@@ -31,10 +30,11 @@
 
     # Python Development
     poetry
-    (python312.withPackages (ps: with ps; [
-      requests
-      ruff
-    ]))
+    (python312.withPackages (ps:
+      with ps; [
+        requests
+        ruff
+      ]))
 
     # JavaScript / Node.js
     nodejs
@@ -44,6 +44,9 @@
 
     # Nix tooling
     nixpkgs-fmt
+    alejandra # formatter
+    statix # linter
+    deadnix # detect unused definitions
 
     # Golang
     go

@@ -7,76 +7,81 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs =
-    inputs @ { self
-    , nixpkgs
-    , home-manager
-    , ...
-    }: {
-      nixosConfigurations = {
-        phcorsair = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    ...
+  }: {
+    nixosConfigurations = {
+      phcorsair = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
 
-          modules = [
-            ./hosts/phcorsair
+        modules = [
+          ./hosts/phcorsair
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = null;
-              home-manager.extraSpecialArgs = inputs;
-              home-manager.users.ph = {
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = null;
+              extraSpecialArgs = inputs;
+              users.ph = {
                 imports = [
                   ./home
                 ];
               };
-            }
-          ];
-        };
+            };
+          }
+        ];
+      };
 
-        phzenbook = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+      phzenbook = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
 
-          modules = [
-            ./hosts/phzenbook
+        modules = [
+          ./hosts/phzenbook
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = null;
-              home-manager.extraSpecialArgs = inputs;
-              home-manager.users.ph = {
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = null;
+              extraSpecialArgs = inputs;
+              users.ph = {
                 imports = [
                   ./home
                 ];
               };
-            }
-          ];
-        };
+            };
+          }
+        ];
+      };
 
-        phantec = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+      phantec = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
 
-          modules = [
-            ./hosts/phantec
+        modules = [
+          ./hosts/phantec
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = null;
-              home-manager.extraSpecialArgs = inputs;
-              home-manager.users.ph = {
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = null;
+              extraSpecialArgs = inputs;
+              users.ph = {
                 imports = [
                   ./hosts/phantec/home
                   ./home
                 ];
               };
-            }
-          ];
-        };
+            };
+          }
+        ];
       };
     };
+  };
 }

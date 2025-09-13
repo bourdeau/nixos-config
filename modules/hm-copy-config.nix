@@ -1,5 +1,9 @@
-{ lib, pkgs, config, ... }:
-
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 # Helper function to rsync a config directory into XDG config
 # Example usage:
 #   hmCopyConfig "obs-studio" ./config
@@ -9,18 +13,18 @@
 {
   options.hmCopyConfig = lib.mkOption {
     type = lib.types.attrsOf lib.types.path;
-    default = { };
+    default = {};
     description = "Configs to copy into XDG config with rsync at activation.";
   };
 
   config = {
-    home.activation.copyConfigs = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+    home.activation.copyConfigs = lib.hm.dag.entryAfter ["writeBoundary"] (
       lib.concatStringsSep "\n" (
         lib.mapAttrsToList
-          (name: path: ''
-            ${pkgs.rsync}/bin/rsync -avz --delete --chmod=D2755,F744 ${path}/ ${config.xdg.configHome}/${name}/
-          '')
-          config.hmCopyConfig
+        (name: path: ''
+          ${pkgs.rsync}/bin/rsync -avz --delete --chmod=D2755,F744 ${path}/ ${config.xdg.configHome}/${name}/
+        '')
+        config.hmCopyConfig
       )
     );
   };
