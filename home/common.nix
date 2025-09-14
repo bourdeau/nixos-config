@@ -17,13 +17,6 @@
     presenterm # a TUI markdown terminal slideshow tool.
     manix # Not the French condoms brand... search NixOS and Home Manager options from the terminal
 
-    # Image Editing
-    gimp # GNU Image Manipulation Program
-
-    # Audio Editing
-    audacity # Audio editor and recorder
-    easyeffects # Audio effects for PipeWire applications
-
     # Miscellaneous
     file # Determine file type
     figlet # Generate ASCII art from text
