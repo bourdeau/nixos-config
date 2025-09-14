@@ -13,11 +13,11 @@
     ...
   }: {
     nixosConfigurations = {
-      phcorsair = nixpkgs.lib.nixosSystem {
+      phantec = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
-          ./hosts/phcorsair
+          ./hosts/phantec
 
           home-manager.nixosModules.home-manager
           {
@@ -28,6 +28,7 @@
               extraSpecialArgs = inputs;
               users.ph = {
                 imports = [
+                  ./hosts/phantec/home
                   ./home
                 ];
               };
@@ -51,30 +52,6 @@
               extraSpecialArgs = inputs;
               users.ph = {
                 imports = [
-                  ./home
-                ];
-              };
-            };
-          }
-        ];
-      };
-
-      phantec = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        modules = [
-          ./hosts/phantec
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = null;
-              extraSpecialArgs = inputs;
-              users.ph = {
-                imports = [
-                  ./hosts/phantec/home
                   ./home
                 ];
               };

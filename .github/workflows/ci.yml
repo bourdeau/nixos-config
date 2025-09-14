@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        host: [phantec, phcorsair, phzenbook]
+        host: [phantec, phzenbook]
     steps:
       - uses: actions/checkout@v4
       - name: Install Nix

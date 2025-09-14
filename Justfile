@@ -1,5 +1,5 @@
 # Hosts available for builds
-hosts := "phantec phcorsair phzenbook"
+hosts := "phantec phzenbook"
 
 # Default recipe: show available commands and hosts
 default:
@@ -13,6 +13,8 @@ default:
   @echo "  rollback           - Roll back to the previous generation"
   @echo "  test <host>        - Test configuration for a given host (temporary)"
   @echo "  update             - Update flake inputs"
+  @echo "  fmt                - Auto-fix formatting and linter issues"
+  @echo "  check-style        - Check formatting, lint, and dead code"
   @echo
   @echo "Available hosts:"
   @echo "  {{hosts}}"
@@ -61,7 +63,7 @@ fmt:
     alejandra .
     statix fix .
 
-# Check formatting, lint, and dead code without changing files
+# Check formatting, lint, and dead code
 check-style:
     alejandra --check .
     statix check .
