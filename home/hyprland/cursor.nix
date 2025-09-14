@@ -5,8 +5,8 @@
 
   home.sessionVariables = {
     HYPRCURSOR_THEME = "catppuccin-mocha-dark-cursors";
-    HYPRCURSOR_SIZE = "24";
+    HYPRCURSOR_SIZE = "16";
     XCURSOR_THEME = "catppuccin-mocha-dark-cursors";
-    XCURSOR_SIZE = "24";
+    XCURSOR_SIZE = "16";
   };
 }
