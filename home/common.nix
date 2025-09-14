@@ -1,8 +1,5 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # Browsers
-    lynx # Text-based web browser
-
     # Archive Tools
     p7zip # File archiver with a high compression ratio
     unzip # Extract zip archives
@@ -18,12 +15,14 @@
     yazi # terminal file manager
     tokei # count files in a project and group
     presenterm # a TUI markdown terminal slideshow tool.
+    manix # Not the French condoms brand... search NixOS and Home Manager options from the terminal
 
     # Image Editing
     gimp # GNU Image Manipulation Program
 
     # Audio Editing
     audacity # Audio editor and recorder
+    easyeffects # Audio effects for PipeWire applications
 
     # Miscellaneous
     file # Determine file type
@@ -41,17 +40,8 @@
     slack # Collaboration software
     discord
 
-    # Game
+    # Game (TODO: specific to phantec, refactor)
     steamcmd
-
-    # Sound Management
-    easyeffects # Audio effects for PipeWire applications
-
-    # Hyprland
-    hyprpaper
-    gnome.gvfs
-    uwsm
-    hyprshot
   ];
 
   programs = {
