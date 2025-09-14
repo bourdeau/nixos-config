@@ -37,11 +37,7 @@
     zstd # Fast lossless compression algorithm
 
     # Communication
-    slack # Collaboration software
     discord
-
-    # Game (TODO: specific to phantec, refactor)
-    steamcmd
   ];
 
   programs = {
