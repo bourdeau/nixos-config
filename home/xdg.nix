@@ -15,7 +15,7 @@
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
     "audio/*" = ["mpv.desktop"];
-    "video/*" = ["mpv.desktop"]; # fixed typo
+    "video/*" = ["mpv.desktop"];
     "image/*" = ["imv.desktop"];
     "application/json" = browser;
     "application/pdf" = ["org.gnome.Evince.desktop"];

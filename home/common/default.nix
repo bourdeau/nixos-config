@@ -1,7 +1,0 @@
-{
-  imports = [
-    ./bat
-    ./btop
-    ./lazygit
-  ];
-}

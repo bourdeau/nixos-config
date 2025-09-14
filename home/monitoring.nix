@@ -12,6 +12,6 @@
     strace # Monitor system calls
     sysstat # Performance monitoring tools for Linux
     usbutils # Manage USB devices
-    lshw
+    lshw # List detailed hardware information
   ];
 }

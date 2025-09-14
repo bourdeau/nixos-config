@@ -1,8 +1,10 @@
 {
   imports = [
-    ./common
+    ./bat
+    ./btop
     ./gtk
     ./hyprland
+    ./lazygit
     ./shell
     ./browsers.nix
     ./common.nix

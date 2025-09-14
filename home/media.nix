@@ -4,6 +4,9 @@
     playerctl
     pulsemixer
     imv
+    audacity
+    easyeffects
+    gimp
   ];
 
   programs = {
