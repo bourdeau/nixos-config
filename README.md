@@ -38,6 +38,7 @@
 | **Gaming**                  | [Steam](https://store.steampowered.com/)                                                                            |
 | **Chat**                    | [Discord](https://discord.com/)                                                                                     |
 | **Web Browser**             | [Firefox](https://www.mozilla.org/firefox/)                                                                         |
+| **DAW**                     | [Bitwig Studio](https://www.bitwig.com/)                                                                            |
 
 and a lot more...
 
