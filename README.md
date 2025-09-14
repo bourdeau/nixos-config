@@ -59,9 +59,11 @@ Available commands:
   rollback           - Roll back to the previous generation
   test <host>        - Test configuration for a given host (temporary)
   update             - Update flake inputs
+  fmt                - Auto-fix formatting and linter issues
+  check-style        - Check formatting, lint, and dead code
 
 Available hosts:
-  phantec phcorsair phzenbook
+  phantec phzenbook
 ```
 
 ## Docs
