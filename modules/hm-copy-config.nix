@@ -3,28 +3,29 @@
   pkgs,
   config,
   ...
-}:
-# Helper function to rsync a config directory into XDG config
-# Example usage:
-#   hmCopyConfig "obs-studio" ./config
-#   hmCopyConfig "nvim" ./nvim
-# It is useful for pkgs that need read and write in their .config directory
-#
-{
-  options.hmCopyConfig = lib.mkOption {
-    type = lib.types.attrsOf lib.types.path;
+}: {
+  options.hmCopyDir = lib.mkOption {
+    type = lib.types.attrsOf (lib.types.submodule {
+      options = {
+        source = lib.mkOption {type = lib.types.path;};
+        target = lib.mkOption {type = lib.types.str;};
+      };
+    });
     default = {};
-    description = "Configs to copy into XDG config with rsync at activation.";
+    description = "Copy arbitrary directories with rsync at activation.";
   };
 
   config = {
-    home.activation.copyConfigs = lib.hm.dag.entryAfter ["writeBoundary"] (
+    home.activation.copyDirs = lib.hm.dag.entryAfter ["writeBoundary"] (
       lib.concatStringsSep "\n" (
         lib.mapAttrsToList
-        (name: path: ''
-          ${pkgs.rsync}/bin/rsync -avz --delete --chmod=D2755,F744 ${path}/ ${config.xdg.configHome}/${name}/
+        (_: {
+          source,
+          target,
+        }: ''
+          ${pkgs.rsync}/bin/rsync -avz --delete --chmod=D2755,F744 ${source}/ ${target}/
         '')
-        config.hmCopyConfig
+        config.hmCopyDir
       )
     );
   };
