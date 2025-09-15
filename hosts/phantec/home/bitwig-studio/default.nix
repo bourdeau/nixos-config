@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   # Wrap Bitwig Studio inside a FHS-compatible environment (bubblewrap sandbox).
   # This is needed because Bitwig loads VST plugins, which are precompiled binaries
   # expecting the "standard Linux filesystem layout" and dynamic libraries to be in
