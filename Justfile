@@ -15,6 +15,7 @@ default:
   @echo "  update             - Update flake inputs"
   @echo "  fmt                - Auto-fix formatting and linter issues"
   @echo "  check-style        - Check formatting, lint, and dead code"
+  @echo "  sync-configs       - Sync OBS and Bitwig configs from \$HOME back into the nixos-config repo"
   @echo
   @echo "Available hosts:"
   @echo "  {{hosts}}"
@@ -69,3 +70,7 @@ check-style:
     statix check .
     deadnix . --fail
     nix flake check
+
+# Sync OBS and Bitwig configs from $HOME back into the nixos-config repo
+sync-configs:
+    ./hosts/phantec/scripts/sync-configs.nu
