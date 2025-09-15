@@ -1,6 +1,9 @@
-{ lib, pkgs, config, ... }:
-
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   options.hmCopyConfig = lib.mkOption {
     type = lib.types.attrsOf (lib.types.submodule {
       options = {
@@ -14,20 +17,24 @@
         };
       };
     });
-    default = { };
+    default = {};
     description = "Configs to copy anywhere in $HOME with rsync at activation.";
   };
 
   config = {
-    home.activation.copyConfigs = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+    home.activation.copyConfigs = lib.hm.dag.entryAfter ["writeBoundary"] (
       lib.concatStringsSep "\n" (
         lib.mapAttrsToList
-          (name: cfg: ''
-            ${pkgs.rsync}/bin/rsync -avz --delete --chmod=D2755,F744 \
-              ${cfg.source}/ \
-              ${lib.escapeShellArg (if lib.hasPrefix "/" cfg.target then cfg.target else "${config.home.homeDirectory}/${cfg.target}")}/
-          '')
-          config.hmCopyConfig
+        (_: cfg: ''
+          ${pkgs.rsync}/bin/rsync -avz --delete --chmod=D2755,F744 \
+            ${cfg.source}/ \
+            ${lib.escapeShellArg (
+            if lib.hasPrefix "/" cfg.target
+            then cfg.target
+            else "${config.home.homeDirectory}/${cfg.target}"
+          )}/
+        '')
+        config.hmCopyConfig
       )
     );
   };
