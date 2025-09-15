@@ -34,7 +34,7 @@
             else "${config.home.homeDirectory}/${cfg.target}"
           )}/
         '')
-        config.hmCopyDir
+        config.hmCopyConfig
       )
     );
   };
