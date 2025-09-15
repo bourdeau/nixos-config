@@ -1,10 +1,22 @@
-{ pkgs, lib, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  # We create a wrapper around Bitwig Studio using buildFHSEnvBubblewrap.
+  # This provides a FHS-like environment, so that plugins and Bitwig’s
+  # plugin host can find shared libraries (like libsndfile, freetype, X11, etc.)
+  # at the paths they expect.
   bitwig-with-plugins = pkgs.buildFHSEnvBubblewrap {
     name = "bitwig-with-plugins";
-    bubblewrap = pkgs.bubblewrap;
+    inherit (pkgs) bubblewrap;
 
+    # Packages that need to exist in the FHS environment.
+    # These include:
+    # - Bitwig itself
+    # - LSP Plugins (example VST plugins)
+    # - Runtime dependencies that plugins/Bitwig expect dynamically
+    # - Audio backend libraries
     targetPkgs = pkgs: [
       pkgs.bitwig-studio
       pkgs.lsp-plugins
@@ -19,15 +31,18 @@ let
       pkgs.xorg.libXrandr
       pkgs.stdenv.cc.cc.lib
 
-      # Audio backends
+      # Audio backends so Bitwig and plugins can talk to ALSA/Pipewire/Pulse
       pkgs.alsa-lib
       pkgs.pipewire
       pkgs.pulseaudio
     ];
 
+    # Entry point: when you run "bitwig-with-plugins", it runs Bitwig Studio
     runScript = "bitwig-studio";
 
-    # Make sure plugin hosts share the same FHS context
+    # Make sure Bitwig’s plugin hosts (the processes that actually run VSTs)
+    # are available inside the wrapper as well, otherwise Bitwig can launch
+    # but plugins will fail or freeze.
     extraInstallCommands = ''
       for host in BitwigPluginHost-X64-SSE41 BitwigPluginHost-X86-SSE41; do
         if [ -f ${pkgs.bitwig-studio}/libexec/bin/$host ]; then
@@ -36,14 +51,15 @@ let
       done
     '';
 
+    # Ensure `bwrap` itself is available inside the container
+    # (sometimes Bitwig or plugins try to spawn it).
     extraBindMounts = [
       "${pkgs.bubblewrap}/bin/bwrap:/usr/bin/bwrap"
     ];
   };
-in
-{
+in {
   home.packages = [
-    bitwig-with-plugins
+    bitwig-with-plugins # Add our wrapper to PATH
   ];
 
   # Override desktop entry to point to wrapper
