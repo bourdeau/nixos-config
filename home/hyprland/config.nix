@@ -14,9 +14,6 @@ in {
         [workspace 1 silent] ${browser}
         [workspace 2 silent] ${terminal}
       '';
-      input = {
-        kb_layout = "us";
-      };
 
       general = {
         layout = "dwindle";

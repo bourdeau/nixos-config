@@ -52,6 +52,7 @@
               extraSpecialArgs = inputs;
               users.ph = {
                 imports = [
+                  ./hosts/phzenbook/home
                   ./home
                 ];
               };

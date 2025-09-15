@@ -4,6 +4,7 @@
     ./bitwig-studio
     ./obs
     ./shotcut
+    ./hyprland.nix
   ];
 
   home.packages = with pkgs; [
