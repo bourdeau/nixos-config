@@ -26,6 +26,34 @@
   networking.networkmanager.enable = true;
   # networking.defaultGateway = "192.168.5.201";
 
+  # Configure realtime audio limits
+  # These PAM limits are required for low-latency audio
+  # - memlock unlimited: allows locking audio buffers in memory
+  # - rtprio 95: allows high realtime scheduling priority
+  # - nice -19: allows lowering process nice level for better scheduling
+  security.pam.loginLimits = [
+    {
+      domain = "@audio";
+      item = "memlock";
+      type = "-";
+      value = "unlimited";
+    }
+    {
+      domain = "@audio";
+      item = "rtprio";
+      type = "-";
+      value = "95";
+    }
+    {
+      domain = "@audio";
+      item = "nice";
+      type = "-";
+      value = "-19";
+    }
+  ];
+
+  users.users.ph.extraGroups = ["audio"];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

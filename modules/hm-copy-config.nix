@@ -22,7 +22,7 @@
   };
 
   config = {
-    home.activation.copyConfigs = lib.hm.dag.entryAfter ["writeBoundary"] (
+    home.activation.copyDirs = lib.hm.dag.entryAfter ["writeBoundary"] (
       lib.concatStringsSep "\n" (
         lib.mapAttrsToList
         (_: cfg: ''
@@ -34,7 +34,7 @@
             else "${config.home.homeDirectory}/${cfg.target}"
           )}/
         '')
-        config.hmCopyConfig
+        config.hmCopyDir
       )
     );
   };
