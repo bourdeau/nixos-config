@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   # We create a wrapper around Bitwig Studio using buildFHSEnvBubblewrap.
   # This provides a FHS-like environment, so that plugins and Bitwig’s
   # plugin host can find shared libraries (like libsndfile, freetype, X11, etc.)
