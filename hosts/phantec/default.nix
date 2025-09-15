@@ -100,15 +100,6 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    xkb = {
-      layout = "us";
-      variant = "intl";
-      options = "lv3:caps_switch";
-    };
-  };
-
   # Configure console keymap
   console.keyMap = "us";
 }
