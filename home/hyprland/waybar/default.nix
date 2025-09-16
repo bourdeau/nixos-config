@@ -64,7 +64,7 @@
       };
 
       network = {
-        format-wifi = " {essid} ({signalStrength}%)";
+        format-wifi = "  {essid} ({signalStrength}%)";
         format-ethernet = " {ifname}";
         format-disconnected = " No network";
         tooltip-format = "{ifname} via {gwaddr}";
@@ -83,7 +83,8 @@
         interval = 2;
       };
       disk = {
-        format = "󰋊 {percentage_used}%";
+        # Note: U+2009 (thin space) between 󰋊 and {percentage_used} to avoid spacing glitch
+        format = "󰋊 {percentage_used}%";
         interval = 60;
       };
       battery = {
