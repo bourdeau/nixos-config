@@ -80,10 +80,11 @@ in {
         "SUPER, mouse:273, resizewindow"
       ];
     };
+    # TODO: THIS MUST BE in hosts/phantec!!
     extraConfig = ''
-      monitor = HDMI-A-2, 3840x2160@240, 0x0, 2
+      monitor = HDMI-A-2, 3840x2160@240, 0x0, 1.5
       xwayland {
-        force_zero_scaling = true
+        force_zero_scaling = false
       }
     '';
   };
