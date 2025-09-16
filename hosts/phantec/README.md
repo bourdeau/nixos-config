@@ -6,7 +6,7 @@ This is my main computer for coding, gaming and music production.
 
 ### 🖥️ System
 
-Motherboard: MSI - MAG B650 TOMAHAWK WIFI (MS-7D75)
+Motherboard: MSI MAG B650 TOMAHAWK WIFI (MS-7D75)
 CPU: AMD Ryzen 7 9700X — 8 cores / 16 threads @ 5.58 GHz (boost)
 Cache: L1 640 KiB, L2 8 MiB, L3 32 MiB
 Memory: 32 GiB DDR5 @ 5600 MHz, dual-channel
