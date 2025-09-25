@@ -3,7 +3,7 @@
 try {
   # paths
   let home = $env.HOME
-  let dir = $"($home)/Images/wallpapers"
+  let dir = $"($home)/.config/hypr/wallpapers"
   let state_dir = ( $env.XDG_STATE_HOME? | default $"($home)/.local/state" ) | path join "hyprpaper"
   let state_file = $state_dir | path join "last-wallpaper.txt"
 
@@ -11,7 +11,7 @@ try {
   mkdir $state_dir
 
   # collect wallpapers
-  let files = (ls $dir | where type == file | get name)
+  let files = (ls $dir | get name)
   if ($files | length) == 0 {
     error make { msg: $"No wallpapers found in: ($dir)" }
   }
