@@ -29,12 +29,7 @@
     rustfmt
 
     # Python Development
-    poetry
-    (python312.withPackages (ps:
-      with ps; [
-        requests
-        ruff
-      ]))
+    uv
 
     # JavaScript / Node.js
     nodejs
