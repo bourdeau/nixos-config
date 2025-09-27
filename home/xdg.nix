@@ -18,14 +18,12 @@
     "video/*" = ["mpv.desktop"];
     "image/*" = ["imv.desktop"];
     "application/json" = browser;
-    "application/pdf" = ["org.gnome.Evince.desktop"];
     "image/jpeg" = ["org.gnome.Loupe.desktop"];
-    "application/zip" = ["org.gnome.Nautilus.desktop"];
     "text/x-csharp" = [
       "vim.desktop"
       "nvim.desktop"
-      "org.gnome.TextEditor.desktop"
     ];
+    "application/pdf" = ["org.pwmt.zathura.desktop"];
   };
 in {
   xdg = {

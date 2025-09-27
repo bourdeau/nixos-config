@@ -16,6 +16,7 @@
     tokei # count files in a project and group
     presenterm # a TUI markdown terminal slideshow tool.
     manix # Not the French condoms brand... search NixOS and Home Manager options from the terminal
+    zathura # pdf viewer
 
     # Miscellaneous
     file # Determine file type
