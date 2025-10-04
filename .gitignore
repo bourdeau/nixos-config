@@ -5,6 +5,7 @@
 # Logs and crash reports
 logs/
 log/
+*.gz
 
 # Backup files
 *.bak
