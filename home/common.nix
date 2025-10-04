@@ -29,6 +29,7 @@
     tree # Display directories as trees
     xdg-utils # Utilities for managing X desktop environments
     zstd # Fast lossless compression algorithm
+    sops # Secret Manager
 
     # Communication
     discord

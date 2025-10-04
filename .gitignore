@@ -5,11 +5,9 @@
 # Logs and crash reports
 logs/
 log/
+*.gz
 
 # Backup files
 *.bak
 
-# Runtime / machine-specific state
-safe_mode
-plugin_config/
-basic/profiles/Sans_nom/
+secretos.yaml
