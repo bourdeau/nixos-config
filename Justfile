@@ -74,3 +74,7 @@ check-style:
 # Sync OBS and Bitwig configs from $HOME back into the nixos-config repo
 sync-configs:
     ./hosts/phantec/scripts/sync-configs.nu
+
+encrypt:
+  sudo sops --encrypt --pgp 50C887D2DAE99605 secretos.yaml > secrets.yaml
+

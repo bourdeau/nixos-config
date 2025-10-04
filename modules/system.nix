@@ -71,8 +71,6 @@ in {
     };
   };
 
-  networking.firewall.enable = false;
-
   nix = {
     gc = {
       automatic = lib.mkDefault true;

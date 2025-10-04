@@ -10,6 +10,4 @@ log/
 # Backup files
 *.bak
 
-# Runtime / machine-specific state
-safe_mode
-basic/profiles/Sans_nom/
+secretos.yaml
