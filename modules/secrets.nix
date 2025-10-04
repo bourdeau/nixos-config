@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   sops = {
     gnupg.home = "/root/.gnupg";
     defaultSopsFile = ./secrets.yaml;
