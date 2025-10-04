@@ -1,11 +1,6 @@
 <p align="center">
-  <img src="docs/cats.png" alt="We don't work for cops" />
-</p>
-
-<p align="center">
-    <a href="https://nixos.org/">
-        <img src="https://img.shields.io/badge/NixOS-25.05-informational.svg?style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"></a>
-    </a>
+<span style="font-size: 4em; font-weight: bold;">My Nix Config</span><br/>
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" />
 </p>
 
 <p align="center">

@@ -1,0 +1,15 @@
+# ------------------------
+# OBS Studio config ignores
+# ------------------------
+
+# Logs and crash reports
+logs/
+log/
+
+# Backup files
+*.bak
+
+# Runtime / machine-specific state
+safe_mode
+plugin_config/
+basic/profiles/Sans_nom/
