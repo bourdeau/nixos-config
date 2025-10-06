@@ -9,6 +9,6 @@
 
   networking.wg-quick.interfaces.proton = {
     configFile = config.sops.secrets.protonvpn.path;
-    autostart = true;
+    autostart = false;
   };
 }
