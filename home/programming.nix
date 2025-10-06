@@ -38,10 +38,14 @@
     stylua
 
     # Nix tooling
-    nixpkgs-fmt
     alejandra # formatter
     statix # linter
     deadnix # detect unused definitions
+
+    # Formatter
+    nodePackages.prettier
+    taplo # TOML
+    ruff
 
     # Golang
     go
