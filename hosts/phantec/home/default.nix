@@ -2,6 +2,7 @@
   imports = [
     ../../../modules/hm-copy-config.nix
     ./bitwig-studio
+    ./easyeffects
     ./obs
     ./shotcut
     ./hyprland.nix

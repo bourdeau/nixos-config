@@ -11,3 +11,6 @@ rsync -av --delete $"($env.HOME)/Bitwig_Studio/Controller_Scripts/" $"($repo_dir
 rsync -av --delete --chmod=F644,D755 --exclude-from=".gitignore" $"($env.HOME)/.config/obs-studio/basic/profiles/ScreenRecord/" $"($repo_dir)/obs/config/basic/profiles/ScreenRecord/"
 rsync -av --delete --chmod=F644,D755 --exclude-from=".gitignore" $"($env.HOME)/.config/obs-studio/basic/scenes/" $"($repo_dir)/obs/config/basic/scenes/"
 # rsync -av --delete --chmod=F644,D755 --exclude-from=".gitignore" $"($env.HOME)/.config/obs-studio/plugin_config/obs-websocket/" $"($repo_dir)/obs/config/plugin_config/obs-websocket/"
+
+# Easyeffects
+rsync -av --delete --chmod=F644,D755 --exclude-from=".gitignore" $"($env.HOME)/.config/easyeffects/input/" $"($repo_dir)/easyeffects/config/input/"

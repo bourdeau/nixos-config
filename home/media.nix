@@ -5,7 +5,6 @@
     pulsemixer
     imv
     audacity
-    easyeffects
     gimp
   ];
 
