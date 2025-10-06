@@ -15,25 +15,26 @@
 
 ## Components
 
-|                             |                                                                                                                     |
-| --------------------------- | :------------------------------------------------------------------------------------------------------------------ |
-| **Theme**                   | [Catppuccin Mocha](https://catppuccin.com/)                                                                         |
-| **Display Manager**         | [SDDM](https://github.com/sddm/sddm) + [Astronaut Theme](https://github.com/Keyitdev/sddm-astronaut-theme)          |
-| **Window Manager**          | [Hyprland](https://hypr.land/)                                                                                      |
-| **Status Bar**              | [Waybar](https://github.com/Alexays/Waybar)                                                                         |
-| **Wallpaper Manager**       | [Hyprpaper](https://github.com/hyprwm/hyprpaper)                                                                    |
-| **Screen Locker**           | [Hyprlock](https://github.com/hyprwm/hyprlock)                                                                      |
-| **Terminal**                | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                                 |
-| **System Resource Monitor** | [Btop](https://github.com/aristocratos/btop)                                                                        |
-| **File Viewer**             | [Bat](https://github.com/sharkdp/bat)                                                                               |
-| **Shell**                   | [Nushell](https://www.nushell.sh/) + [Starship](https://starship.rs/)                                               |
-| **Text Editor**             | [Neovim](https://neovim.io/) + [NvChad](https://nvchad.com/)                                                        |
-| **Fonts**                   | [Nerd Fonts](https://www.nerdfonts.com/)                                                                            |
-| **Screen Recording**        | [OBS](https://obsproject.com/)                                                                                      |
-| **Gaming**                  | [Steam](https://store.steampowered.com/)                                                                            |
-| **Chat**                    | [Discord](https://discord.com/)                                                                                     |
-| **Web Browser**             | [Firefox](https://www.mozilla.org/firefox/)                                                                         |
-| **DAW**                     | [Bitwig Studio](https://www.bitwig.com/)                                                                            |
+|                             |                                                                                                            |
+| --------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| **Theme**                   | [Catppuccin Mocha](https://catppuccin.com/)                                                                |
+| **Display Manager**         | [SDDM](https://github.com/sddm/sddm) + [Astronaut Theme](https://github.com/Keyitdev/sddm-astronaut-theme) |
+| **Window Manager**          | [Hyprland](https://hypr.land/)                                                                             |
+| **Status Bar**              | [Waybar](https://github.com/Alexays/Waybar)                                                                |
+| **Wallpaper Manager**       | [Hyprpaper](https://github.com/hyprwm/hyprpaper)                                                           |
+| **Screen Locker**           | [Hyprlock](https://github.com/hyprwm/hyprlock)                                                             |
+| **Terminal**                | [Zellij](https://zellij.dev/) + [Alacritty](https://github.com/alacritty/alacritty)                        |
+| **System Resource Monitor** | [Btop](https://github.com/aristocratos/btop)                                                               |
+| **File Viewer**             | [Bat](https://github.com/sharkdp/bat)                                                                      |
+| **Shell**                   | [Nushell](https://www.nushell.sh/) + [Starship](https://starship.rs/)                                      |
+| **Text Editor**             | [Neovim](https://neovim.io/) + [NvChad](https://nvchad.com/)                                               |
+| **Fonts**                   | [Nerd Fonts](https://www.nerdfonts.com/)                                                                   |
+| **Screen Recording**        | [OBS](https://obsproject.com/)                                                                             |
+| **Gaming**                  | [Steam](https://store.steampowered.com/)                                                                   |
+| **Chat**                    | [Discord](https://discord.com/)                                                                            |
+| **Web Browser**             | [Firefox](https://www.mozilla.org/firefox/)                                                                |
+| **DAW**                     | [Bitwig Studio](https://www.bitwig.com/)                                                                   |
+| **Secret Manager**          | [SOPS](https://github.com/Mic92/sops-nix/)                                                                 |
 
 and a lot more...
 
@@ -56,6 +57,7 @@ Available commands:
   update             - Update flake inputs
   fmt                - Auto-fix formatting and linter issues
   check-style        - Check formatting, lint, and dead code
+  sync-configs       - Sync OBS and Bitwig configs from $HOME back into the nixos-config repo
 
 Available hosts:
   phantec phzenbook

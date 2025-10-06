@@ -5,9 +5,10 @@ If you try to install my config by running a command like
 ```
 sudo nixos-rebuild --flake github:bourdeau/nios-config#phantec
 ```
-**it will not work** as we quite likely don't have the same hardware.
 
-But if you want to use my config here are the steps to follow:
+**It won’t work**, as we most likely don’t have the same hardware. You also (hopefully) don’t have my GPG private key, so the secret manager (SOPS) won’t be able to decrypt the secrets either.
+
+But if you’d like to use my configuration, here are the steps to follow:
 
 ```
 git clone https://github.com/bourdeau/nixos-config.git ~
