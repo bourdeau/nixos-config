@@ -1,5 +1,6 @@
 {config, ...}: let
   browser = ["firefox.desktop"];
+  viewer = ["imv.desktop"];
 
   associations = {
     "application/x-extension-htm" = browser;
@@ -14,11 +15,14 @@
     "x-scheme-handler/http" = browser;
     "x-scheme-handler/https" = browser;
     "x-scheme-handler/unknown" = browser;
-    "audio/*" = ["mpv.desktop"];
-    "video/*" = ["mpv.desktop"];
-    "image/*" = ["imv.desktop"];
+    "image/jpeg" = viewer;
+    "image/png" = viewer;
+    "image/gif" = viewer;
+    "image/webp" = viewer;
+    "image/svg+xml" = viewer;
+    "image/tiff" = viewer;
+    "image/bmp" = viewer;
     "application/json" = browser;
-    "image/jpeg" = ["org.gnome.Loupe.desktop"];
     "text/x-csharp" = [
       "vim.desktop"
       "nvim.desktop"
