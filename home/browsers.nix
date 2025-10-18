@@ -83,6 +83,12 @@
           updates_disabled = true;
         };
 
+        "tridactyl.vim@cmcaine.co.uk" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4549492/tridactyl_vim-1.24.4.xpi";
+          installation_mode = "force_installed";
+          updates_disabled = true;
+        };
+
         "3rdparty".Extensions = {
           "uBlock0@raymondhill.net".adminSettings = {
             userSettings = rec {
@@ -129,8 +135,8 @@
 
     profiles.default.search = {
       force = true;
-      default = "SearX (bndkt.io)";
-      privateDefault = "SearX (bndkt.io)";
+      default = "SearX (canine.tools)";
+      privateDefault = "SearX (canine.tools)";
 
       engines = {
         # Disable built-in engines
@@ -140,23 +146,31 @@
         "wikipedia".metaData.hidden = true;
         "ddg".metaData.hidden = true;
 
-        "SearX (bndkt.io)" = {
+        # Let's try it
+        "perplexity".metaData.hidden = false;
+
+        "SearX (canine.tools)" = {
           urls = [
             {
-              template = "https://searx.bndkt.io/search";
+              template = "https://searxng.canine.tools/search";
               params = [
                 {
                   name = "q";
                   value = "{searchTerms}";
                 }
-                # Optional quality-of-life params:
-                # { name = "language"; value = "all"; }
-                # { name = "safesearch"; value = "0"; }
+                {
+                  name = "language";
+                  value = "fr";
+                }
+                {
+                  name = "safesearch";
+                  value = "0";
+                }
               ];
             }
           ];
           definedAliases = ["@sx"];
-          icon = "https://searx.bndkt.io/favicon.ico";
+          icon = "https://searxng.canine.tools/favicon.ico";
         };
 
         "Nix Packages" = {
