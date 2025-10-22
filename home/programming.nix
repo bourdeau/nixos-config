@@ -29,6 +29,7 @@
     rustfmt
 
     # Python Development
+    python314
     uv
 
     # JavaScript / Node.js
