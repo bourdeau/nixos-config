@@ -4,6 +4,7 @@
     ./btop
     ./gtk
     ./hyprland
+    ./k9s
     ./lazygit
     ./shell
     ./browsers.nix

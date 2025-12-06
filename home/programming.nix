@@ -11,6 +11,10 @@
     # Cloud Native Tools
     docker
     kubectl
+    minikube
+    kubernetes-helm
+    helmfile
+    k9s
     terraform
     redis
 
