@@ -135,8 +135,8 @@
 
     profiles.default.search = {
       force = true;
-      default = "SearX (canine.tools)";
-      privateDefault = "SearX (canine.tools)";
+      default = "ddg";
+      # privateDefault = "SearX (canine.tools)";
 
       engines = {
         # Disable built-in engines
@@ -144,34 +144,9 @@
         "bing".metaData.hidden = true;
         "qwant".metaData.hidden = true;
         "wikipedia".metaData.hidden = true;
-        "ddg".metaData.hidden = true;
-
         # Let's try it
+        "ddg".metaData.hidden = false;
         "perplexity".metaData.hidden = false;
-
-        "SearX (canine.tools)" = {
-          urls = [
-            {
-              template = "https://searxng.canine.tools/search";
-              params = [
-                {
-                  name = "q";
-                  value = "{searchTerms}";
-                }
-                {
-                  name = "language";
-                  value = "fr";
-                }
-                {
-                  name = "safesearch";
-                  value = "0";
-                }
-              ];
-            }
-          ];
-          definedAliases = ["@sx"];
-          icon = "https://searxng.canine.tools/favicon.ico";
-        };
 
         "Nix Packages" = {
           urls = [
