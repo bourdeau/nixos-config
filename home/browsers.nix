@@ -83,12 +83,6 @@
           updates_disabled = true;
         };
 
-        "tridactyl.vim@cmcaine.co.uk" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/file/4549492/tridactyl_vim-1.24.4.xpi";
-          installation_mode = "force_installed";
-          updates_disabled = true;
-        };
-
         "3rdparty".Extensions = {
           "uBlock0@raymondhill.net".adminSettings = {
             userSettings = rec {
