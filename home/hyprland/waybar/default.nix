@@ -22,6 +22,14 @@
       source = ./scripts/vpn-toggle.nu;
       executable = true;
     };
+    ".config/waybar/scripts/audio-status.nu" = {
+      source = ./scripts/audio-status.nu;
+      executable = true;
+    };
+    ".config/waybar/scripts/audio-toggle.nu" = {
+      source = ./scripts/audio-toggle.nu;
+      executable = true;
+    };
     ".config/waybar/style.css".source = ./style.css;
   };
 
@@ -37,6 +45,7 @@
       modules-left = ["hyprland/workspaces"];
       modules-right = [
         "tray"
+        "custom/audio"
         "custom/udiskie"
         "cpu"
         "memory"
@@ -57,6 +66,14 @@
         on-click = "uwsm app -- udiskie --mount";
         on-click-middle = "uwsm app -- xdg-open /run/media/$USER";
         on-click-right = "uwsm app -- udiskie-umount -a";
+      };
+
+      "custom/audio" = {
+        return-type = "json";
+        exec = "$HOME/.config/waybar/scripts/audio-status.nu";
+        interval = 1;
+        on-click = "$HOME/.config/waybar/scripts/audio-toggle.nu";
+        tooltip = true;
       };
 
       "custom/vpn" = {

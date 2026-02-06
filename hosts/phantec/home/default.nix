@@ -9,7 +9,8 @@
   ];
 
   home.packages = with pkgs; [
-    steam # Steam client
+    steam
+    steamcmd
     # protonup-qt # Manage custom Proton-GE builds
     # lutris # Game manager for non-Steam games (Battle.net, GOG, emulators…)
     # heroic # Epic Games Store & GOG launcher

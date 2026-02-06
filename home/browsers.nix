@@ -74,13 +74,13 @@
         "fr-dicollecte@dictionaries.addons.mozilla.org" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/dictionnaire-fran%C3%A7ais1/latest.xpi";
           installation_mode = "force_installed";
-          updates_disabled = true;
+          updates_disabled = false;
         };
 
         "uBlock0@raymondhill.net" = {
           install_url = moz "ublock-origin";
           installation_mode = "force_installed";
-          updates_disabled = true;
+          updates_disabled = false;
         };
 
         "3rdparty".Extensions = {
