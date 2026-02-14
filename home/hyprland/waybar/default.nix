@@ -70,7 +70,7 @@
 
       "custom/audio" = {
         return-type = "json";
-        exec = "$HOME/.config/waybar/scripts/audio-status.nu";
+        exec = "${config.home.homeDirectory}/.config/waybar/scripts/audio-status.nu";
         interval = 1;
         on-click = "$HOME/.config/waybar/scripts/audio-toggle.nu";
         tooltip = true;
@@ -78,7 +78,7 @@
 
       "custom/vpn" = {
         return-type = "json";
-        exec = "$HOME/.config/waybar/scripts/vpn-status.nu";
+        exec = "${config.home.homeDirectory}/.config/waybar/scripts/vpn-status.nu";
         interval = 5;
         on-click = "$HOME/.config/waybar/scripts/vpn-toggle.nu";
       };
