@@ -31,7 +31,7 @@
 | **Fonts**                   | [Nerd Fonts](https://www.nerdfonts.com/)                                                                   |
 | **Screen Recording**        | [OBS](https://obsproject.com/)                                                                             |
 | **Gaming**                  | [Steam](https://store.steampowered.com/)                                                                   |
-| **Chat**                    | [Discord](https://discord.com/)                                                                            |
+| **Chat**                    | [Discord](https://discord.com/) + [Signal](https://signal.org)                                             |
 | **Web Browser**             | [Firefox](https://www.mozilla.org/firefox/)                                                                |
 | **DAW**                     | [Bitwig Studio](https://www.bitwig.com/)                                                                   |
 | **Secret Manager**          | [SOPS](https://github.com/Mic92/sops-nix/)                                                                 |

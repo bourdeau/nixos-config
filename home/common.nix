@@ -33,6 +33,7 @@
 
     # Communication
     discord
+    signal-desktop
   ];
 
   programs = {

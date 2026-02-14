@@ -5,6 +5,10 @@ _: {
         kb_layout = "us";
         kb_variant = "intl";
         kb_options = "lv3:caps_switch";
+
+        # Mouse
+        sensitivity = 0;
+        accel_profile = "flat";
       };
     };
 

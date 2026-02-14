@@ -10,4 +10,5 @@ log/
 # Backup files
 *.bak
 
+# Secrets
 secretos.yaml
