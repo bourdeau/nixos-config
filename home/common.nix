@@ -38,8 +38,18 @@
 
   programs = {
     eza.enable = true;
-    ssh.enable = true;
     aria2.enable = true;
+
+    ssh = {
+      enable = true;
+      enableDefaultConfig = false;
+
+      matchBlocks."*" = {
+        compression = true;
+        serverAliveInterval = 60;
+        serverAliveCountMax = 3;
+      };
+    };
   };
 
   services = {

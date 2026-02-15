@@ -35,6 +35,8 @@
 | **Web Browser**             | [Firefox](https://www.mozilla.org/firefox/)                                                                |
 | **DAW**                     | [Bitwig Studio](https://www.bitwig.com/)                                                                   |
 | **Secret Manager**          | [SOPS](https://github.com/Mic92/sops-nix/)                                                                 |
+| **Networking**              | [Impala](https://github.com/pythops/impala)                                                                |
+| **Audio**                   | [Wiremix](https://github.com/tsowell/wiremix)                                                              |
 
 and a lot more...
 
