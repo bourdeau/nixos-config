@@ -15,10 +15,14 @@
     ];
   };
 
-  networking.hostName = "phantec";
-  networking.wireless.enable = false;
-  networking.networkmanager.enable = false;
-  networking.wireless.iwd.enable = true; # enable iwd backend for impala
+  networking = {
+    hostName = "phantec";
+    wireless = {
+      enable = false;
+      iwd.enable = true;
+    };
+    networkmanager.enable = false;
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
