@@ -8,5 +8,7 @@
     usbutils # Manage USB devices
     wget # Network utility to retrieve files from the web
     lftp # Command-line FTP/HTTP/SFTP client
+    impala
+    iwd
   ];
 }

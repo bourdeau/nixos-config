@@ -59,7 +59,7 @@
     nodePackages.bash-language-server
     clang-tools
     vscode-langservers-extracted # html, cssls, jsonls
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     gopls
     lua-language-server
     pyright

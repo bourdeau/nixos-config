@@ -38,7 +38,7 @@ in {
       material-design-icons
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
     ];
@@ -129,11 +129,11 @@ in {
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
 
-    logind.extraConfig = ''
-      HandleLidSwitch=ignore
-      HandleLidSwitchDocked=ignore
-      IdleAction=ignore
-    '';
+    logind.settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore";
+      IdleAction = "ignore";
+    };
 
     ollama.enable = true;
 
@@ -153,13 +153,15 @@ in {
     tumbler.enable = true;
     udisks2.enable = true;
 
-    xserver = {
-      enable = true;
-      desktopManager.gnome.enable = false;
-      displayManager = {
-        gdm.enable = false;
+    desktopManager = {
+      gnome = {
+        enable = false;
       };
     };
+
+    xserver.enable = true;
+
+    displayManager.gdm.enable = false;
   };
 
   systemd = {

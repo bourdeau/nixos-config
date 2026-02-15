@@ -73,6 +73,9 @@ in {
         # Brightness
         "SUPER, F5, exec, brightnessctl set 10%-"
         "SUPER, F6, exec, brightnessctl set +10%"
+
+        # Waybar
+        "SUPER, W, exec, pgrep waybar && pkill waybar || waybar"
       ];
 
       bindm = [

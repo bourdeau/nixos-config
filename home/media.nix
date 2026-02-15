@@ -6,6 +6,7 @@
     imv
     audacity
     gimp
+    wiremix
   ];
 
   programs = {
