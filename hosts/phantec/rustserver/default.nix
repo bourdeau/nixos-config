@@ -22,6 +22,7 @@
     serviceConfig = {
       User = "rust";
       WorkingDirectory = "/var/lib/rust/server";
+      Environment = "LD_LIBRARY_PATH=/var/lib/rust/server:${pkgs.steam-run}/lib";
 
       # Run SteamCMD once before starting the server
       ExecStartPre = ''
@@ -32,35 +33,36 @@
           +quit
       '';
 
-      # Run RustDedicated inside steam-run (Steam runtime)
       ExecStart = ''
         ${pkgs.steam-run}/bin/steam-run /var/lib/rust/server/RustDedicated \
           -batchmode -nographics \
-          +app.listenip $IP \
-          +app.port $APPORT \
-          +server.ip $IP \
-          +server.port $PORT \
-          +server.queryport $QUERYPORT \
-          +server.tickrate $TICKRATE \
-          +server.hostname "$SERVERNAME" \
-          +server.description "$SERVERDESCRIPTION" \
-          +server.identity "$SELFNAME" \
-          +server.gamemode $GAMEMODE \
-          +server.level "$SERVERLEVEL" \
-          +server.seed $SEED \
-          +server.salt $SALT \
-          +server.maxplayers $MAXPLAYERS \
-          +server.worldsize $WORLDSIZE \
-          +server.saveinterval $SAVEINTERVAL \
-          +rcon.web $RCONWEB \
-          +rcon.ip $IP \
-          +rcon.port $RCONPORT \
-          +rcon.password "$RCONPASSWORD" \
-          +server.tags "$TAGS" \
-          -logfile "$GAMELOG"
+          +app.listenip 0.0.0.0 \
+          +app.port 28082 \
+          +server.ip 0.0.0.0 \
+          +server.port 28015 \
+          +server.queryport 28017 \
+          +server.tickrate 30 \
+          +server.hostname "[EU] Rustux | Wednesday | Linux, Steam Deck & Windows" \
+          +server.description "Welcome to [EU] Rustux, the Vanilla server for Linux, Steam Deck & Windows Players!\n\nGeneral information:\n➤ Linux, Steam Deck and Windows\n➤ Vanilla: No mods, no pay-to-win\n➤ Wipe schedule: Monthly @ Force\n➤ Map size: 4000\n➤ Join Discord: discord.gg/Y3atKERBpK\n➤ Group limit: 5\n➤ Admins not playing and active\n➤ Bare metal server, low latency, and smooth gameplay\n\nRules:\n1. No Cheating or Exploiting\n2. No Toxicity or Harassment\n3. Fair PVP\n4. Building Restrictions\n5. Respect Server Performance\n6. No Abusing Game Mechanics" \
+          +server.identity "rustux" \
+          +server.gamemode "hardcore" \
+          +server.level "Procedural Map" \
+          +server.seed 1930813691 \
+          +server.salt "1" \
+          +server.maxplayers 100 \
+          +server.worldsize 4000 \
+          +server.saveinterval 300 \
+          +server.secure "0" \
+          +server.encryption "0" \
+          server.eac "0" \
+          +rcon.web 1 \
+          +rcon.ip 0.0.0.0 \
+          +rcon.port 28016 \
+          +rcon.password "CHANGE_ME" \
+          +server.tags "hardcore,vanilla,EU" \
+          -logfile "/var/lib/rust/server/logs/server.log"
       '';
-
-      Restart = "always";
+      Restart = "no";
       LimitNOFILE = 100000;
     };
   };
