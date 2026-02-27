@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }: {
@@ -34,14 +35,14 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/021ab318-133f-4ec4-95c5-8fb6d0fcbe34";
+    device = "/dev/disk/by-uuid/aceea391-cafb-4965-8a02-32f8e3c677d5";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/08F0-33B3";
+    device = "/dev/disk/by-uuid/19C4-1228";
     fsType = "vfat";
-    options = ["fmask=0077" "dmask=0077"];
+    options = ["fmask=0022" "dmask=0022"];
   };
 
   swapDevices = [];

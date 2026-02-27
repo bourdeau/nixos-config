@@ -2,7 +2,6 @@ local nvlsp = require("nvchad.configs.lspconfig")
 local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
-local lspconfig = require("lspconfig")
 
 local lsp_servers = {
 	"bashls",
@@ -57,7 +56,8 @@ for _, server in ipairs(lsp_servers) do
 		opts.cmd = { "nu", "--lsp" }
 	end
 
-	lspconfig[server].setup(opts)
+	vim.lsp.config(server, opts)
+	vim.lsp.enable(server)
 end
 
 vim.o.signcolumn = "yes" -- ensure the gutter shows
