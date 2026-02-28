@@ -18,18 +18,31 @@
 
   networking = {
     hostName = "phantec";
+
     wireless = {
       enable = false;
       iwd.enable = true;
     };
+
     networkmanager.enable = false;
+
+    interfaces.enp12s0 = {
+      useDHCP = false;
+      ipv4.addresses = [
+        {
+          address = "192.168.1.100";
+          prefixLength = 24;
+        }
+      ];
+    };
+
+    defaultGateway = "192.168.1.1";
+    nameservers = ["1.1.1.1" "8.8.8.8"];
   };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # networking.defaultGateway = "192.168.5.201";
 
   # Configure realtime audio limits
   # These PAM limits are required for low-latency audio

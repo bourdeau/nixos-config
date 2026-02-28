@@ -42,10 +42,13 @@
           +server.port 28015 \
           +server.queryport 28017 \
           +server.tickrate 30 \
+          +fps.limit 60 \
+          +server.url "https://rustux.eu" \
           +server.hostname "[EU] Rustux | Wednesday | Linux, Steam Deck & Windows" \
-          +server.description "Welcome to [EU] Rustux, the Vanilla server for Linux, Steam Deck & Windows Players!\n\nGeneral information:\n➤ Linux, Steam Deck and Windows\n➤ Vanilla: No mods, no pay-to-win\n➤ Wipe schedule: Monthly @ Force\n➤ Map size: 4000\n➤ Join Discord: discord.gg/Y3atKERBpK\n➤ Group limit: 5\n➤ Admins not playing and active\n➤ Bare metal server, low latency, and smooth gameplay\n\nRules:\n1. No Cheating or Exploiting\n2. No Toxicity or Harassment\n3. Fair PVP\n4. Building Restrictions\n5. Respect Server Performance\n6. No Abusing Game Mechanics" \
+          +server.description "Welcome to [EU] Rustux, the Vanilla server for Linux, Steam Deck & Windows Players!\n\nGeneral information:\n- Linux, Steam Deck and Windows\n- Vanilla: No mods, no pay-to-win\n- Wipe schedule: Weekly @ Wednesday\n- Map size: 4000\n- Group limit: 5\n➤ Bare metal server, low latency, and smooth gameplay\n\nRules:\n1. No Cheating or Exploiting\n2. No Toxicity or Harassment\n3. Fair PVP\n4. Building Restrictions\n5. Respect Server Performance\n6. No Abusing Game Mechanics" \
           +server.identity "rustux" \
-          +server.gamemode "hardcore" \
+          +server.gamemode "vanilla" \
+          +server.globalchat false \
           +server.level "Procedural Map" \
           +server.seed 1930813691 \
           +server.salt "1" \
@@ -58,8 +61,8 @@
           +rcon.web 1 \
           +rcon.ip 0.0.0.0 \
           +rcon.port 28016 \
-          +rcon.password "CHANGE_ME" \
-          +server.tags "hardcore,vanilla,EU" \
+          +rcon.password "rustRconIljkqwhd6309qwdh9" \
+          +server.tags "weekly,vanilla,EU" \
           -logfile "/var/lib/rust/server/logs/server.log"
       '';
       Restart = "no";
