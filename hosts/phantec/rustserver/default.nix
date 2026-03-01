@@ -3,7 +3,21 @@
   pkgs,
   ...
 }: {
-  networking.firewall.allowedUDPPorts = [28015 28016];
+  environment.systemPackages = with pkgs; [
+    steamcmd
+    steam-run
+    rcon-cli
+  ];
+
+  networking.firewall.allowedUDPPorts = [
+    28015
+    28017
+    28082
+  ];
+
+  networking.firewall.allowedTCPPorts = [
+    28016
+  ];
 
   users.groups.rust = {};
 
@@ -45,9 +59,10 @@
           +fps.limit 60 \
           +server.url "https://rustux.eu" \
           +server.hostname "[EU] Rustux | Wednesday | Linux, Steam Deck & Windows" \
-          +server.description "Welcome to [EU] Rustux, the Vanilla server for Linux, Steam Deck & Windows Players!\n\nGeneral information:\n- Linux, Steam Deck and Windows\n- Vanilla: No mods, no pay-to-win\n- Wipe schedule: Weekly @ Wednesday\n- Map size: 4000\n- Group limit: 5\n➤ Bare metal server, low latency, and smooth gameplay\n\nRules:\n1. No Cheating or Exploiting\n2. No Toxicity or Harassment\n3. Fair PVP\n4. Building Restrictions\n5. Respect Server Performance\n6. No Abusing Game Mechanics" \
+          +server.description "Welcome to [EU] Rustux, the Vanilla server for Linux, Steam Deck & Windows Players!\n\nGeneral information:\n- Linux, Steam Deck and Windows\n- Vanilla: No mods, no pay-to-win\n- Wipe schedule: Weekly @ Wednesday\n- Map size: 4000\n- Group limit: 5\n- Bare metal server, low latency, and smooth gameplay\n\nRules:\n1. No Cheating or Exploiting\n2. No Toxicity or Harassment\n3. Fair PVP\n4. Building Restrictions\n5. Respect Server Performance\n6. No Abusing Game Mechanics" \
           +server.identity "rustux" \
           +server.gamemode "vanilla" \
+          +rcon.web 0 \
           +server.globalchat false \
           +server.level "Procedural Map" \
           +server.seed 1930813691 \
@@ -65,13 +80,39 @@
           +server.tags "weekly,vanilla,EU" \
           -logfile "/var/lib/rust/server/logs/server.log"
       '';
-      Restart = "no";
+      Restart = "always";
+      RestartSec = 10;
       LimitNOFILE = 100000;
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    steamcmd
-    steam-run
-  ];
+  systemd.services.rust-rcon-restart = {
+    description = "Rust Server Daily RCON Restart";
+    after = ["network.target" "rust-server.service"];
+    requires = ["rust-server.service"];
+
+    serviceConfig = {
+      Type = "oneshot";
+      User = "rust";
+      WorkingDirectory = "/var/lib/rust/server";
+
+      ExecStart = ''
+        ${pkgs.rcon-cli}/bin/rcon-cli \
+          --host 127.0.0.1 \
+          --port 28016 \
+          --password rustRconIljkqwhd6309qwdh9 \
+          restart 300 "Daily restart!"
+      '';
+    };
+  };
+
+  systemd.timers.rust-rcon-restart = {
+    description = "Daily Rust Server Restart (06:00 UTC)";
+    wantedBy = ["timers.target"];
+
+    timerConfig = {
+      OnCalendar = "06:00 UTC";
+      Persistent = true;
+    };
+  };
 }

@@ -807,6 +807,7 @@ $env.config = {
 alias vi = vim
 alias ll = ls -l
 alias vim = nvim
+alias v = nvim
 alias tf = terraform
 alias lz = lazygit
 alias top = btop
