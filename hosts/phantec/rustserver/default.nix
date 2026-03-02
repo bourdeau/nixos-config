@@ -39,8 +39,18 @@
     createHome = true;
   };
 
-  environment.etc."rust/server/rustux/cfg/server.cfg".text = builtins.readFile ./rust/server.cfg;
-  environment.etc."rust/server/seeds.txt".text = builtins.readFile ./rust/seeds.txt;
+  # Copy server.cfg and seeds.txt on activation
+  system.activationScripts.copyRustConfigs = {
+    text = ''
+      # Copy server.cfg
+      cp -f ${./rust/server.cfg} /var/lib/rust/server/server/rustux/cfg/server.cfg
+      chmod 644 /var/lib/rust/server/server/rustux/cfg/server.cfg
+
+      # Copy seeds.txt
+      cp -f ${./rust/seeds.txt} /var/lib/rust/server/seeds.txt
+      chmod 644 /var/lib/rust/server/seeds.txt
+    '';
+  };
 
   ## =========================
   ## Rust server
@@ -161,9 +171,9 @@
         # Restart via RCON
         rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Weekly wipe"
       '';
-      wants = ["rust-server.service"];
-      after = ["rust-server.service"];
     };
+    wants = ["rust-server.service"];
+    after = ["rust-server.service"];
   };
 
   systemd.timers.rust-weekly-wipe = {
