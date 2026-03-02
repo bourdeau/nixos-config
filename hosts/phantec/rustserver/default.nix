@@ -30,11 +30,14 @@
   };
 
   environment.etc."rust/server/rustux/cfg/server.cfg".text = builtins.readFile ./rust/server.cfg;
+  environment.etc."rust/server/rustux/script/weekly-wipe.sh".text = builtins.readFile ./rust/weekly-wipe.sh;
   environment.etc."rust/server/seeds.txt".text = builtins.readFile ./rust/seeds.txt;
 
   systemd.tmpfiles.rules = [
     "d /var/lib/rust/server/server/rustux/cfg 0755 rust rust -"
+    "d /var/lib/rust/server/server/rustux/script 0755 rust rust -"
     "C /var/lib/rust/server/server/rustux/cfg/server.cfg 0644 rust rust - ${./rust/server.cfg}"
+    "C /var/lib/rust/server/server/rustux/script/weekly-wipe.sh 0755 rust rust - ${./rust/weekly-wipe.sh}"
     "C /var/lib/rust/server/seeds.txt 0644 rust rust - ${./rust/seeds.txt}"
   ];
 
@@ -97,7 +100,7 @@
   systemd.timers.rust-rcon-restart = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "06:00 UTC";
+      OnCalendar = "06:00";
       Persistent = true;
     };
   };
@@ -111,48 +114,17 @@
       Type = "oneshot";
       User = "rust";
       WorkingDirectory = "/var/lib/rust/server";
-
-      ExecStart = "${pkgs.bash}/bin/bash -c ''
-      set -e
-
-      SERVER_CFG=\"/var/lib/rust/server/server/rustux/cfg/server.cfg\"
-      SEEDS_FILE=\"/var/lib/rust/server/seeds.txt\"
-
-      # Get current seed from server.cfg
-      CURRENT_SEED=$(grep '^server.seed ' \"$SERVER_CFG\" | awk '{print \$2}')
-      
-      echo Current seed is: $CURRENT_SEED
-
-      # Find the next line after the current seed in seeds.txt
-      NEXT_SEED=$(awk -v cur=\"$CURRENT_SEED\" '{
-        if(found){ print; exit }
-        if(\$1 == cur){ found=1 }
-      }' \"$SEEDS_FILE\")
-      
-      echo Next seed is: $NEXT_SEED
-
-      # If current seed is last, loop to first
-      if [ -z \"$NEXT_SEED\" ]; then
-        NEXT_SEED=$(head -n1 \"$SEEDS_FILE\")
-      fi
-
-      # Replace server.seed in server.cfg
-      sed -i \"s/^server.seed .*/server.seed $NEXT_SEED/\" \"$SERVER_CFG\"
-
-      # Restart Rust server with RCON
-      ${pkgs.rcon-cli}/bin/rcon-cli \
-        --host 127.0.0.1 \
-        --port 28016 \
-        --password rustRconIljkqwhd6309qwdh9 \
-        restart 300 \"Weekly wipe\"
-    ''";
+      Environment = [
+        "PATH=/run/current-system/sw/bin"
+      ];
+      ExecStart = "/var/lib/rust/server/server/rustux/script/weekly-wipe.sh";
     };
   };
 
   systemd.timers.rust-weekly-wipe = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "Wed 06:00 UTC";
+      OnCalendar = "Wed 18:00";
       Persistent = true;
     };
   };
