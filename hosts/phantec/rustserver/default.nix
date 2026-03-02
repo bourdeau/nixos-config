@@ -3,6 +3,16 @@
   pkgs,
   ...
 }: {
+  sops = {
+    gnupg.home = "/root/.gnupg";
+    secrets = {
+      rustRcon = {
+        sopsFile = ../../../modules/secrets.yaml;
+        owner = "rust";
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     steamcmd
     steam-run
@@ -30,16 +40,7 @@
   };
 
   environment.etc."rust/server/rustux/cfg/server.cfg".text = builtins.readFile ./rust/server.cfg;
-  environment.etc."rust/server/rustux/script/weekly-wipe.sh".text = builtins.readFile ./rust/weekly-wipe.sh;
   environment.etc."rust/server/seeds.txt".text = builtins.readFile ./rust/seeds.txt;
-
-  systemd.tmpfiles.rules = [
-    "d /var/lib/rust/server/server/rustux/cfg 0755 rust rust -"
-    "d /var/lib/rust/server/server/rustux/script 0755 rust rust -"
-    "C /var/lib/rust/server/server/rustux/cfg/server.cfg 0644 rust rust - ${./rust/server.cfg}"
-    "C /var/lib/rust/server/server/rustux/script/weekly-wipe.sh 0755 rust rust - ${./rust/weekly-wipe.sh}"
-    "C /var/lib/rust/server/seeds.txt 0644 rust rust - ${./rust/seeds.txt}"
-  ];
 
   ## =========================
   ## Rust server
@@ -49,10 +50,13 @@
     wantedBy = ["multi-user.target"];
     after = ["network.target"];
 
+    environment = {
+      LD_LIBRARY_PATH = "/var/lib/rust/server:${pkgs.steam-run}/lib";
+    };
+
     serviceConfig = {
       User = "rust";
       WorkingDirectory = "/var/lib/rust/server";
-      Environment = "LD_LIBRARY_PATH=/var/lib/rust/server:${pkgs.steam-run}/lib";
 
       ExecStartPre = ''
         ${pkgs.steamcmd}/bin/steamcmd \
@@ -62,13 +66,13 @@
           +quit
       '';
 
-      ExecStart = ''
-        ${pkgs.steam-run}/bin/steam-run /var/lib/rust/server/RustDedicated \
+      ExecStart = pkgs.writeShellScript "rust-server-start" ''
+        exec ${pkgs.steam-run}/bin/steam-run /var/lib/rust/server/RustDedicated \
           -batchmode -nographics \
           +server.identity "rustux" \
           +rcon.ip 0.0.0.0 \
           +rcon.port 28016 \
-          +rcon.password "rustRconIljkqwhd6309qwdh9" \
+          +rcon.password "$(cat /run/secrets/rustRcon)" \
           -logfile /var/lib/rust/server/logs/server.log
       '';
 
@@ -83,18 +87,21 @@
   ## =========================
   systemd.services.rust-rcon-restart = {
     description = "Rust daily restart";
+
     serviceConfig = {
       Type = "oneshot";
       User = "rust";
 
-      ExecStart = ''
-        ${pkgs.rcon-cli}/bin/rcon-cli \
+      ExecStart = pkgs.writeShellScript "rust-rcon-restart" ''
+        "${pkgs.rcon-cli}/bin/rcon-cli" \
           --host 127.0.0.1 \
           --port 28016 \
-          --password rustRconIljkqwhd6309qwdh9 \
+          --password "$(cat /run/secrets/rustRcon)" \
           restart 300 "Daily restart"
       '';
     };
+    wants = ["rust-server.service"];
+    after = ["rust-server.service"];
   };
 
   systemd.timers.rust-rcon-restart = {
@@ -113,11 +120,49 @@
     serviceConfig = {
       Type = "oneshot";
       User = "rust";
+      LoadCredential = [
+        "rustRcon:/run/secrets/rustRcon"
+      ];
       WorkingDirectory = "/var/lib/rust/server";
       Environment = [
         "PATH=/run/current-system/sw/bin"
       ];
-      ExecStart = "/var/lib/rust/server/server/rustux/script/weekly-wipe.sh";
+      ExecStart = pkgs.writeShellScript "rust-weekly-wipe" ''
+        set -euo pipefail
+
+        SERVER_CFG="/var/lib/rust/server/server/rustux/cfg/server.cfg"
+        SEEDS_FILE="/var/lib/rust/server/seeds.txt"
+
+        # Get current seed
+        CURRENT_SEED=$(grep '^server.seed ' "$SERVER_CFG" | awk '{print $2}')
+        echo "Current seed is: $CURRENT_SEED"
+
+        # Find next seed
+        NEXT_SEED=$(awk -v cur="$CURRENT_SEED" '
+        {
+          if (found) { print; exit }
+          if ($1 == cur) { found=1 }
+        }' "$SEEDS_FILE")
+
+        if [ -z "$NEXT_SEED" ]; then
+          NEXT_SEED=$(head -n1 "$SEEDS_FILE")
+        fi
+        echo "Next seed is: $NEXT_SEED"
+
+        # Update server.cfg
+        sed -i "s/^server.seed .*/server.seed $NEXT_SEED/" "$SERVER_CFG"
+
+        # Read RCON password
+        RCON_PASS="$(cat "$CREDENTIALS_DIRECTORY/rustRcon")"
+        echo "Restarting server with RCON password"
+
+        sleep 5
+
+        # Restart via RCON
+        rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Weekly wipe"
+      '';
+      wants = ["rust-server.service"];
+      after = ["rust-server.service"];
     };
   };
 

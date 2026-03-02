@@ -21,7 +21,6 @@
     # Build Tools
     cmake
     gcc
-    gnupg
     gnumake
 
     # Rust Development

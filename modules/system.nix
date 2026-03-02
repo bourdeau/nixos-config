@@ -14,6 +14,9 @@ in {
       gnome-settings-daemon
       vim
       config.boot.kernelPackages.perf
+      gnupg
+      sops
+      pinentry-curses
       # Hyprland
       pamixer
       brightnessctl
@@ -23,7 +26,6 @@ in {
       blueman
       hyprlock
       sddm-astronaut
-
       customAstronaut
     ];
 
@@ -102,6 +104,10 @@ in {
     };
     steam.enable = true;
     thunar.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   security = {
@@ -115,6 +121,8 @@ in {
       enable = true;
       packages = [pkgs.gcr];
     };
+
+    pcscd.enable = true;
 
     displayManager.sddm = {
       enable = true;
