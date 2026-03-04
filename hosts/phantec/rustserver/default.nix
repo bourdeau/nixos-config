@@ -101,13 +101,22 @@
     serviceConfig = {
       Type = "oneshot";
       User = "rust";
+      LoadCredential = [
+        "rustRcon:/run/secrets/rustRcon"
+      ];
+      WorkingDirectory = "/var/lib/rust/server";
+      Environment = [
+        "PATH=/run/current-system/sw/bin"
+      ];
 
-      ExecStart = pkgs.writeShellScript "rust-rcon-restart" ''
-        "${pkgs.rcon-cli}/bin/rcon-cli" \
-          --host 127.0.0.1 \
-          --port 28016 \
-          --password "$(cat /run/secrets/rustRcon)" \
-          restart 300 "Daily restart"
+      ExecStart = pkgs.writeShellScript "rust-weekly-wipe" ''
+        set -euo pipefail
+
+        RCON_PASS="$(cat "$CREDENTIALS_DIRECTORY/rustRcon")"
+
+        rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" server.save
+        sleep 1
+        rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Daily restart"
       '';
     };
     wants = ["rust-server.service"];
