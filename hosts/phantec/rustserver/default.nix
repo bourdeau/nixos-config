@@ -180,11 +180,11 @@
         # -------------------------
         for i in $(seq 300 -1 0); do
           if [ "$i" -gt 60 ] && [ $((i % 30)) -eq 0 ]; then
-            rcon say "Server will stop in $i seconds! (Weekly wipe)"
+            rcon-cli say "Server will stop in $i seconds! (Weekly wipe)"
           elif [ "$i" -le 60 ] && [ "$i" -gt 10 ] && [ $((i % 10)) -eq 0 ]; then
-            rcon say "Server will stop in $i seconds! (Weekly wipe)"
+            rcon-cli say "Server will stop in $i seconds! (Weekly wipe)"
           elif [ "$i" -le 10 ]; then
-            rcon say "Server will stop in $i seconds! (Weekly wipe)"
+            rcon-cli say "Server will stop in $i seconds! (Weekly wipe)"
           fi
           sleep 1
         done
