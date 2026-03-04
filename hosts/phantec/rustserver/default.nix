@@ -166,7 +166,19 @@
         RCON_PASS="$(cat "$CREDENTIALS_DIRECTORY/rustRcon")"
         echo "Restarting server with RCON password"
 
-        sleep 5
+        # -------------------------
+        # Countdown
+        # -------------------------
+        for i in $(seq 300 -1 0); do
+          if [ "$i" -gt 60 ] && [ $((i % 30)) -eq 0 ]; then
+            rcon say "Server will stop in $i seconds! (Weekly wipe)"
+          elif [ "$i" -le 60 ] && [ "$i" -gt 10 ] && [ $((i % 10)) -eq 0 ]; then
+            rcon say "Server will stop in $i seconds! (Weekly wipe)"
+          elif [ "$i" -le 10 ]; then
+            rcon say "Server will stop in $i seconds! (Weekly wipe)"
+          fi
+          sleep 1
+        done
 
         # Restart via RCON
         rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Weekly wipe"

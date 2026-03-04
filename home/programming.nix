@@ -67,5 +67,9 @@
     terraform-ls
     typescript-language-server
     yaml-language-server
+
+    # Load testing
+    apacheHttpd
+    tcpkali
   ];
 }
