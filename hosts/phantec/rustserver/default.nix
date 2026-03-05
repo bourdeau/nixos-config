@@ -212,7 +212,7 @@
     description = "Rust force wipe";
     serviceConfig = {
       Type = "oneshot";
-      User = "rust";
+      User = "root";
       WorkingDirectory = "/var/lib/rust/server";
 
       LoadCredential = [
@@ -272,7 +272,7 @@
         rcon server.save
         sleep 5
         rcon server.stop
-        sleep 10
+        sleep 15
 
         # -------------------------
         # Update Rust
