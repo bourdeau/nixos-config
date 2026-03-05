@@ -21,12 +21,15 @@
 
   networking.firewall.allowedUDPPorts = [
     28015
+    28016
     28017
+    27015
     28082
   ];
 
   networking.firewall.allowedTCPPorts = [
     28016
+    28017
     28083
   ];
 
@@ -49,6 +52,12 @@
       # Copy seeds.txt
       cp -f ${./rust/seeds.txt} /var/lib/rust/server/seeds.txt
       chmod 644 /var/lib/rust/server/seeds.txt
+
+      # Initialize dynamic seed file if missing
+      if [ ! -f /var/lib/rust/server/current_seed.cfg ]; then
+        echo "server.seed $(head -n1 /var/lib/rust/server/seeds.txt)" > /var/lib/rust/server/current_seed.cfg
+        chmod 644 /var/lib/rust/server/current_seed.cfg
+      fi
     '';
   };
 
@@ -80,9 +89,14 @@
         exec ${pkgs.steam-run}/bin/steam-run /var/lib/rust/server/RustDedicated \
           -batchmode -nographics \
           +server.identity "rustux" \
+          +server.ip 0.0.0.0 \
+          +server.port 28015 \
+          +server.queryport 28017 \
           +rcon.ip 0.0.0.0 \
           +rcon.port 28016 \
+          +rcon.web true \
           +rcon.password "$(cat /run/secrets/rustRcon)" \
+          +exec /var/lib/rust/server/current_seed.cfg \
           -logfile /var/lib/rust/server/logs/server.log
       '';
 
@@ -130,51 +144,42 @@
   };
 
   ## =========================
-  ## Force wipe
+  ## Monthly force wipe
   ## =========================
   systemd.services.rust-force-wipe = {
     description = "Rust force wipe";
+
     serviceConfig = {
       Type = "oneshot";
       User = "root";
       WorkingDirectory = "/var/lib/rust/server";
-
-      LoadCredential = [
-        "rustRcon:/run/secrets/rustRcon"
-      ];
-
-      Environment = [
-        "PATH=/run/current-system/sw/bin"
-      ];
+      LoadCredential = ["rustRcon:/run/secrets/rustRcon"];
+      Environment = ["PATH=/run/current-system/sw/bin"];
 
       ExecStart = pkgs.writeShellScript "rust-force-wipe" ''
         set -euo pipefail
 
-        SERVER_CFG="/var/lib/rust/server/server/rustux/cfg/server.cfg"
         SEEDS_FILE="/var/lib/rust/server/seeds.txt"
+        DYNAMIC_SEED_FILE="/var/lib/rust/server/current_seed.cfg"
         RCON_PASS="$(cat "$CREDENTIALS_DIRECTORY/rustRcon")"
 
-        rcon() {
-          rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" "$@"
-        }
+        rcon() { rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" "$@"; }
 
         # -------------------------
         # Pick next seed
         # -------------------------
-        CURRENT_SEED=$(grep '^server.seed ' "$SERVER_CFG" | awk '{print $2}')
+        CURRENT_SEED=$(grep '^server.seed ' "$DYNAMIC_SEED_FILE" | awk '{print $2}')
         echo "Current seed: $CURRENT_SEED"
 
         NEXT_SEED=$(awk -v cur="$CURRENT_SEED" '
-        {
-          if (found) { print; exit }
-          if ($1 == cur) { found=1 }
-        }' "$SEEDS_FILE")
+        { if (found) { print; exit } if ($1 == cur) { found=1 } }' "$SEEDS_FILE")
 
         if [ -z "$NEXT_SEED" ]; then
           NEXT_SEED=$(head -n1 "$SEEDS_FILE")
         fi
 
         echo "Next seed: $NEXT_SEED"
+        echo "server.seed $NEXT_SEED" > "$DYNAMIC_SEED_FILE"
 
         # -------------------------
         # Countdown
@@ -192,11 +197,11 @@
         done
 
         # -------------------------
-        # Stop Server
+        # Stop server
         # -------------------------
-        echo "Stoping server via rcon"
+        echo "Stopping server via rcon"
         rcon server.stop
-        sleep 10
+        sleep 15
 
         # -------------------------
         # Update Rust
@@ -209,15 +214,9 @@
           +quit
 
         # -------------------------
-        # Update seed
-        # -------------------------
-        echo "Updating Map seed"
-        sed -i "s/^server.seed .*/server.seed $NEXT_SEED/" "$SERVER_CFG"
-
-        # -------------------------
         # Restart server
         # -------------------------
-        echo "Restarting systemd rust-server"
+        echo "Restarting Rust server"
         systemctl start rust-server.service
       '';
     };
