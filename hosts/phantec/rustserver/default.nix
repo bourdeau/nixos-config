@@ -96,7 +96,7 @@
           +rcon.port 28016 \
           +rcon.web true \
           +rcon.password "$(cat /run/secrets/rustRcon)" \
-          +exec /var/lib/rust/server/current_seed.cfg \
+          +server.seed $(cat /var/lib/rust/server/current_seed.cfg) \
           -logfile /var/lib/rust/server/logs/server.log
       '';
 
@@ -179,7 +179,7 @@
         fi
 
         echo "Next seed: $NEXT_SEED"
-        echo "server.seed $NEXT_SEED" > "$DYNAMIC_SEED_FILE"
+        echo "$NEXT_SEED" > "$DYNAMIC_SEED_FILE"
 
         # -------------------------
         # Countdown
