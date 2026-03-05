@@ -114,8 +114,10 @@
 
         RCON_PASS="$(cat "$CREDENTIALS_DIRECTORY/rustRcon")"
 
+        echo "Saving server via rcon"
         rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" server.save
-        sleep 1
+        sleep 3
+        echo "Restarting server via rcon"
         rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Daily restart"
       '';
     };
@@ -126,7 +128,7 @@
   systemd.timers.rust-rcon-restart = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "06:00";
+      OnCalendar = "05:00 UTC";
       Persistent = true;
     };
   };
@@ -178,6 +180,7 @@
         # -------------------------
         # Countdown
         # -------------------------
+        echo "Countdown of 300 sec"
         for i in $(seq 300 -1 0); do
           if [ "$i" -gt 60 ] && [ $((i % 30)) -eq 0 ]; then
             rcon-cli say "Server will stop in $i seconds! (Weekly wipe)"
@@ -190,6 +193,7 @@
         done
 
         # Restart via RCON
+        echo "Restarting server via rcon"
         rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Weekly wipe"
       '';
     };
@@ -200,7 +204,7 @@
   systemd.timers.rust-weekly-wipe = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "Wed 18:00";
+      OnCalendar = "Wed 17:00 UTC";
       Persistent = true;
     };
   };
@@ -255,6 +259,7 @@
         # -------------------------
         # Countdown
         # -------------------------
+        echo "Countdown of 300 sec"
         for i in $(seq 300 -1 0); do
           if [ "$i" -gt 60 ] && [ $((i % 30)) -eq 0 ]; then
             rcon say "Server will stop in $i seconds! (Force wipe)"
@@ -269,14 +274,17 @@
         # -------------------------
         # Save & stop
         # -------------------------
+        echo "Saving server via rcon"
         rcon server.save
         sleep 5
+        echo "Stoping server via rcon"
         rcon server.stop
         sleep 15
 
         # -------------------------
         # Update Rust
         # -------------------------
+        echo "Updating Rust"
         ${pkgs.steamcmd}/bin/steamcmd \
           +force_install_dir /var/lib/rust/server \
           +login anonymous \
@@ -286,11 +294,13 @@
         # -------------------------
         # Update seed
         # -------------------------
+        echo "Updating Map seed"
         sed -i "s/^server.seed .*/server.seed $NEXT_SEED/" "$SERVER_CFG"
 
         # -------------------------
         # Restart server
         # -------------------------
+        echo "Restarting systemd rust-server"
         systemctl start rust-server.service
       '';
     };
@@ -302,8 +312,8 @@
   systemd.timers.rust-force-wipe = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      # First Thursday of the month at 19:00
-      OnCalendar = "Thu *-*-1..7 19:00";
+      # First Thursday of the month at 19:00 UTC
+      OnCalendar = "Thu *-*-1..7 19:00 UTC";
       Persistent = true;
     };
   };
