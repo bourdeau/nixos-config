@@ -95,7 +95,7 @@
   ## =========================
   ## Daily restart
   ## =========================
-  systemd.services.rust-rcon-restart = {
+  systemd.services.rust-daily-restart = {
     description = "Rust daily restart";
 
     serviceConfig = {
@@ -109,14 +109,10 @@
         "PATH=/run/current-system/sw/bin"
       ];
 
-      ExecStart = pkgs.writeShellScript "rust-weekly-wipe" ''
+      ExecStart = pkgs.writeShellScript "rust-daily-restart" ''
         set -euo pipefail
 
         RCON_PASS="$(cat "$CREDENTIALS_DIRECTORY/rustRcon")"
-
-        echo "Saving server via rcon"
-        rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" server.save
-        sleep 3
         echo "Restarting server via rcon"
         rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Daily restart"
       '';
@@ -125,86 +121,10 @@
     after = ["rust-server.service"];
   };
 
-  systemd.timers.rust-rcon-restart = {
+  systemd.timers.rust-daily-restart = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "05:00 UTC";
-      Persistent = true;
-    };
-  };
-
-  ## =========================
-  ## Weekly wipe (seed rotation)
-  ## =========================
-  systemd.services.rust-weekly-wipe = {
-    description = "Rust weekly wipe";
-    serviceConfig = {
-      Type = "oneshot";
-      User = "rust";
-      LoadCredential = [
-        "rustRcon:/run/secrets/rustRcon"
-      ];
-      WorkingDirectory = "/var/lib/rust/server";
-      Environment = [
-        "PATH=/run/current-system/sw/bin"
-      ];
-      ExecStart = pkgs.writeShellScript "rust-weekly-wipe" ''
-        set -euo pipefail
-
-        SERVER_CFG="/var/lib/rust/server/server/rustux/cfg/server.cfg"
-        SEEDS_FILE="/var/lib/rust/server/seeds.txt"
-
-        # Get current seed
-        CURRENT_SEED=$(grep '^server.seed ' "$SERVER_CFG" | awk '{print $2}')
-        echo "Current seed is: $CURRENT_SEED"
-
-        # Find next seed
-        NEXT_SEED=$(awk -v cur="$CURRENT_SEED" '
-        {
-          if (found) { print; exit }
-          if ($1 == cur) { found=1 }
-        }' "$SEEDS_FILE")
-
-        if [ -z "$NEXT_SEED" ]; then
-          NEXT_SEED=$(head -n1 "$SEEDS_FILE")
-        fi
-        echo "Next seed is: $NEXT_SEED"
-
-        # Update server.cfg
-        sed -i "s/^server.seed .*/server.seed $NEXT_SEED/" "$SERVER_CFG"
-
-        # Read RCON password
-        RCON_PASS="$(cat "$CREDENTIALS_DIRECTORY/rustRcon")"
-        echo "Restarting server with RCON password"
-
-        # -------------------------
-        # Countdown
-        # -------------------------
-        echo "Countdown of 300 sec"
-        for i in $(seq 300 -1 0); do
-          if [ "$i" -gt 60 ] && [ $((i % 30)) -eq 0 ]; then
-            rcon-cli say "Server will stop in $i seconds! (Weekly wipe)"
-          elif [ "$i" -le 60 ] && [ "$i" -gt 10 ] && [ $((i % 10)) -eq 0 ]; then
-            rcon-cli say "Server will stop in $i seconds! (Weekly wipe)"
-          elif [ "$i" -le 10 ]; then
-            rcon-cli say "Server will stop in $i seconds! (Weekly wipe)"
-          fi
-          sleep 1
-        done
-
-        # Restart via RCON
-        echo "Restarting server via rcon"
-        rcon-cli --host 127.0.0.1 --port 28016 --password "$RCON_PASS" restart 300 "Weekly wipe"
-      '';
-    };
-    wants = ["rust-server.service"];
-    after = ["rust-server.service"];
-  };
-
-  systemd.timers.rust-weekly-wipe = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "Wed 17:00 UTC";
+      OnCalendar = "*-*-* 05:00 UTC";
       Persistent = true;
     };
   };
@@ -272,14 +192,11 @@
         done
 
         # -------------------------
-        # Save & stop
+        # Stop Server
         # -------------------------
-        echo "Saving server via rcon"
-        rcon server.save
-        sleep 5
         echo "Stoping server via rcon"
         rcon server.stop
-        sleep 15
+        sleep 10
 
         # -------------------------
         # Update Rust
