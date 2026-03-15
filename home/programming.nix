@@ -30,6 +30,7 @@
     rustc
     clippy
     rustfmt
+    protobuff
 
     # Python Development
     python314
