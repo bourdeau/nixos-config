@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: let
   username = "ph";
@@ -13,7 +12,7 @@ in {
     systemPackages = with pkgs; [
       gnome-settings-daemon
       vim
-      config.boot.kernelPackages.perf
+      perf
       gnupg
       sops
       pinentry-curses
