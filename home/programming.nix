@@ -21,7 +21,6 @@
     # Build Tools
     cmake
     gcc
-    gnupg
     gnumake
 
     # Rust Development
@@ -31,6 +30,7 @@
     rustc
     clippy
     rustfmt
+    protobuf
 
     # Python Development
     python314
@@ -68,5 +68,9 @@
     terraform-ls
     typescript-language-server
     yaml-language-server
+
+    # Load testing
+    apacheHttpd
+    tcpkali
   ];
 }

@@ -29,7 +29,6 @@
     tree # Display directories as trees
     xdg-utils # Utilities for managing X desktop environments
     zstd # Fast lossless compression algorithm
-    sops # Secret Manager
 
     # Communication
     discord
@@ -39,17 +38,6 @@
   programs = {
     eza.enable = true;
     aria2.enable = true;
-
-    ssh = {
-      enable = true;
-      enableDefaultConfig = false;
-
-      matchBlocks."*" = {
-        compression = true;
-        serverAliveInterval = 60;
-        serverAliveCountMax = 3;
-      };
-    };
   };
 
   services = {
