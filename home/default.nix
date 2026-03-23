@@ -7,6 +7,7 @@
     ./k9s
     ./lazygit
     ./shell
+    ./ssh
     ./browsers.nix
     ./common.nix
     ./git.nix
