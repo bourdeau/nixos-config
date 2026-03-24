@@ -2,7 +2,8 @@ local M = {}
 
 M.opts = {
 	defaults = {
-		find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--hidden" },
+		-- find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--hidden" },
+		find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
 		file_ignore_patterns = {
 			"%.git/objects/",
 			"%.git/logs/",

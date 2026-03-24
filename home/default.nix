@@ -21,7 +21,7 @@
   home = {
     username = "ph";
     homeDirectory = "/home/ph";
-    stateVersion = "24.11";
+    stateVersion = "25.11";
   };
 
   programs.home-manager.enable = true;
