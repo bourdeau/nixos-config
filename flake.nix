@@ -21,7 +21,7 @@
 
         modules = [
           sops-nix.nixosModules.sops
-          ./modules/secrets.nix
+          ./modules/vpn.nix
           ./hosts/phantec
 
           home-manager.nixosModules.home-manager
