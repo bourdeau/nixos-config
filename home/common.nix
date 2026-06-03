@@ -11,12 +11,15 @@
     ripgrep # Line-oriented search Tools
     fd # find replacement
     xclip # Command line interface to the X11 clipboard
+    xsel # Reads/writes the X clipboard and selections
     zoxide # Fast cd command that learns your habits
     yazi # terminal file manager
     tokei # count files in a project and group
     presenterm # a TUI markdown terminal slideshow tool.
     manix # Not the French condoms brand... search NixOS and Home Manager options from the terminal
     zathura # pdf viewer
+    libinput # keyboard input detection for debugging
+    ffmpeg
 
     # Miscellaneous
     file # Determine file type

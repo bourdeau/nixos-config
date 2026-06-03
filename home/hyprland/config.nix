@@ -2,7 +2,6 @@
   terminal = "alacritty";
   splitToLines = s: lib.splitString "\n" s;
   browser = "firefox";
-  wofiLauncher = ''$(wofi --show drun --insensitive --define=drun-print_desktop_file=true | sed -E "s/(\.desktop) /\1:/")'';
 in {
   gtk.enable = true;
   qt.enable = true;
@@ -33,7 +32,7 @@ in {
         "SUPER SHIFT, F, fullscreen, 1"
         "SUPER, Space, exec, togglefloating"
         "ALT, Escape, exec, uwsm app -- loginctl lock-session"
-        "SUPER, R, exec, uwsm app -- ${wofiLauncher}"
+        "CTRL ALT, R, exec, uwsm app -- wofi --show drun --insensitive"
         # Whole screen → save to ~/Images/Screenshots AND copy to clipboard
         "CTRL ALT, S, exec, hyprshot -m output -o ~/Images/Screenshots"
 
