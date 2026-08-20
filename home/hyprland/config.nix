@@ -10,8 +10,11 @@ in {
       exec-once = splitToLines ''
         hyprpaper
         waybar
+        easyeffects -w
+        discord --start-minimized
         [workspace 1 silent] ${browser}
         [workspace 2 silent] ${terminal}
+        [workspace 3 silent] steam
       '';
 
       general = {

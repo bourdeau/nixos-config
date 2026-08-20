@@ -1,0 +1,5 @@
+[sie][Autogain#0]
+bypass=true
+outputGain=-12
+silenceThreshold=-42
+target=-1

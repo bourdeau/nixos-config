@@ -1,0 +1,9 @@
+[sie][Compressor#0]
+attack=10
+knee=-4
+makeup=5
+outputGain=8
+ratio=5
+release=150
+sidechainMode=1
+threshold=-16
