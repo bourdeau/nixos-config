@@ -175,7 +175,7 @@ in {
     services."set-performance-profile" = {
       description = "Set power profile to performance";
       after = ["power-profiles-daemon.service"];
-      wantedBy = ["multi-user.target"];
+      wantedBy = ["power-profiles-daemon.service"];
       serviceConfig.ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
     };
 
@@ -195,7 +195,10 @@ in {
     extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    package = pkgs.docker_29;
+  };
 
   xdg.portal = {
     enable = true;
