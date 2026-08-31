@@ -6,6 +6,7 @@ in {
   gtk.enable = true;
   qt.enable = true;
   wayland.windowManager.hyprland = {
+    configType = "hyprlang";
     settings = {
       exec-once = splitToLines ''
         hyprpaper

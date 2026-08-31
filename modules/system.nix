@@ -179,12 +179,12 @@ in {
       serviceConfig.ExecStart = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance";
     };
 
-    sleep.extraConfig = ''
-      AllowSuspend=no
-      AllowHibernation=no
-      AllowHybridSleep=no
-      AllowSuspendThenHibernate=no
-    '';
+    sleep.settings.Sleep = {
+      AllowSuspend = false;
+      AllowHibernation = false;
+      AllowHybridSleep = false;
+      AllowSuspendThenHibernate = false;
+    };
   };
 
   time.timeZone = "Europe/Paris";
