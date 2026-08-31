@@ -31,8 +31,8 @@
       pkgs.fontconfig.lib
       pkgs.freetype
       pkgs.libGL
-      pkgs.xorg.libX11
-      pkgs.xorg.libXrandr
+      pkgs.libX11
+      pkgs.libXrandr
       pkgs.stdenv.cc.cc.lib
 
       # Audio backends so Bitwig and plugins can talk to ALSA/Pipewire/Pulse

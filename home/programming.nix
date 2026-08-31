@@ -48,7 +48,7 @@
     deadnix # detect unused definitions
 
     # Formatter
-    nodePackages.prettier
+    prettier
     taplo # TOML
     ruff
 
@@ -56,7 +56,7 @@
     go
 
     # LSP Servers
-    nodePackages.bash-language-server
+    bash-language-server
     clang-tools
     vscode-langservers-extracted # html, cssls, jsonls
     dockerfile-language-server
