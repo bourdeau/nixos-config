@@ -72,5 +72,8 @@
     # Load testing
     apacheHttpd
     tcpkali
+
+    # AI
+    opencode
   ];
 }
