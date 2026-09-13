@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../modules/system.nix
     # Include the results of the hardware scan.
@@ -39,6 +43,8 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  services.ollama.package = pkgs.ollama-cuda;
 
   # Configure realtime audio limits
   # These PAM limits are required for low-latency audio
