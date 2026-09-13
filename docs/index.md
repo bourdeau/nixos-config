@@ -1,4 +1,4 @@
 # Documentation
 
 - [Installation](install.md)
-- [Troubleshooting](troubeshootings.md)
+- [Troubleshooting](troubleshootings.md)
