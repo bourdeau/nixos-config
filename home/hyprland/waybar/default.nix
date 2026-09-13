@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  home.packages = [pkgs.wofi pkgs.pamixer pkgs.pavucontrol];
-
   home.file = {
     ".config/waybar/scripts/power-menu.nu" = {
       source = ./scripts/power-menu.nu;

@@ -14,7 +14,6 @@
     minikube
     kubernetes-helm
     helmfile
-    k9s
     terraform
     redis
 
