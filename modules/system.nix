@@ -4,9 +4,6 @@
   ...
 }: let
   username = "ph";
-  customAstronaut = pkgs.sddm-astronaut.override {
-    embeddedTheme = "astronaut"; # list of options: astronaut, cyberpunk, hyprland_kath, etc.
-  };
 in {
   environment = {
     systemPackages = with pkgs; [
@@ -23,8 +20,6 @@ in {
       udiskie
       networkmanagerapplet
       blueman
-      sddm-astronaut
-      customAstronaut
     ];
 
     variables.PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
@@ -128,7 +123,7 @@ in {
       wayland.enable = true; # ensures Wayland session
       package = pkgs.kdePackages.sddm; # force Qt6 build of SDDM
       theme = "sddm-astronaut-theme";
-      extraPackages = [customAstronaut pkgs.kdePackages.qtmultimedia];
+      extraPackages = [pkgs.sddm-astronaut pkgs.kdePackages.qtmultimedia];
     };
 
     fprintd.enable = true;
