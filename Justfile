@@ -7,7 +7,7 @@ default:
   @echo "  build <host>       - Build system for a given host"
   @echo "  boot <host>        - Build system for a given host, applied at next boot"
   @echo "  check <host>       - Dry-run build for a given host (simulate changes)"
-  @echo "  clean              - Remove old generations, keep only the last 5"
+  @echo "  clean              - Remove all old generations and clean the store"
   @echo "  gc                 - Garbage collect and optimise the nix store"
   @echo "  generations        - List all available system generations"
   @echo "  rollback           - Roll back to the previous generation"
@@ -32,10 +32,8 @@ boot +host:
 check +host:
   sudo nixos-rebuild switch --flake .#{{host}} --dry-run
 
-# Remove old generations, keep only the last 5
+# Remove all old generations and clean the store
 clean:
-  sudo nix-collect-garbage --delete-older-than 7d
-  sudo nix-env --delete-generations +5
   sudo nix-collect-garbage -d
 
 # Garbage collect and optimise the nix store
