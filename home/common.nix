@@ -6,7 +6,6 @@
     zip # Create zip archives
 
     # Utilities
-    eza # Modern replacement for 'ls'
     fzf # Command-line fuzzy finder
     ripgrep # Line-oriented search Tools
     fd # find replacement
@@ -45,7 +44,5 @@
 
   services = {
     syncthing.enable = true;
-    # auto mount usb drives
-    udiskie.enable = true;
   };
 }

@@ -23,7 +23,6 @@ in {
       udiskie
       networkmanagerapplet
       blueman
-      hyprlock
       sddm-astronaut
       customAstronaut
     ];
