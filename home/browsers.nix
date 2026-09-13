@@ -132,7 +132,6 @@
     profiles.default.search = {
       force = true;
       default = "ddg";
-      # privateDefault = "SearX (canine.tools)";
 
       engines = {
         # Disable built-in engines

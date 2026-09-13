@@ -11,9 +11,5 @@
   home.packages = with pkgs; [
     steam
     steamcmd
-    # protonup-qt # Manage custom Proton-GE builds
-    # lutris # Game manager for non-Steam games (Battle.net, GOG, emulators…)
-    # heroic # Epic Games Store & GOG launcher
-    # bottles # Manage Wine prefixes ("bottles") for games/apps
   ];
 }
