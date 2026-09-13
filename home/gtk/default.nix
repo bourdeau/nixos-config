@@ -28,4 +28,6 @@
       package = pkgs.catppuccin-cursors.mochaDark;
     };
   };
+
+  qt.enable = true;
 }
