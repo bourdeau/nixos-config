@@ -150,8 +150,6 @@ in {
     power-profiles-daemon.enable = true;
     printing.enable = true;
 
-    pulseaudio.enable = false;
-
     tumbler.enable = true;
     udisks2.enable = true;
 
