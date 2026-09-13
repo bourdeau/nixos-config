@@ -3,7 +3,7 @@
 If you try to install my config by running a command like
 
 ```
-sudo nixos-rebuild --flake github:bourdeau/nios-config#phantec
+sudo nixos-rebuild --flake github:bourdeau/nixos-config#phantec
 ```
 
 **It won’t work**, as we most likely don’t have the same hardware. You also (hopefully) don’t have my GPG private key, so the secret manager (SOPS) won’t be able to decrypt the secrets either.
