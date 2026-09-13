@@ -3,8 +3,6 @@
   splitToLines = s: lib.splitString "\n" s;
   browser = "firefox";
 in {
-  gtk.enable = true;
-  qt.enable = true;
   wayland.windowManager.hyprland = {
     configType = "hyprlang";
     settings = {
