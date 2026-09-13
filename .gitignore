@@ -11,4 +11,4 @@ log/
 *.bak
 
 # Secrets
-secretos.yaml
+secrets/secretos.yaml

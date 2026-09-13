@@ -1,9 +1,9 @@
 {config, ...}: {
   sops = {
     gnupg.home = "/root/.gnupg";
-    defaultSopsFile = ./secrets.yaml;
+    defaultSopsFile = ../secrets/secrets.yaml;
     secrets.protonvpn-key = {
-      sopsFile = ./secrets.yaml;
+      sopsFile = ../secrets/secrets.yaml;
     };
   };
 
