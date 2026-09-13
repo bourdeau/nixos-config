@@ -98,7 +98,10 @@ $env.NU_PLUGIN_DIRS = [
 ]
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-$env.PATH = ($env.PATH | split row (char esep) | prepend ($nu.home-dir | path join '.cargo/bin'))
+let cargo_bin = ($nu.home-dir | path join '.cargo/bin')
+if $cargo_bin not-in ($env.PATH | split row (char esep)) {
+    $env.PATH = ($env.PATH | split row (char esep) | prepend $cargo_bin)
+}
 
 # Carapace auto complete
 mkdir ~/.cache/carapace
