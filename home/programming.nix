@@ -9,7 +9,6 @@
     mask # uses Markdown
 
     # Cloud Native Tools
-    docker_29
     kubectl
     minikube
     kubernetes-helm
