@@ -3,7 +3,7 @@
 # version = "0.87.0"
 
 def create_left_prompt [] {
-    let home =  $nu.home-path
+    let home =  $nu.home-dir
 
     # Perform tilde substitution on dir
     # To determine if the prefix of the path matches the home dir, we split the current path into
@@ -98,7 +98,10 @@ $env.NU_PLUGIN_DIRS = [
 ]
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/home/ph/.cargo/bin')
+let cargo_bin = ($nu.home-dir | path join '.cargo/bin')
+if $cargo_bin not-in ($env.PATH | split row (char esep)) {
+    $env.PATH = ($env.PATH | split row (char esep) | prepend $cargo_bin)
+}
 
 # Carapace auto complete
 mkdir ~/.cache/carapace
