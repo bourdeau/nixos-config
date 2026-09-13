@@ -2,9 +2,7 @@
   sops = {
     gnupg.home = "/root/.gnupg";
     defaultSopsFile = ../secrets/secrets.yaml;
-    secrets.protonvpn-key = {
-      sopsFile = ../secrets/secrets.yaml;
-    };
+    secrets.protonvpn-key = {};
   };
 
   networking.wg-quick.interfaces.proton = {
