@@ -75,5 +75,8 @@
 
     # AI
     opencode
+
+    # Reverse engineering
+    radare2
   ];
 }
