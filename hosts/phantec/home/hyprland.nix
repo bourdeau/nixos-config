@@ -10,13 +10,11 @@ _: {
         sensitivity = 0;
         accel_profile = "flat";
       };
-    };
 
-    extraConfig = ''
-      monitor = HDMI-A-2, 3840x2160@240, 0x0, 1.5
-      xwayland {
-        force_zero_scaling = true
-      }
-    '';
+      monitor = "HDMI-A-2, 3840x2160@240, 0x0, 1.5";
+      xwayland = {
+        force_zero_scaling = true;
+      };
+    };
   };
 }
