@@ -18,10 +18,7 @@
   networking = {
     hostName = "phantec";
 
-    wireless = {
-      enable = false;
-      iwd.enable = true;
-    };
+    wireless.enable = false;
 
     networkmanager.enable = false;
 
