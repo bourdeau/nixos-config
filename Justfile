@@ -76,5 +76,5 @@ sync-configs:
     ./hosts/phantec/scripts/sync-configs.nu
 
 encrypt:
-  sudo sops --encrypt --pgp BFA8556AF3E7F8905EAF9B25FE7165D996DC4E61 secrets/secretos.yaml > secrets/secrets.yaml
+  sudo sops --encrypt --pgp 283B79A89EC6F84406549B7407A72A1264DBE563 secrets/secretos.yaml > secrets/secrets.yaml
 
