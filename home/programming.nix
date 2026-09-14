@@ -66,6 +66,7 @@
     terraform-ls
     typescript-language-server
     yaml-language-server
+    nu-lint
 
     # Load testing
     apacheHttpd

@@ -12,6 +12,7 @@ local lsp_servers = {
 	"jsonls",
 	"lua_ls",
 	"nushell",
+	"nu-lint",
 	"pyright",
 	"rust_analyzer",
 	"ts_ls",
@@ -46,14 +47,13 @@ for _, server in ipairs(lsp_servers) do
 		}
 	end
 
-	-- Nushell LSP (`nu --lsp`) is still experimental:
-	--  ✓ completions
-	--  ✓ hover docs
-	--  ✓ semantic tokens (highlighting)
-	--  ✗ diagnostics (no error reporting yet)
-	-- So invalid syntax won't be underlined until they implement diagnostics.
 	if server == "nushell" then
 		opts.cmd = { "nu", "--lsp" }
+	end
+
+	if server == "nu-lint" then
+		opts.cmd = { "nu-lint", "--lsp" }
+		opts.filetypes = { "nu" }
 	end
 
 	vim.lsp.config(server, opts)
