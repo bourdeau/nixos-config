@@ -51,7 +51,7 @@ Available commands:
   build <host>       - Build system for a given host
   boot <host>        - Build system for a given host, applied at next boot
   check <host>       - Dry-run build for a given host (simulate changes)
-  clean              - Remove old generations, keep only the last 5
+  clean              - Remove all old generations and clean the store
   gc                 - Garbage collect and optimise the nix store
   generations        - List all available system generations
   rollback           - Roll back to the previous generation
