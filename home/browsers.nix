@@ -58,6 +58,7 @@
         "browser.newtabpage.override.on".Value = true;
         "extensions.activeThemeID".Status = "locked";
         "extensions.activeThemeID".Value = "{2adf0361-e6d8-4b74-b3bc-3f450e8ebb69}";
+        "layout.css.prefers-color-scheme.content".Value = 1; # force dark mode on websites
         "browser.translations.enable".Value = false;
         "browser.translations.autoTranslate".Value = false;
         "browser.translations.showInContextMenu".Value = false;
