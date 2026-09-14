@@ -10,10 +10,11 @@ sudo nixos-rebuild --flake github:bourdeau/nixos-config#phantec
 
 But if you’d like to use my configuration, here are the steps to follow:
 
-```
-git clone https://github.com/bourdeau/nixos-config.git ~
+```bash
+nix-shell -p git
+cd ~ && git clone https://github.com/bourdeau/nixos-config.git
 sudo cp /etc/nixos/hardware-configuration.nix ~/nixos-config/hosts/phantec/
 sudo mv /etc/nixos /etc/nixos.bak
 sudo ln -s ~/nixos-config/ /etc/nixos
-sudo nixos-rebuild switch --flake .#phantec
+sudo nixos-rebuild switch --flake /etc/nixos#phantec
 ```
