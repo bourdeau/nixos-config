@@ -12,47 +12,24 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = [
-      "nvme"
-      "ahci"
-      "xhci_pci"
-      "usbhid"
-      "usb_storage"
-      "sd_mod"
-      "v4l2loopback"
-      "snd-aloop"
-    ];
+    initrd.availableKernelModules = ["nvme" "ahci" "xhci_pci" "usbhid" "usb_storage" "sd_mod"];
     initrd.kernelModules = [];
     kernelModules = ["kvm-amd"];
-    extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-    extraModprobeConfig = ''
-      # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
-      # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
-      # https://github.com/umlaeute/v4l2loopback
-      options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
-    '';
+    extraModulePackages = [];
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d5731c5f-13a8-4b38-82af-d351bf25d3c2";
+    device = "/dev/disk/by-uuid/7d9c8d2c-c0f1-45e1-8ebb-35d96e00accc";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/A41B-58D4";
+    device = "/dev/disk/by-uuid/4C5E-5EE4";
     fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+    options = ["fmask=0077" "dmask=0077"];
   };
 
   swapDevices = [];
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp12s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp13s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
