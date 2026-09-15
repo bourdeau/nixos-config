@@ -10,7 +10,10 @@ try {
   )
 
   if ($files | is-empty) {
-    error make { msg: $"No wallpapers found in: ($dir)" }
+    error make {
+      msg: $"No wallpapers found in: ($dir)"
+      label: {text: "no wallpapers found", span: $dir}
+    }
   }
 
   let chosen = $files | shuffle | first
@@ -22,7 +25,10 @@ try {
   )
 
   if ($monitors | is-empty) {
-    error make { msg: "No monitors returned by `hyprctl -j monitors`" }
+    error make {
+      msg: "No monitors returned by `hyprctl -j monitors`"
+      label: {text: "no monitors found", span: $monitors}
+    }
   }
 
   for mon in $monitors {
